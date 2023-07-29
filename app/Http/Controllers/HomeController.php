@@ -30,13 +30,13 @@ class HomeController extends Controller
     
      public function blog()
     {
-        $posts = Blog::all()->sortBy('edited_at');       //ブログを更新した新しい順に上から表示
+        $posts = Blog::where('status',1)->get()->sortBy('edited_at');    //status=1のみ、更新した新しい順に公開する。0は非公開（下書き保存）。
+     
         return view('blog', ['posts' => $posts]);
     }
     
      public function blog_id(Request $request)
     {
-        //dd('blog_id呼ばれた');
         $post = Blog::find($request->id);
         $post->view_count += 1;  //閲覧回数カウント変数。このアクションが実施される度に１を足す。
         $post->save();

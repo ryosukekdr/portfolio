@@ -15,7 +15,7 @@
                     <p class="card-text">{{ Str::limit($post->body, 200) }}</p>
                 </div>
                 <div class=footer>
-                    <div class="date">{{ $post->edited_at }}</div>
+                    <div class="date">{{ date('Y年m月d日', strtotime($post->edited_at)) }}</div>
                     <div class="etsuran">{{ $post->view_count }}</div>
                 </div>
             </div>

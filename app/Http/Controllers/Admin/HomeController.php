@@ -19,7 +19,7 @@ class HomeController extends Controller
      
     public function create(Request $request)
     {
-        dd($request);
+        //dd($request->status);
         $this->validate($request, Blog::$rules);
         //$this->validate($request, Image::$rules);
         $blog = new Blog;
@@ -31,8 +31,15 @@ class HomeController extends Controller
         //dd($form);
         $blog->fill($form);
         $blog->view_count = 0;//閲覧回数カウント変数を新規投稿の際に0で格納
-        $blog->status = 0;
         $blog->edited_at = Carbon::now();
+        
+        if ($request->status == "投稿") {
+            $blog->status = 1;
+        }
+        else {
+            $blog->status = 0;
+        }
+        
         $blog->save();
         
         if (isset($image_form)) {
@@ -77,6 +84,14 @@ class HomeController extends Controller
         unset($blog_form['_token']);  //必要性がいまいちよくわからない…
         $blog->fill($blog_form);
         $blog->edited_at = Carbon::now();
+        
+        if ($request->status == "投稿") {
+            $blog->status = 1;
+        }
+        else {
+            $blog->status = 0;
+        }
+        
         $blog->save();
         
         if (isset($request->image_id)) {       //画像削除の処理部分

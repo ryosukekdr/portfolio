@@ -38,7 +38,8 @@
                         </div>
                     </div>
                     @csrf
-                    <input type="submit" class="btn btn-primary" name="toukou" value="投稿">
+                    <input type="submit" class="btn btn-primary" name="status" value="投稿">
+                    <input type="submit" class="btn btn-primary" name="status" value="下書き保存">
                     <a href="{{ route('admin.blog.index') }}" class="btn btn-primary">戻る</a>
                 </form>
             </div>

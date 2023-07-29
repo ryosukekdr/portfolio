@@ -47,7 +47,8 @@
                         <div class="col-md-10">
                             <input type="hidden" name="blog_id" value="{{ $blog_form->id }}">
                             @csrf
-                            <input type="submit" class="btn btn-primary" value="更新">
+                            <input type="submit" class="btn btn-primary" name="status" value="投稿">
+                            <input type="submit" class="btn btn-primary" name="status" value="下書き保存">
                             <a href="{{ route('admin.blog.index') }}" class="btn btn-primary">戻る</a>
                         </div>
                     </div>
