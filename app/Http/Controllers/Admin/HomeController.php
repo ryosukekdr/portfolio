@@ -19,7 +19,7 @@ class HomeController extends Controller
      
     public function create(Request $request)
     {
-        //dd($request->file('image'));
+        dd($request);
         $this->validate($request, Blog::$rules);
         //$this->validate($request, Image::$rules);
         $blog = new Blog;

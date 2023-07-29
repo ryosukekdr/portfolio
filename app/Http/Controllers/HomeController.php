@@ -36,6 +36,7 @@ class HomeController extends Controller
     
      public function blog_id(Request $request)
     {
+        //dd('blog_id呼ばれた');
         $post = Blog::find($request->id);
         $post->view_count += 1;  //閲覧回数カウント変数。このアクションが実施される度に１を足す。
         $post->save();
