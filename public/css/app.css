@@ -12026,7 +12026,7 @@ aside img {
   margin-bottom: 3%;
   border-bottom: solid #0bd;
   list-style: none;
-  background-image: url("../profile_icon.jpg");
+  background-image: url(secure_asset("profile_icon.jpg"));
   background-size: 8%;
   background-repeat: no-repeat;
   background-position: left top;
