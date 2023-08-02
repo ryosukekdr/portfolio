@@ -70,7 +70,7 @@ body{
     border-bottom: solid #0bd;
     list-style: none;
     //background-image: url('../profile_icon.jpg');
-    background-image: url(/storage/profile_icon.jpg);
+    background-image: url(/profile_icon.jpg);
     //background-image: url({{ secure_asset('/profile_icon.jpg') }});
     //src="{{ secure_asset('/storage/profile_icon.jpg') }}" 
     background-size: contain;
@@ -159,7 +159,7 @@ footer p {
     //    }
 }
 
-.abc{
+.margin-0-auto{
     
         margin: 0 auto;
 }
@@ -174,7 +174,7 @@ footer p {
      .date{
         margin-left: 3%;
         padding-left: 4%;
-        background-image: url(/storage/edit.png);
+        background-image: url(/edit.png);
         background-size: 4%;
         background-repeat: no-repeat;
         background-position: left;
@@ -270,14 +270,14 @@ box-shadow:3px 1px 4px rgba(0, 0, 0, 0.2);
         
         .date{
             padding-left: 3%;
-            background-image: url(/storage/edit.png);
+            background-image: url(/edit.png);
             background-size: 15%;
             background-repeat: no-repeat;
             background-position: left;
         }
         .etsuran{
             padding-left: 4%;
-            background-image: url(/storage/etsuran.png);
+            background-image: url(/etsuran.png);
             background-size: contain;
             background-repeat: no-repeat;
             background-position: left;
@@ -325,7 +325,7 @@ box-shadow:3px 1px 4px rgba(0, 0, 0, 0.2);
         
         .date{
             padding-left: 5%;
-            background-image: url(/storage/edit.png);
+            background-image: url(/edit.png);
             background-size: 15%;
             background-repeat: no-repeat;
             background-position: left;
@@ -333,7 +333,7 @@ box-shadow:3px 1px 4px rgba(0, 0, 0, 0.2);
         .etsuran{
             padding-left: 7%;
             padding-right: 30%;
-            background-image: url(/storage/etsuran.png);
+            background-image: url(/etsuran.png);
             background-size: contain;     //％サイズ指定すると閲覧数の桁が増えたときに.etsuran領域が広がって目マークが大きくなってしまうからcontainにしている
             background-repeat: no-repeat;
             background-position: left;
@@ -412,6 +412,3 @@ box-shadow:3px 1px 4px rgba(0, 0, 0, 0.2);
     margin-top: 10%;
 }
 
-.ssss img{
-    width: 100%;
-}

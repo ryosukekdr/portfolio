@@ -13,6 +13,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">  <!--リセットCSS読み込み-->
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">  <!--webfontのFont Awesomeを使う-->
     <!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">-->
@@ -63,18 +64,18 @@
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
+                                <li class="nav-item margin-0-auto">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
-                                <li class="nav-item">
+                                <li class="nav-item margin-0-auto">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown abc">
+                            <li class="nav-item dropdown margin-0-auto">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
@@ -95,7 +96,7 @@
                     
                 <!--</div>-->
             <!--</div>-->
-            <li class="facebook abc"><a href="https://www.facebook.com/kodera.ryosuke"><img alt="Facebook" src="{{ secure_asset('facebook.png') }}"  class="facebook-icon"></a></li>
+            <li class="facebook margin-0-auto"><a href="https://www.facebook.com/kodera.ryosuke"><img alt="Facebook" src="{{ secure_asset('facebook.png') }}"  class="facebook-icon"></a></li>
             
             <form action="{{ route('admin.blog.index') }}" method="GET" class="admin-link">
                 <input type="submit" class="btn btn-light form-control me-2" value="管理">
