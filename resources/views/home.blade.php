@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="main_container">
-    <article>
+<div class="container-fluid main">
+    <div class="row">
+    <article class="col-md-9">
         <img class="wall" src="{{ secure_asset('ogasawara2.jpg') }}" alt="背景画像">
         <p>行ったことある国：</P>
         <p>オーストラリア、アメリカ（ハワイ、グアム、サイパン、ニューヨーク、シカゴ）、フィリピン（セブ島）、タイ（プーケット、バンコク、チェンマイ）
@@ -16,10 +17,11 @@
         イラン、サウジアラビア、ネパール、ブータン、グランドキャニオン
         </p>
     </article>
-    <aside>
+    <aside class="col-md-3">
         <li class="profile">プロフィール</li>
         <img alt="プロフィール画像" src="{{ secure_asset('profile.jpg') }}">
-        <div>ああああああああああああああああああああああああ</div>
+     
     </aside>
+    </div>
 </div>
 @endsection

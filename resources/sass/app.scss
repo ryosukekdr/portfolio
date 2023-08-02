@@ -11,7 +11,7 @@ body{
     //padding-top: 30%;
 }
 
-header{
+.header{
     height: 13%;
     width: 100%;
     position: fixed;
@@ -25,8 +25,7 @@ header{
     //padding-top: 30%;
 }
 
-.main_container{
-    display: flex;
+.main{
     padding-top: 4%;
     //margin-left: 10%;
 }
@@ -51,40 +50,48 @@ header{
 //    margin-left: 10%;
 //}
 
-article{
+/*article{
     width: 80%;
-}
+}*/
 
 .wall{
     width: 100%;
 }
 
-aside{
+/*aside{
     width: 20%;
     margin-left: 5%;
-}
-
-aside img{
-    width: 50%;
-    border-radius: 50%;
-    margin-bottom: 3%;
-}
+}*/
 
 .profile{
+    //position: absolute;
     padding-left: 10%;
     margin-bottom: 3%;
     border-bottom: solid #0bd;
     list-style: none;
-    background-image: url(secure_asset('profile_icon.jpg'));
-    background-size: 8%;
+    //background-image: url('../profile_icon.jpg');
+    background-image: url(/storage/profile_icon.jpg);
+    //background-image: url({{ secure_asset('/profile_icon.jpg') }});
+    //src="{{ secure_asset('/storage/profile_icon.jpg') }}" 
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: left top;
+    width: 100%;
 }
+
+    aside img{
+        width: 50%;
+        border-radius: 50%;
+        margin-bottom: 3%;
+    }
 
 footer{
     background-color: black;
     text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
+
 
 footer p {
   color: #fff;
@@ -105,7 +112,7 @@ footer p {
     justify-content: space-between;
 }
 
-.navbar-button{
+.list-style-none{
     //padding-left: 10%;
     //margin-left: 10%;
     //background-image: url('../storage/airplane_favicon.png');
@@ -152,7 +159,10 @@ footer p {
     //    }
 }
 
-
+.abc{
+    
+        margin: 0 auto;
+}
 
 .card{
     .card-img-top{
@@ -164,7 +174,7 @@ footer p {
      .date{
         margin-left: 3%;
         padding-left: 4%;
-        background-image: url('../storage/edit.png');
+        background-image: url(/storage/edit.png);
         background-size: 4%;
         background-repeat: no-repeat;
         background-position: left;
@@ -174,12 +184,17 @@ footer p {
 
 
 .facebook-icon{
-    width: 15%;
+    width: 10%;
 }
 
 .facebook{
-    text-align: right;
+    //text-align: right;
     list-style: none;
+}
+
+.admin-link {
+    //text-align: right;
+    //margin-right: 0;
 }
 
 .detail-image{
@@ -230,11 +245,6 @@ footer p {
     white-space: pre-line;
 }
 
-footer{
-    padding-top: 1%;
-    padding-bottom: 1%;
-}
-
 .home-button{
     width: 15%;
     margin-right: 0;
@@ -247,7 +257,7 @@ footer{
 //    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
 //}
 
-.col-md-8 {
+.col-md-88 {
 margin: 2em auto;
 padding:2em;/*内側余白*/
 border-left:solid 5px #e9b3a3;/*線の種類・太さ・色*/
@@ -260,14 +270,14 @@ box-shadow:3px 1px 4px rgba(0, 0, 0, 0.2);
         
         .date{
             padding-left: 3%;
-            background-image: url('../storage/edit.png');
+            background-image: url(/storage/edit.png);
             background-size: 15%;
             background-repeat: no-repeat;
             background-position: left;
         }
         .etsuran{
             padding-left: 4%;
-            background-image: url('../storage/etsuran.png');
+            background-image: url(/storage/etsuran.png);
             background-size: contain;
             background-repeat: no-repeat;
             background-position: left;
@@ -315,7 +325,7 @@ box-shadow:3px 1px 4px rgba(0, 0, 0, 0.2);
         
         .date{
             padding-left: 5%;
-            background-image: url('../storage/edit.png');
+            background-image: url(/storage/edit.png);
             background-size: 15%;
             background-repeat: no-repeat;
             background-position: left;
@@ -323,7 +333,7 @@ box-shadow:3px 1px 4px rgba(0, 0, 0, 0.2);
         .etsuran{
             padding-left: 7%;
             padding-right: 30%;
-            background-image: url('../storage/etsuran.png');
+            background-image: url(/storage/etsuran.png);
             background-size: contain;     //％サイズ指定すると閲覧数の桁が増えたときに.etsuran領域が広がって目マークが大きくなってしまうからcontainにしている
             background-repeat: no-repeat;
             background-position: left;
@@ -400,4 +410,8 @@ box-shadow:3px 1px 4px rgba(0, 0, 0, 0.2);
     
 .form-group {
     margin-top: 10%;
+}
+
+.ssss img{
+    width: 100%;
 }

@@ -24,11 +24,14 @@
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
 </head>
 <div id="top"></div>
-<body>
     <!--<div id="app">-->
-        <!--<nav class="navbar navbar-expand-xl navbar-light">-->
-        <header>
-        <nav class="navbar navbar-expand-xl">
+    <nav class="navbar navbar-expand-md navbar-light header">
+        <div class="container-fluid">
+            <div></div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
             <!--<div class="container">-->
                 <!--
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -38,20 +41,25 @@
                 <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">-->
                     
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-main">
-                        <li class="navbar-button">
+                    <div class="navbar-collapse collapse" id="navbarTogglerDemo2" style="">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    
+                        <li class="nav-item list-style-none">
                             <a href="{{ url('/') }}">ホーム</a>
                         </li>
-                        <li class="navbar-button">
+                        <li class="nav-item list-style-none">
                             <a href="{{ route('blog') }}">ブログ閲覧</a>
                         </li>
-                        <li class="navbar-button">
+                        <li class="nav-item list-style-none">
                             <a href="{{ route('itemlist_index') }}">持ち物リスト</a>
                         </li>
-                    </ul>
+                        <li class="nav-item list-style-none">
+                            <a href="{{ route('food') }}">練習</a>
+                        </li>
+                    
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -66,7 +74,7 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown abc">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
@@ -77,22 +85,25 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
                         @endguest
-                    </ul>
+                   
+                    
                 <!--</div>-->
             <!--</div>-->
-            <li class="facebook"><a href="https://www.facebook.com/kodera.ryosuke"><img alt="Facebook" src="{{ secure_asset('facebook.png') }}"  class="facebook-icon"></a></li>
-            <form action="{{ route('admin.blog.index') }}" method="GET">
-                <input type="submit" class="btn btn-light" value="管理">
+            <li class="facebook abc"><a href="https://www.facebook.com/kodera.ryosuke"><img alt="Facebook" src="{{ secure_asset('facebook.png') }}"  class="facebook-icon"></a></li>
+            
+            <form action="{{ route('admin.blog.index') }}" method="GET" class="admin-link">
+                <input type="submit" class="btn btn-light form-control me-2" value="管理">
             </form>
-        </nav>
-        </header>
+             </ul>
+        </div>
+        </div>
+    </nav>
         <main class="py-4">
             @yield('content')
         </main>
@@ -103,5 +114,4 @@
             <!--</div>-->
         </footer>
     <!--</div>-->
-</body>
 </html>

@@ -52,7 +52,7 @@ class HomeController extends Controller
     
      public function food()
     {
-        return view('food');
+        return view('rensyu');
     }
     
 }
