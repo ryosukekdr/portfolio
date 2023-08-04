@@ -21,8 +21,8 @@
     <link rel="icon" type="image/png" href="{{ secure_asset('chikyu.png') }}">
 
     <!-- Scripts -->
-    <script src="{{ secure_asset('js/app.js') }}" defer></script>
-    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ mix('js/app.js') }}" defer></script>
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <div id="top"></div>
     <!--<div id="app">-->
