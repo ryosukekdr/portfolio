@@ -16,8 +16,8 @@ class Image extends Model
         'image' => ['image', 'max:2048'],
     );
 
-    public function blog()
+    /*public function blog()
     {
         return $this->belongsTo(Blog::class);
-    }
+    }*/
 }

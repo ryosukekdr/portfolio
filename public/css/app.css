@@ -12095,7 +12095,7 @@ footer p {
 .card .date {
   margin-left: 3%;
   padding-left: 4%;
-  background-image: url(/storage/edit.png);
+  background-image: url(/edit.png);
   background-size: 4%;
   background-repeat: no-repeat;
   background-position: left;
@@ -12153,27 +12153,27 @@ footer p {
   padding-right: 0;
 }
 
-.col-md-88 {
+.blog-detail-card {
   margin: 2em auto;
   padding: 2em; /*内側余白*/
   border-left: solid 5px #e9b3a3; /*線の種類・太さ・色*/
   background-color: #f5f5f5; /*背景色*/
   box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.2);
 }
-.col-md-88 .detail-footer {
+.blog-detail-card .detail-footer {
   display: flex;
   margin-top: 3%;
 }
-.col-md-88 .detail-footer .date {
+.blog-detail-card .detail-footer .date {
   padding-left: 3%;
-  background-image: url(/storage/edit.png);
+  background-image: url(/edit.png);
   background-size: 15%;
   background-repeat: no-repeat;
   background-position: left;
 }
-.col-md-88 .detail-footer .etsuran {
+.blog-detail-card .detail-footer .etsuran {
   padding-left: 4%;
-  background-image: url(/storage/etsuran.png);
+  background-image: url(/etsuran.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left;
@@ -12209,7 +12209,7 @@ footer p {
 }
 .blog-card .footer .date {
   padding-left: 5%;
-  background-image: url(/storage/edit.png);
+  background-image: url(/edit.png);
   background-size: 15%;
   background-repeat: no-repeat;
   background-position: left;
@@ -12217,7 +12217,7 @@ footer p {
 .blog-card .footer .etsuran {
   padding-left: 7%;
   padding-right: 30%;
-  background-image: url(/storage/etsuran.png);
+  background-image: url(/etsuran.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left;

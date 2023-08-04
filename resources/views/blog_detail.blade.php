@@ -3,7 +3,7 @@
 @section('content')
 <div class="detail-container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 blog-detail-card">
             <h1 class="detail-title">{{ $post->title }}</h1>
             <div class="detail-row">
                         <div class="text col-md-6">
