@@ -15,9 +15,7 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">  <!--リセットCSS読み込み-->
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">  <!--webfontのFont Awesomeを使う-->
-    <!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">-->
-    <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">-->
+    <link href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" rel="stylesheet">  <!--webfontのFont Awesomeを使う-->
     <link rel="icon" type="image/png" href="{{ secure_asset('chikyu.png') }}">
 
     <!-- Scripts -->
@@ -28,7 +26,7 @@
     <!--<div id="app">-->
     <nav class="navbar navbar-expand-md navbar-light header">
         <div class="container-fluid">
-            <div></div>
+            <div></div> <!--ここにdivがないとハンバーガーメニューが左端に来てしまう-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,9 +40,8 @@
                 <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">-->
                     
                     <!-- Left Side Of Navbar -->
-                    <div class="navbar-collapse collapse" id="navbarTogglerDemo2" style="">
+                <div class="navbar-collapse collapse" id="navbarTogglerDemo2" style="">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    
                         <li class="nav-item list-style-none">
                             <a href="{{ url('/') }}">ホーム</a>
                         </li>
@@ -54,15 +51,11 @@
                         <li class="nav-item list-style-none">
                             <a href="{{ route('itemlist_index') }}">持ち物リスト</a>
                         </li>
-                        <li class="nav-item list-style-none">
-                            <a href="{{ route('food') }}">練習</a>
-                        </li>
-                    
-
+                        
                     <!-- Right Side Of Navbar -->
 
                         <!-- Authentication Links -->
-                        @guest
+                        <!--@guest
                             @if (Route::has('login'))
                                 <li class="nav-item margin-0-auto">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -91,18 +84,18 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
-                   
+                        @endguest-->
+                    </ul>
                     
                 <!--</div>-->
             <!--</div>-->
-            <li class="facebook margin-0-auto"><a href="https://www.facebook.com/kodera.ryosuke"><img alt="Facebook" src="{{ secure_asset('facebook.png') }}"  class="facebook-icon"></a></li>
+                       <a href="https://www.facebook.com/kodera.ryosuke" class="text-align-right"><img alt="Facebook" src="{{ secure_asset('facebook.png') }}"  class="facebook-icon"></a>
             
-            <form action="{{ route('admin.blog.index') }}" method="GET" class="admin-link">
+        <!--<form action="{{ route('admin.blog.index') }}" method="GET" class="admin-link">
                 <input type="submit" class="btn btn-light form-control me-2" value="管理">
-            </form>
-             </ul>
-        </div>
+            </form>-->
+                    
+                </div>
         </div>
     </nav>
         <main class="py-4">

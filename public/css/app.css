@@ -11990,44 +11990,48 @@ textarea.form-control-lg {
 }
 
 .main {
-  padding-top: 4%;
+  margin-top: 5%;
 }
 
 .blog img {
   width: 35%;
 }
 
-.blog {
+.display-flex {
   display: flex;
 }
 
-/*article{
-    width: 80%;
+/*.blog {
+    display: flex;
 }*/
+article {
+  margin-bottom: 10%;
+}
+
 .wall {
   width: 100%;
+  margin-bottom: 10%;
 }
 
-/*aside{
-    width: 20%;
-    margin-left: 5%;
-}*/
+aside {
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
 .profile {
-  padding-left: 10%;
-  margin-bottom: 3%;
+  margin-bottom: 5%;
+  padding-bottom: 5%;
   border-bottom: solid #0bd;
-  list-style: none;
-  background-image: url(/profile_icon.jpg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: left top;
   width: 100%;
 }
 
-aside img {
+.profile-icon {
   width: 50%;
   border-radius: 50%;
-  margin-bottom: 3%;
+}
+
+.margin-top3 {
+  margin-top: 3%;
 }
 
 footer {
@@ -12059,15 +12063,12 @@ footer p {
   list-style: none;
 }
 .list-style-none a {
-  position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin: 0 auto;
-  max-width: 240px;
   padding: 10px 25px;
   color: #543618;
-  transition: 0.3s ease-in-out;
   font-weight: 600;
   background: rgba(238, 238, 238, 0.9333333333);
   border-radius: 50px;
@@ -12082,42 +12083,33 @@ footer p {
   transition: all 0.2s;
 }
 
-.margin-0-auto {
-  margin: 0 auto;
-}
+/*.margin-0-auto{
 
-.card .card-img-top {
+        margin: 0 auto;
+}*/
+.card-img-top {
   margin: auto;
   margin-top: 3%;
   border-radius: 5%;
   width: 70%;
 }
-.card .date {
-  margin-left: 3%;
-  padding-left: 4%;
-  background-image: url(/edit.png);
-  background-size: 4%;
-  background-repeat: no-repeat;
-  background-position: left;
+
+.text-align-right {
+  text-align: right;
+}
+
+.text-align-center {
+  text-align: center;
 }
 
 .facebook-icon {
-  width: 10%;
+  width: 20%;
 }
 
-.facebook {
-  list-style: none;
-}
-
-.detail-image {
-  width: 100%;
-  margin-left: 10%;
-}
-.detail-image img {
-  width: 40%;
-  margin-bottom: 10%;
-}
-
+/*.facebook{
+    //text-align: right;
+    list-style: none;
+}*/
 .image-edit {
   display: flex;
 }
@@ -12139,12 +12131,18 @@ footer p {
         border: 3px solid #000;
         box-sizing: border-box;
     }*/
-.detail-row {
-  display: flex;
-}
-
 .kaigyo {
   white-space: pre-line;
+  text-align: left;
+  margin-bottom: 10%;
+}
+
+.detail-image {
+  margin-right: 0;
+}
+.detail-image img {
+  width: 70%;
+  margin-bottom: 10%;
 }
 
 .home-button {
@@ -12159,31 +12157,60 @@ footer p {
   border-left: solid 5px #e9b3a3; /*線の種類・太さ・色*/
   background-color: #f5f5f5; /*背景色*/
   box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.2);
+  width: 70%;
 }
 .blog-detail-card .detail-footer {
   display: flex;
   margin-top: 3%;
+  /* .create-date{
+       padding-left: 3%;
+       background-image: url(/edit.png);
+       background-size: contain;
+       background-repeat: no-repeat;
+       background-position: left;
+       background-color: blue;
+       //display: block;
+       //width: auto;
+       //height: 100%;
+       //font-size: 1em;
+       //aspect-ratio: 30/1;
+   }*/
+  /*.date::before{
+      display: block;
+      padding-top: 50%;
+  }*/
+  /* .update-date{
+      padding-left: 3%;
+      margin-left: 4%;
+      background-image: url(/reload.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: left;
+  }*/
+  /*.etsuran{
+      //hight: 30%;
+      /*padding-left: 4%;
+      margin-left: 4%;
+      background-image: url(/etsuran.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: left;
+      background-color: red;*/
 }
-.blog-detail-card .detail-footer .date {
-  padding-left: 3%;
-  background-image: url(/edit.png);
-  background-size: 15%;
-  background-repeat: no-repeat;
-  background-position: left;
-}
-.blog-detail-card .detail-footer .etsuran {
-  padding-left: 4%;
-  background-image: url(/etsuran.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: left;
+
+.margin-left-4 {
   margin-left: 4%;
 }
 
-.detail-container {
-  padding-top: 5%;
+.margin-left-20 {
+  margin-left: 20%;
 }
 
+/*.detail-container{
+    //margin-right: 0;
+    padding-top: 5%;
+    //width: 100%;
+}*/
 .detail-title {
   font-size: 2rem;
   font-family: "Hannotate SC";
@@ -12206,22 +12233,22 @@ footer p {
 .blog-card .footer {
   display: flex;
   margin-top: 3%;
-}
-.blog-card .footer .date {
-  padding-left: 5%;
-  background-image: url(/etsuran.png);
-  background-size: 15%;
-  background-repeat: no-repeat;
-  background-position: left;
-}
-.blog-card .footer .etsuran {
-  padding-left: 7%;
-  padding-right: 30%;
-  background-image: url(/etsuran.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: left;
-  margin-left: 6%;
+  /*.date{
+      padding-left: 5%;
+      background-image: url(/edit.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: left;
+  }
+  .etsuran{
+      padding-left: 7%;
+      padding-right: 30%;
+      background-image: url(/etsuran.png);
+      background-size: contain;     //％サイズ指定すると閲覧数の桁が増えたときに.etsuran領域が広がって目マークが大きくなってしまうからcontainにしている
+      background-repeat: no-repeat;
+      background-position: left;
+      margin-left: 6%;
+  }*/
 }
 .blog-card .card-body {
   margin: 3%;

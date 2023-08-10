@@ -33,7 +33,9 @@
                             <tr>
                                 <th width="10%">ID</th>
                                 <th width="20%">タイトル</th>
-                                <th width="50%">本文</th>
+                                <th width="40%">本文</th>
+                                <th width="15%">ステータス</th>
+                                <th width="15%">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,6 +44,14 @@
                                     <th>{{ $blog->id }}</th>
                                     <td>{{ Str::limit($blog->title, 100) }}</td>
                                     <td>{{ Str::limit($blog->body, 250) }}</td>
+                                    <td>
+                                        @if ($blog->status ==1)
+                                            公開
+                                        @else
+                                            下書き
+                                        @endif
+                                       
+                                    </td>
                                     <td>
                                         <div>
                                             <a href="{{ route('admin.blog.edit', ['id' => $blog->id]) }}">編集</a>

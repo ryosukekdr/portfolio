@@ -32,11 +32,9 @@
                             <input type="file" class="form-control-file" name="image[]" multiple>　{{--複数の画像をControllerに渡すためにnameを配列にする--}}
                         </div>
                     </div>
-                    <div class="form-check">
-                        削除する画像を選択
-                    </div>
                     <div class="image-edit">
-                        @if ($blog_form->images != NULL)   {{--hasmanyリレーションで$blog_formが複数持ってる画像を１枚ずつ表示--}}
+                        @if (!($blog_form->images->isEmpty()))   {{--hasmanyリレーションで$blog_formが複数持ってる画像を１枚ずつ表示。$blog_form->images != NULLだと画像無くてもif文通過してしまう。imagesがコレクションのため--}}
+                            <label class="col-md-2">削除する画像を選択</label>
                             @foreach ($blog_form->images as $image)
                                 <input type="checkbox" name="image_id[]" id="{{$image->id}}" value="{{ $image->id }}">　{{--checkboxだから複数選択できる。nameを配列にしないとControllerに１データしか渡せない。選んだ画像のidをvalueでControllerに渡す--}}
                                 <label for="{{$image->id}}"><img src="{{ secure_asset('storage/image/' . $image->image_path) }}" alt="画像"></label> {{--labelを使うにはclassじゃなくidじゃないとダメ。そのため$image->idを利用した--}}
@@ -53,7 +51,7 @@
                         </div>
                     </div>
                 </form>
-                <div class="row mt-5">
+            {{--<div class="row mt-5">
                     <div class="col-md-4 mx-auto">
                         <h2>編集履歴</h2>
                         <ul class="list-group">
@@ -64,7 +62,7 @@
                             @endif
                         </ul>
                     </div>
-                </div>
+                </div>--}}
             </div>
         </div>
     </div>

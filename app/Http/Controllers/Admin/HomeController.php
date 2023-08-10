@@ -26,7 +26,7 @@ class HomeController extends Controller
         $form = $request->all();
         $image_form = $request->file('image');  //inputタグをname="image[]"と配列にすると$form['image']に２枚入る
         
-        unset($form['_token']);
+        //unset($form['_token']);
         //unset($form['image']);
         //dd($form);
         $blog->fill($form);
@@ -48,7 +48,8 @@ class HomeController extends Controller
                 $path = $file->store('public/image');
                 $image->image_path = basename($path);
                 $image->blog_id = $blog->id;              //複数の画像に同じblog->idを紐づける
-                $image->filename = "てすと";
+                $image->filename = $file->getClientOriginalName();
+                //dd($image->filename);
                 $image->save();
             }
         }
@@ -81,7 +82,7 @@ class HomeController extends Controller
         $this->validate($request, Blog::$rules);
         $blog = Blog::find($request->blog_id);  //blog_idはinputタグのname
         $blog_form = $request->all();
-        unset($blog_form['_token']);  //必要性がいまいちよくわからない…
+        //unset($blog_form['_token']);  //必要性がいまいちよくわからない…
         $blog->fill($blog_form);
         $blog->edited_at = Carbon::now();
         
@@ -91,7 +92,6 @@ class HomeController extends Controller
         else {
             $blog->status = 0;
         }
-        
         $blog->save();
         
         if (isset($request->image_id)) {       //画像削除の処理部分
@@ -109,7 +109,7 @@ class HomeController extends Controller
                 $path = $file->store('public/image');
                 $image->image_path = basename($path);
                 $image->blog_id = $blog->id;              //複数の画像に同じblog->idを紐づける
-                $image->filename = "てすと";
+                $image->filename = $file->getClientOriginalName();
                 $image->save();
             }
         }

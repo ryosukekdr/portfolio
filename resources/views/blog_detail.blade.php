@@ -1,30 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="detail-container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 blog-detail-card">
+    <div class="main">
+        <div class="blog-detail-card">
             <h1 class="detail-title">{{ $post->title }}</h1>
-            <div class="detail-row">
-                        <div class="text col-md-6">
-                                <div class="body mt-3 kaigyo">
+            <div class="row text-align-right">
+                        <div class="kaigyo col-md-6">
                                     {{ $post->body }}
-                                </div>
                         </div>
-                        <div class="detail-image col-md-6 text-right mt-4">
-                                @if ($post->images != NULL)  {{--hasmanyリレーションで$postが複数持ってる画像を１枚ずつ表示--}}
-                                    @foreach ($post->images as $image)
-                                        <img src="{{ secure_asset('storage/image/' . $image->image_path) }}">
+                        <div class="detail-image col-md-6">
+                                @if (!($post->images->isEmpty()))  {{--hasmanyリレーションで$postが複数持ってる画像を１枚ずつ表示。$post->images != NULLだと画像無くてもif文通過してしまう。imagesがコレクションのため--}}
+                                    <div class="text-align-center">
                                         <br>
-                                    @endforeach
+                                        @foreach ($post->images as $image)
+                                            <img src="{{ secure_asset('storage/image/' . $image->image_path) }}">
+                                            <br>
+                                        @endforeach
+                                    </div>
                                 @endif
                         </div>
             </div>
             <div class=detail-footer>
-                <div class="date">{{ date('Y年m月d日', strtotime($post->edited_at)) }}</div>
-                <div class="etsuran">{{ $post->view_count }}</div>
+                <i class="fas fa-edit">{{ date('Y年m月d日', strtotime($post->created_at)) }}</i>
+                <i class="fas fa-redo-alt margin-left-4">{{ date('Y年m月d日', strtotime($post->edited_at)) }}</i>
+                <i class="far fa-eye margin-left-4">{{ $post->view_count }}</i>
             </div>
         </div>
     </div>
-</div>
 @endsection  {{--endsectionを消すとナビバーがmainの下に来てしまう--}}

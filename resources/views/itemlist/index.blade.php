@@ -22,6 +22,6 @@
             </tbody>
         </table>
     </div>
-    <a href="{{ route('downloadCsv')}}">エクセルダウンロード</a>
+    <i class="far fa-file-excel margin-left-20"><a href="{{ route('downloadCsv')}}">Excelダウンロード</a></i>
     </div>
 @endsection
