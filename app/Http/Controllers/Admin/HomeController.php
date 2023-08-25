@@ -10,6 +10,8 @@ use App\Models\Blog;
 use App\Models\Image;
 use Carbon\Carbon;
 
+use Validator;
+
 class HomeController extends Controller
 {
     public function add()
@@ -18,17 +20,19 @@ class HomeController extends Controller
     }
      
     public function create(Request $request)
-    {
-        //dd($request->status);
+    {  
         $this->validate($request, Blog::$rules);
-        //$this->validate($request, Image::$rules);
         $blog = new Blog;
         $form = $request->all();
-        $image_form = $request->file('image');  //inputタグをname="image[]"と配列にすると$form['image']に２枚入る
         
-        //unset($form['_token']);
+        /*$validator = Validator::make($request->file('image') , Image::$rules);
+                if ($validator->fails()){
+                    $msg = '画像がサイズオーバーです';
+                    return view('admin/blog/create', ['msg'=>$msg, ]);
+                }*/
+                
+        //unset($form['_token']);  //Blogモデルでブラックリスト作ってるからunset不要
         //unset($form['image']);
-        //dd($form);
         $blog->fill($form);
         $blog->view_count = 0;//閲覧回数カウント変数を新規投稿の際に0で格納
         $blog->edited_at = Carbon::now();
@@ -42,14 +46,23 @@ class HomeController extends Controller
         
         $blog->save();
         
-        if (isset($image_form)) {
-            foreach($image_form as $file) {               //inputタグで受け取った複数画像を１枚ずつデータベースに保存していく
+        if ($request->file('image')!= NULL) {     //inputタグをname="image[]"と配列にすると$request->file('image')に複数枚入る
+            foreach($request->file('image') as $file) {               //inputタグで受け取った複数画像を１枚ずつデータベースに保存していく
+            //dd($file);
                 $image = new Image;                       //foreachの前にインスタンス化してしまうと上書きされてラスト１枚しか保存されないから毎回インスタンス化する
                 $path = $file->store('public/image');
                 $image->image_path = basename($path);
                 $image->blog_id = $blog->id;              //複数の画像に同じblog->idを紐づける
                 $image->filename = $file->getClientOriginalName();
-                //dd($image->filename);
+                //$aa = $file->getClientMimeType();
+                /*dd($image->toArray());
+                
+                $validator = Validator::make($image->toArray() , Image::$rules);//このバリデーション方法でもよかったが、mimetypesをどうやって取得すればいいかわからなかった…
+                if ($validator->fails()) {
+                    $msg = '画像がサイズオーバーです';
+                    return view('admin/blog/create', ['msg'=>$msg, ]);
+                }*/
+                
                 $image->save();
             }
         }
@@ -81,9 +94,9 @@ class HomeController extends Controller
     {
         $this->validate($request, Blog::$rules);
         $blog = Blog::find($request->blog_id);  //blog_idはinputタグのname
-        $blog_form = $request->all();
-        //unset($blog_form['_token']);  //必要性がいまいちよくわからない…
-        $blog->fill($blog_form);
+        $form = $request->all();
+        //unset($blog['_token']);  //Blogモデルでブラックリスト作ってるからunset不要
+        $blog->fill($form);
         $blog->edited_at = Carbon::now();
         
         if ($request->status == "投稿") {
@@ -94,17 +107,16 @@ class HomeController extends Controller
         }
         $blog->save();
         
-        if (isset($request->image_id)) {       //画像削除の処理部分
-            $image_form = Image::find($request->image_id); //inputタグをneme=image_id[]と配列にすれば複数受け取れる
+        if (isset($request->image_id)) { //画像削除の処理部分
+            $selected_images = Image::find($request->image_id); //inputタグをneme=image_id[]と配列にすれば複数受け取れる
             
-            foreach($image_form as $image) {
-                $image->delete();             //配列で受け取った$imageにはdelete();が効かないからforeachで１つずつdeleteする
+            foreach($selected_images as $selected_image) {
+                $selected_image->delete();             //配列で受け取った$imageにはdelete();が効かないからforeachで１つずつdeleteする
             }
         }
         
-        $image_form = $request->file('image');
-        if (isset($image_form)) {                         //画像追加の処理部分
-            foreach($image_form as $file) {               //inputタグで受け取った複数画像を１枚ずつデータベースに保存していく
+        if ($request->file('image')!= NULL) {                         //画像追加の処理部分
+            foreach($request->file('image') as $file) {               //inputタグで受け取った複数画像を１枚ずつデータベースに保存していく
                 $image = new Image;                       //foreachの前にインスタンス化してしまうと上書きされてラスト１枚しか保存されないから毎回インスタンス化する
                 $path = $file->store('public/image');
                 $image->image_path = basename($path);

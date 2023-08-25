@@ -12110,9 +12110,6 @@ footer p {
     //text-align: right;
     list-style: none;
 }*/
-.image-edit {
-  display: flex;
-}
 .image-edit img {
   cursor: pointer;
   width: 50%;

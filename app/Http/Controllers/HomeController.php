@@ -38,7 +38,7 @@ class HomeController extends Controller
      public function blog_id(Request $request)
     {
         $post = Blog::find($request->id);
-        $post->view_count += 1;  //閲覧回数カウント変数。このアクションが実施される度に１を足す。
+        $post->view_count ++;  //閲覧回数カウント変数。このアクションが実施される度に１を足す。
         $post->save();
         //$image = Image::find(7);
         //dd($image);

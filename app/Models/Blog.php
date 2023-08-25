@@ -14,6 +14,10 @@ class Blog extends Model
     public static $rules = array(
         'title' => 'required',
         'body' => 'required',
+        //'image.*' => 'image|max:2048|mimetypes:image/jpg,image/jpeg,image/png,image/gif,image/bmp,image/svg,image/webp',  
+        'image.*' => 'image|max:2000', //|mimes:jpg,jpeg,png,gif,bmp,svg,webp',  //image.*とすることで、requestで受け取った複数の画像を１枚ずつバリデーションできる
+        //'file.*' => 'max:2048',
+    
     );
     //protected $table = 'blog'; //テーブル名を勝手に複数形blogsにされるのを回避！
     

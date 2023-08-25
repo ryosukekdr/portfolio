@@ -11,13 +11,16 @@ class Image extends Model
     
     protected $fillable = ['filename'];
     
-    public static $rules = array(
-        //'image_path' => 'required',
-        'image' => ['image', 'max:2048'],
-    );
+    /*public static $rules = array(
+        'image_path' => 'required',
+        'image' => 'image|max:2048',
+        'image' => 'mimetypes:image/jpg,image/jpeg,image/png,image/gif,image/bmp,image/svg,image/webp',
+        //'file' => 'mimes:jpg',
+    );*/
 
     /*public function blog()
     {
         return $this->belongsTo(Blog::class);
     }*/
 }
+    

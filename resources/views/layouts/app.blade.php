@@ -20,6 +20,7 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <div id="top"></div>
@@ -27,7 +28,7 @@
     <nav class="navbar navbar-expand-md navbar-light header">
         <div class="container-fluid">
             <div></div> <!--ここにdivがないとハンバーガーメニューが左端に来てしまう-->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
+            <button id="hamburger" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         
@@ -42,7 +43,7 @@
                     <!-- Left Side Of Navbar -->
                 <div class="navbar-collapse collapse" id="navbarTogglerDemo2" style="">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item list-style-none">
+                        <li id="menu" class="nav-item list-style-none">
                             <a href="{{ url('/') }}">ホーム</a>
                         </li>
                         <li class="nav-item list-style-none">

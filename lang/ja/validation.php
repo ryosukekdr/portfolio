@@ -61,7 +61,7 @@ return [
         'numeric' => 'The :attribute must be greater than or equal to :value.',
         'string' => 'The :attribute must be greater than or equal to :value characters.',
     ],
-    'image' => 'The :attribute must be an image.',
+    'image' => ':attributeは画像ファイルにしてください。.',
     'in' => 'The selected :attribute is invalid.',
     'in_array' => 'The :attribute field does not exist in :other.',
     'integer' => 'The :attribute must be an integer.',
@@ -87,9 +87,10 @@ return [
         'file' => 'The :attribute must not be greater than :max kilobytes.',
         'numeric' => 'The :attribute must not be greater than :max.',
         'string' => 'The :attribute must not be greater than :max characters.',
+        'image' => 'The :attribute must not be greater than :max kilobytes.', //画像サイズ追加
     ],
-    'mimes' => 'The :attribute must be a file of type: :values.',
-    'mimetypes' => 'The :attribute must be a file of type: :values.',
+    'mimes' => ':attributeは :values形式にしてください。',
+    'mimetypes' => ':attributeは :values形式にしてください。',
     'min' => [
         'array' => 'The :attribute must have at least :min items.',
         'file' => 'The :attribute must be at least :min kilobytes.',
@@ -133,7 +134,7 @@ return [
     'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid timezone.',
     'unique' => 'The :attribute has already been taken.',
-    'uploaded' => 'The :attribute failed to upload.',
+    'uploaded' => '画像の最大アップロードサイズを超過しています：2MB',
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
@@ -167,7 +168,8 @@ return [
 
     'attributes' => [
         'title' => 'タイトル',
-        'body' => '本文'
+        'body' => '本文',
+        'image.*' => 'アップロードする画像'
     ],
 
 ];

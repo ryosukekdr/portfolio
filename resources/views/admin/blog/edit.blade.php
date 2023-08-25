@@ -10,35 +10,37 @@
                     @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)
-                                <li>{{ $e }}</li>
+                                <font color="red"> <li class="list-style-none">⚠{{ $e }}</li></font>
                             @endforeach
                         </ul>
                     @endif
                     <div class="form-group row">
-                        <label class="col-md-2" for="title">タイトル</label>
-                        <div class="col-md-10">
+                        <label class="col-md-3" for="title">タイトル</label>
+                        <div class="col-md-9">
                             <input type="text" class="form-control" name="title" value="{{ $blog_form->title }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2" for="body">本文</label>
-                        <div class="col-md-10">
+                        <label class="col-md-3" for="body">本文</label>
+                        <div class="col-md-9">
                             <textarea class="form-control" name="body" rows="20">{{ $blog_form->body }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2">画像の追加</label>
-                        <div class="col-md-10">
+                        <label class="col-md-3">画像の追加（最大2MB）</label>
+                        <div class="col-md-9">
                             <input type="file" class="form-control-file" name="image[]" multiple>　{{--複数の画像をControllerに渡すためにnameを配列にする--}}
                         </div>
                     </div>
-                    <div class="image-edit">
+                    <div class="image-edit form-group row">
                         @if (!($blog_form->images->isEmpty()))   {{--hasmanyリレーションで$blog_formが複数持ってる画像を１枚ずつ表示。$blog_form->images != NULLだと画像無くてもif文通過してしまう。imagesがコレクションのため--}}
-                            <label class="col-md-2">削除する画像を選択</label>
+                            <label class="col-md-3">削除する画像を選択</label>
+                            <div class="col-md-9 display-flex">
                             @foreach ($blog_form->images as $image)
                                 <input type="checkbox" name="image_id[]" id="{{$image->id}}" value="{{ $image->id }}">　{{--checkboxだから複数選択できる。nameを配列にしないとControllerに１データしか渡せない。選んだ画像のidをvalueでControllerに渡す--}}
                                 <label for="{{$image->id}}"><img src="{{ secure_asset('storage/image/' . $image->image_path) }}" alt="画像"></label> {{--labelを使うにはclassじゃなくidじゃないとダメ。そのため$image->idを利用した--}}
                             @endforeach
+                            </div>
                         @endif
                     </div>
                     <div class="form-group row">

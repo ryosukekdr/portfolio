@@ -15,25 +15,26 @@
                     @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)
-                                <li>{{ $e }}</li>
+                               <font color="red"> <li class="list-style-none">⚠{{ $e }}</li></font>
                             @endforeach
                         </ul>
                     @endif
+                    {{--@php {{ echo $msg; }} @endphp--}}
                     <div class="form-group row">
-                        <label class="col-md-2">タイトル</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="タイトル">
+                        <label class="col-md-3">タイトル</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="タイトル" onfocus="this.placeholder=''" onblur="this.placeholder='タイトル'">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2">本文</label>
-                        <div class="col-md-10">
-                            <textarea class="form-control" name="body" rows="20" placeholder="近況アップデートを投稿">{{ old('body') }}</textarea>
+                        <label class="col-md-3">本文</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" name="body" rows="20" placeholder="近況アップデートを投稿" onfocus="this.placeholder=''" onblur="this.placeholder='近況アップデートを投稿'">{{ old('body') }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2">画像</label>
-                        <div class="col-md-10">
+                        <label class="col-md-3">画像（最大2MB）</label>
+                        <div class="col-md-9">
                             <input type="file" class="form-control-file" name="image[]" multiple>　{{--複数の画像をControllerに渡すためにnameを配列にする--}}
                         </div>
                     </div>
