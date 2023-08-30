@@ -12,7 +12,7 @@ class Blog extends Model
     protected $guarded = array('id');
 
     public static $rules = array(
-        'title' => 'required',
+        'title' => 'required|max:255',
         'body' => 'required',
         //'image.*' => 'image|max:2048|mimetypes:image/jpg,image/jpeg,image/png,image/gif,image/bmp,image/svg,image/webp',  
         'image.*' => 'image|max:2000', //|mimes:jpg,jpeg,png,gif,bmp,svg,webp',  //image.*とすることで、requestで受け取った複数の画像を１枚ずつバリデーションできる

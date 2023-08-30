@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Blog;
 //use App\Models\History;
@@ -20,7 +21,8 @@ class HomeController extends Controller
     }
      
     public function create(Request $request)
-    {  
+    {
+        DB::transaction(function () use ($request) { //トランザクション追加
         $this->validate($request, Blog::$rules);
         $blog = new Blog;
         $form = $request->all();
@@ -66,6 +68,7 @@ class HomeController extends Controller
                 $image->save();
             }
         }
+        });
         return redirect('admin/blog');
     }
     
@@ -92,6 +95,7 @@ class HomeController extends Controller
 
     public function update(Request $request)
     {
+        DB::transaction(function () use ($request) { //トランザクション追加
         $this->validate($request, Blog::$rules);
         $blog = Blog::find($request->blog_id);  //blog_idはinputタグのname
         $form = $request->all();
@@ -125,7 +129,7 @@ class HomeController extends Controller
                 $image->save();
             }
         }
-        
+        });
         /*$history = new History();
         $history->blog_id = $blog->id;
         $history->edited_at = Carbon::now();

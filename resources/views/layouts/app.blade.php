@@ -28,7 +28,7 @@
     <nav class="navbar navbar-expand-md navbar-light header">
         <div class="container-fluid">
             <div></div> <!--ここにdivがないとハンバーガーメニューが左端に来てしまう-->
-            <button id="hamburger" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         
@@ -41,9 +41,9 @@
                 <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">-->
                     
                     <!-- Left Side Of Navbar -->
-                <div class="navbar-collapse collapse" id="navbarTogglerDemo2" style="">
+                <div class="navbar-collapse collapse hamburger-inside" id="navbarTogglerDemo2" style="">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li id="menu" class="nav-item list-style-none">
+                        <li class="nav-item list-style-none">
                             <a href="{{ url('/') }}">ホーム</a>
                         </li>
                         <li class="nav-item list-style-none">
@@ -90,7 +90,7 @@
                     
                 <!--</div>-->
             <!--</div>-->
-                       <a href="https://www.facebook.com/kodera.ryosuke" class="text-align-right"><img alt="Facebook" src="{{ secure_asset('facebook.png') }}"  class="facebook-icon"></a>
+                      <!-- <a href="https://www.facebook.com/kodera.ryosuke" class="text-align-right"><img alt="Facebook" src="{{ secure_asset('facebook.png') }}"  class="facebook-icon"></a>-->
             
         <!--<form action="{{ route('admin.blog.index') }}" method="GET" class="admin-link">
                 <input type="submit" class="btn btn-light form-control me-2" value="管理">

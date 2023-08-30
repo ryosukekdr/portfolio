@@ -1,0 +1,1 @@
+<div style="position:relative; width:100%; height:100%;"><span style="font-size:1.5em; position:absolute; top:50%; left:50%; transform: translateX(-50%) translateY(-50%); white-space: nowrap;">ただいま障害により大変ご迷惑をお掛けしております。</span></div>
