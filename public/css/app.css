@@ -11983,13 +11983,14 @@ textarea.form-control-lg {
   }
 }
 .header {
+  margin-bottom: 13%;
   height: 13%;
   width: 100%;
   position: fixed;
   z-index: 999;
 }
 
-.main {
+.margin-top5 {
   margin-top: 5%;
 }
 
@@ -12383,4 +12384,8 @@ footer p {
 
 .form-group {
   margin-top: 10%;
+}
+
+.textlength_alert {
+  color: red;
 }

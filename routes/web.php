@@ -18,6 +18,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+use App\Http\Controllers\Admin\UserController;
+Route::controller(UserController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('user', 'show')->name('user.show');
+    //Route::post('user', 'update')->name('user.update');
+    
+    Route::get('user/email_change', 'email_edit')->name('user.email_edit');
+    Route::post('user/email_change', 'email_change')->name('user.email_change');
+    Route::get('user/name_change', 'name_edit')->name('user.name_edit');
+    Route::post('user/name_change', 'name_change')->name('user.name_change');
+    Route::get('user/password_change', 'password_edit')->name('user.password_edit');
+    Route::get('user/delete_check', 'delete_check')->name('user.delete_check');
+    Route::get('user/delete', 'delete')->name('user.delete');
+    
+    Route::get('user/password_confirm', 'password_confirm')->name('user.password_confirm');
+});
+
 use App\Http\Controllers\Admin\HomeController;
 Route::controller(HomeController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('blog/create', 'add')->name('blog.add');
@@ -31,13 +47,13 @@ Route::controller(HomeController::class)->prefix('admin')->name('admin.')->middl
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 use App\Http\Controllers\HomeController as PublicHomeController;
 Route::get('/', [PublicHomeController::class, 'index'])->name('index');
 Route::get('/blog', [PublicHomeController::class, 'blog'])->name('blog');
-Route::get('/blog/{id}', [PublicHomeController::class, 'blog_id'])->name('blog_id');
-Route::get('/food', [PublicHomeController::class, 'food'])->name('food');
+Route::get('/blog/detail', [PublicHomeController::class, 'blog_detail'])->name('blog_detail');
+//Route::get('/food', [PublicHomeController::class, 'food'])->name('food');
 
 use App\Http\Controllers\ItemlistController as PublicItemlistController;
 Route::get('/itemlist', [PublicItemlistController::class, 'index'])->name('itemlist_index');

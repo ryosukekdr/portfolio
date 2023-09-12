@@ -11,7 +11,7 @@
                     <img src="{{ secure_asset('storage/image/' . $image->image_path) }}" class="card-img-top" alt="写真">
                 @endif
                 <div class="card-body">
-                    <h5 class="card-title"><a href="{{ route('blog_id', ['id' => $post->id]) }}">{{ Str::limit($post->title, 50) }}</a></h5>
+                    <h5 class="card-title"><a href="{{ route('blog_detail', ['id' => $post->id]) }}">{{ Str::limit($post->title, 50) }}</a></h5>
                     <p class="card-text">{{ Str::limit($post->body, 200) }}</p>
                 </div>
                 <div class=footer>

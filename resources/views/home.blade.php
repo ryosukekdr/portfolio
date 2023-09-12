@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid main">
+<div class="container-fluid margin-top5">
     <div class="row display-flex">
         <article class="col-md-9">
             <img class="wall" src="{{ secure_asset('ogasawara2.jpg') }}" alt="背景画像">
@@ -26,5 +26,9 @@
             </div>
         </aside>
     </div>
+    
+    
+
+    
 </div>
 @endsection

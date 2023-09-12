@@ -31,4 +31,9 @@ class Blog extends Model
     {
         return $this->hasMany(Image::class);
     }
+    
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

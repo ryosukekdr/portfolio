@@ -17,7 +17,8 @@
                     <div class="form-group row">
                         <label class="col-md-3" for="title">タイトル</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="title" value="{{ $blog_form->title }}">
+                            <input type="text" id="title" class="form-control" name="title" value="{{ $blog_form->title }}">
+                            <p>255文字まで（現在 <span id="count">0</span> 文字）</p>
                         </div>
                     </div>
                     <div class="form-group row">

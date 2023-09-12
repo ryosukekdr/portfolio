@@ -22,6 +22,19 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+    
+    public static $name_rules = array(   //RegisterController.phpからコピペ
+        'name' => 'required|string|max:255',
+    );
+    
+    public static $email_rules = array(   //RegisterController.phpからコピペ
+        'email' => 'required|string|email|max:255|unique:users',
+    );
+    
+    public static $password_rules = array(   //RegisterController.phpからコピペ
+        'password' => 'required|string|min:8|confirmed',
+    );
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,4 +54,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class);
+    }
 }

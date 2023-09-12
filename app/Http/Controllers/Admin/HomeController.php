@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Blog;
 //use App\Models\History;
 use App\Models\Image;
+use App\Models\User;
 use Carbon\Carbon;
 
 use Validator;
@@ -22,6 +23,8 @@ class HomeController extends Controller
      
     public function create(Request $request)
     {
+        //$this->authorize('create', Blog::class);
+        
         DB::transaction(function () use ($request) { //トランザクション追加
         $this->validate($request, Blog::$rules);
         $blog = new Blog;
@@ -38,6 +41,7 @@ class HomeController extends Controller
         $blog->fill($form);
         $blog->view_count = 0;//閲覧回数カウント変数を新規投稿の際に0で格納
         $blog->edited_at = Carbon::now();
+        $blog->user_id = \Auth::id();  //投稿者のuser_idを保存
         
         if ($request->status == "投稿") {
             $blog->status = 1;
@@ -76,9 +80,9 @@ class HomeController extends Controller
     {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
-            $posts = Blog::where('title', $cond_title)->get();
+            $posts = Blog::where('title', $cond_title)->where('user_id', \Auth::user()->id)->get();
         } else {
-            $posts = Blog::all();
+            $posts = \Auth::user()->blogs;
         }
         return view('admin.blog.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
@@ -94,10 +98,13 @@ class HomeController extends Controller
     }
 
     public function update(Request $request)
-    {
-        DB::transaction(function () use ($request) { //トランザクション追加
-        $this->validate($request, Blog::$rules);
+    { 
         $blog = Blog::find($request->blog_id);  //blog_idはinputタグのname
+        $this->authorize('update', $blog);  //ポリシー認可
+        $this->validate($request, Blog::$rules);
+        
+        DB::transaction(function () use ($request) { //トランザクション追加
+        
         $form = $request->all();
         //unset($blog['_token']);  //Blogモデルでブラックリスト作ってるからunset不要
         $blog->fill($form);
@@ -141,7 +148,6 @@ class HomeController extends Controller
      
     public function delete_check(Request $request)
     {
-        // 該当するNews Modelを取得
         $blog = Blog::find($request->id);
 
         return view('admin.blog.delete_check', ['blog_form' => $blog]);
@@ -149,12 +155,15 @@ class HomeController extends Controller
      
     public function delete(Request $request)
     {
-        // 該当するNews Modelを取得
         $blog = Blog::find($request->id);
+        $this->authorize('delete', $blog);  //ポリシー認可
+        
+        /*foreach($blog->images as $image) {  //blog削除前にリレーションされた画像を削除。imagesテーブルのマイグレーションファイルでonDelete('cascade');を書いてもOK
+            $image->delete();
+        }*/
 
-        // 削除する
         $blog->delete();
-
+            
         return redirect('admin/blog');
     }
 }

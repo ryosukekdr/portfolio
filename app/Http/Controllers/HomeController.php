@@ -13,10 +13,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+     $this->middleware('auth');
+    }
 
     /**
      * Show the application dashboard.
@@ -35,9 +35,12 @@ class HomeController extends Controller
         return view('blog', ['posts' => $posts]);
     }
     
-     public function blog_id(Request $request)
-    {
+     public function blog_detail(Request $request)
+    {   
         $post = Blog::find($request->id);
+        if (empty($post)) {
+            abort(404);
+        }
         $post->view_count ++;  //閲覧回数カウント変数。このアクションが実施される度に１を足す。
         $post->save();
         //$image = Image::find(7);
@@ -50,9 +53,6 @@ class HomeController extends Controller
         return view('blog_detail', ['post' => $post]);
     }
     
-     public function food()
-    {
-        return view('rensyu');
-    }
+     
     
 }

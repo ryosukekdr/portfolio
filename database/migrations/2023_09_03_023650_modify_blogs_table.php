@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::table('blogs', function (Blueprint $table) {
             
-            $table->tinyInteger('status')->after('body');
-            $table->string('edited_at')->after('view_count');
+            $table->foreignId('user_id')->after('id')->constrained()->cascadeOnDelete();
         });
     }
 
@@ -29,8 +28,8 @@ return new class extends Migration
     {
         Schema::table('blogs', function (Blueprint $table) {
             
-            $table->dropColumn('status');
-            $table->dropColumn('edited_at');
+            $table->dropForeign('blogs_user_id_foreign');
+            $table->dropColumn('user_id');
         });
     }
 };

@@ -91,10 +91,9 @@
                 <!--</div>-->
             <!--</div>-->
                       <!-- <a href="https://www.facebook.com/kodera.ryosuke" class="text-align-right"><img alt="Facebook" src="{{ secure_asset('facebook.png') }}"  class="facebook-icon"></a>-->
-            
-        <!--<form action="{{ route('admin.blog.index') }}" method="GET" class="admin-link">
-                <input type="submit" class="btn btn-light form-control me-2" value="管理">
-            </form>-->
+       <a href="{{ route('admin.blog.index') }}">ブログ編集</a>
+       <a href="{{ route('admin.user.show') }}">アカウント設定</a>
+      
                     
                 </div>
         </div>
