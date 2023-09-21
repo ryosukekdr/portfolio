@@ -94,16 +94,18 @@ class HomeController extends Controller
         if (empty($blog)) {
             abort(404);
         }
+        $this->authorize('edit', $blog);  //ポリシー認可
+        
         return view('admin.blog.edit', ['blog_form' => $blog]);
     }
 
     public function update(Request $request)
     { 
+        DB::transaction(function () use ($request) { //トランザクション追加
         $blog = Blog::find($request->blog_id);  //blog_idはinputタグのname
-        $this->authorize('update', $blog);  //ポリシー認可
+        //$this->authorize('update', $blog);  //ポリシー認可
         $this->validate($request, Blog::$rules);
         
-        DB::transaction(function () use ($request) { //トランザクション追加
         
         $form = $request->all();
         //unset($blog['_token']);  //Blogモデルでブラックリスト作ってるからunset不要
@@ -149,14 +151,20 @@ class HomeController extends Controller
     public function delete_check(Request $request)
     {
         $blog = Blog::find($request->id);
-
+        if (empty($blog)) {
+            abort(404);
+        }
+        $this->authorize('delete_check', $blog); //ポリシー認可
         return view('admin.blog.delete_check', ['blog_form' => $blog]);
     }
      
     public function delete(Request $request)
     {
         $blog = Blog::find($request->id);
-        $this->authorize('delete', $blog);  //ポリシー認可
+        if (empty($blog)) {
+            abort(404);
+        }
+        //$this->authorize('delete', $blog);  //ポリシー認可
         
         /*foreach($blog->images as $image) {  //blog削除前にリレーションされた画像を削除。imagesテーブルのマイグレーションファイルでonDelete('cascade');を書いてもOK
             $image->delete();

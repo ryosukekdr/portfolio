@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*use App\Http\Controllers\Auth\ResetPasswordController;
+Route::post('', 'original_reset')->name('original_reset');*/
+
 use App\Http\Controllers\Admin\UserController;
 Route::controller(UserController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('user', 'show')->name('user.show');
@@ -31,7 +34,7 @@ Route::controller(UserController::class)->prefix('admin')->name('admin.')->middl
     Route::get('user/delete_check', 'delete_check')->name('user.delete_check');
     Route::get('user/delete', 'delete')->name('user.delete');
     
-    Route::get('user/password_confirm', 'password_confirm')->name('user.password_confirm');
+    //Route::get('user/password_confirm', 'password_confirm')->name('user.password_confirm');
 });
 
 use App\Http\Controllers\Admin\HomeController;
@@ -53,7 +56,7 @@ use App\Http\Controllers\HomeController as PublicHomeController;
 Route::get('/', [PublicHomeController::class, 'index'])->name('index');
 Route::get('/blog', [PublicHomeController::class, 'blog'])->name('blog');
 Route::get('/blog/detail', [PublicHomeController::class, 'blog_detail'])->name('blog_detail');
-//Route::get('/food', [PublicHomeController::class, 'food'])->name('food');
+Route::get('/test', [PublicHomeController::class, 'test'])->name('test');
 
 use App\Http\Controllers\ItemlistController as PublicItemlistController;
 Route::get('/itemlist', [PublicItemlistController::class, 'index'])->name('itemlist_index');

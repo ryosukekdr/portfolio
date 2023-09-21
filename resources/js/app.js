@@ -1,24 +1,6 @@
 import './bootstrap';
 
-/*$(function () {
-    $('#hamburger').on('click', function() {
-        $('#menu').removeClass('list-style-none');  
-    });
-  });*/
-  
-/*const target = document.getElementById('menu');
-const mediaQueryList = window.matchMedia('(max-width:760px)');
-
-mediaQueryList.addEventListener('change', e => {
-  if (e.matches) {
-    target.classList.remove('list-style-none');
-  }
-  else {
-    target.classList.add('list-style-none');
-  }
-});*/
-
-
+//FacebookのAPI
 /*$(window).load(function () {
 //facebook-jsonを取得して表示
     var count = 0;
@@ -61,10 +43,81 @@ mediaQueryList.addEventListener('change', e => {
     })
 });*/
 
+
+//↓ローディングアニメーション
+const loading = document.querySelector('#loading');
+const spin = document.querySelector('.spin');
+
+window.addEventListener('load', () => {
+    loading.animate(
+        {
+            opacity: [1, 0],
+            translate: ['0 100%', '0 0', '0 -100%'],
+        },
+        {
+            duration: 2000,
+            fill: 'forwards',
+            easing: 'ease',
+        }
+    );
+    spin.animate(
+        {
+            opacity: [1, 0],
+        },
+        {
+            duration: 3200,
+            fill: 'forwards',
+            easing: 'ease',
+        }
+    );
+});
+
+
+
+
+//↓ブログ画像にアニメーションをつける
+const showImage = (entries, obs) => {
+    //entries.forEach((entry) => {
+        //if (entry.isIntersecting) {
+            entries[0].target.animate(
+                {
+                    opacity: [0, 1],
+                    //translate: ['200px 0', 0],
+                    filter: ['blur(.4rem)', 'blur(0)'],
+                    translate: ['0 4rem', 0],
+                },
+                {
+                    duration: 1000,
+                    easing: 'ease',
+                    fill: 'forwards',
+                }
+            );
+            //animateが１度発動したら監視をやめる。obsはimageObserverの別名。
+            obs.unobserve(entries[0].target);
+        //}
+    //});
+};
+
+const options = {
+    threshold: 1
+};
+
+//監視設定
+const imageObserver = new IntersectionObserver(showImage, options);
+
+//.motion-imageを監視するよう指示
+const target_images = document.querySelectorAll('.motion-image');
+
+target_images.forEach((target_image) => {
+    imageObserver.observe(target_image);
+});
+
+
+
+
+//↓ブログタイトルの文字数カウンター
 const target_text = document.querySelector('#title');
 const count = document.querySelector('#count');
-//target.innerText = document.text01.value;
-
 
 target_text.addEventListener('keyup', () => {
     count.textContent = target_text.value.length;

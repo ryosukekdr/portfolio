@@ -22,7 +22,9 @@ class ResetPasswordController extends Controller
     |
     */
 
-    use ResetsPasswords;
+    use ResetsPasswords {
+        ResetsPasswords::reset as original_reset;
+    }
 
     /**
      * Where to redirect users after resetting their password.
@@ -31,14 +33,17 @@ class ResetPasswordController extends Controller
      */
     //protected $redirectTo = RouteServiceProvider::HOME;
     
-    public function reset(Request $request)
-{
-  //return (Hash::check($request->current_password, Auth::user()->password));
-  if (! Hash::check($request->current_password, Auth::user()->password)) {
-        //return back()->withErrors(['password' => ['The provided password does not match our records.']]);
-        return redirect('admin/user')->with('msg_success', '失敗');
-}
-}
+    
+    
+   public function reset(Request $request)  //現在のパスワードを確認させるためにresetアクションをオーバーライド
+    {
+        if (! Hash::check($request->current_password, Auth::user()->password)) {
+            return back()->withErrors(['current-password' => ['パスワードに誤りがあります']]);
+        }
+        
+        $request->session()->passwordConfirmed();
+        return $this->original_reset($request);
+    }
 
 protected $redirectTo = 'admin/user';   //リダイレクト先を変更
 

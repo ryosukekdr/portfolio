@@ -28,6 +28,11 @@ class HomeController extends Controller
         return view('home');
     }
     
+    public function test()
+    {
+        return view('test');
+    }
+    
      public function blog()
     {
         $posts = Blog::where('status',1)->get()->sortBy('edited_at');    //status=1のみ、更新した新しい順に公開する。0は非公開（下書き保存）。

@@ -23,7 +23,8 @@
                     <div class="form-group row">
                         <label class="col-md-3">タイトル</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="タイトル" onfocus="this.placeholder=''" onblur="this.placeholder='タイトル'">
+                            <input type="text" id="title" class="form-control" name="title" value="{{ old('title') }}" placeholder="タイトル" onfocus="this.placeholder=''" onblur="this.placeholder='タイトル'">
+                            <p>255文字まで（現在 <span id="count">0</span> 文字）</p>
                         </div>
                     </div>
                     <div class="form-group row">

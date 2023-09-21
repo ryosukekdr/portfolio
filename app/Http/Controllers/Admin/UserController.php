@@ -68,10 +68,10 @@ class UserController extends Controller
         return redirect('/');
     }
     
-    public function password_confirm()
+    /*public function password_confirm()
     {
         //$user = Auth::user();
         return view('auth.passwords.confirm');
-    }
+    }*/
     
 }

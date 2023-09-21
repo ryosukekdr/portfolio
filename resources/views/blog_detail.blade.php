@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="main">
-        <div class="blog-detail-card">
+        <div class="blog-detail-card responsive-width">
             <h1 class="detail-title">{{ $post->title }}</h1>
             <div class="row text-align-right">
                 <div class="kaigyo col-md-6">
@@ -13,7 +13,7 @@
                         <div class="text-align-center">
                             <br>
                             @foreach ($post->images as $image)
-                                <img src="{{ secure_asset('storage/image/' . $image->image_path) }}">
+                                <img class="motion-image" src="{{ secure_asset('storage/image/' . $image->image_path) }}">
                                 <br>
                             @endforeach
                         </div>

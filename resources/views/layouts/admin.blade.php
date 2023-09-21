@@ -14,6 +14,7 @@
 
         <!-- Scripts -->
          {{-- Laravel標準で用意されているJavascriptを読み込みます --}}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
         <script src="{{ mix('js/app.js') }}" defer></script>
 
         <!-- Fonts -->

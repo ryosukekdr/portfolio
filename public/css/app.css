@@ -11983,11 +11983,11 @@ textarea.form-control-lg {
   }
 }
 .header {
-  margin-bottom: 13%;
-  height: 13%;
+  position: sticky;
+  top: 0;
   width: 100%;
-  position: fixed;
   z-index: 999;
+  background-color: #444444;
 }
 
 .margin-top5 {
@@ -12011,6 +12011,7 @@ article {
 
 .wall {
   width: 100%;
+  padding-left: 0;
   margin-bottom: 10%;
 }
 
@@ -12147,6 +12148,29 @@ footer p {
   }
 }
 
+.blog-detail-card {
+  margin: 2em auto;
+  padding: 2em; /*内側余白*/
+  border-left: solid 5px #e9b3a3; /*線の種類・太さ・色*/
+  background-color: #f5f5f5; /*背景色*/
+  box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.2);
+}
+.blog-detail-card .detail-footer {
+  display: flex;
+  margin-top: 3%;
+}
+
+@media screen and (min-width: 768px) {
+  .responsive-width {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .responsive-width {
+    width: 90%;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .hamburger-inside {
     background-color: white;
@@ -12212,53 +12236,6 @@ footer p {
   width: 15%;
   margin-right: 0;
   padding-right: 0;
-}
-
-.blog-detail-card {
-  margin: 2em auto;
-  padding: 2em; /*内側余白*/
-  border-left: solid 5px #e9b3a3; /*線の種類・太さ・色*/
-  background-color: #f5f5f5; /*背景色*/
-  box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.2);
-  width: 70%;
-}
-.blog-detail-card .detail-footer {
-  display: flex;
-  margin-top: 3%;
-  /* .create-date{
-       padding-left: 3%;
-       background-image: url(/edit.png);
-       background-size: contain;
-       background-repeat: no-repeat;
-       background-position: left;
-       background-color: blue;
-       //display: block;
-       //width: auto;
-       //height: 100%;
-       //font-size: 1em;
-       //aspect-ratio: 30/1;
-   }*/
-  /*.date::before{
-      display: block;
-      padding-top: 50%;
-  }*/
-  /* .update-date{
-      padding-left: 3%;
-      margin-left: 4%;
-      background-image: url(/reload.png);
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: left;
-  }*/
-  /*.etsuran{
-      //hight: 30%;
-      /*padding-left: 4%;
-      margin-left: 4%;
-      background-image: url(/etsuran.png);
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: left;
-      background-color: red;*/
 }
 
 .margin-left-4 {
@@ -12388,4 +12365,21 @@ footer p {
 
 .textlength_alert {
   color: red;
+}
+
+#loading {
+  background-color: #ddd;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.motion-image {
+  opacity: 0;
+}
+
+.red {
+  background-color: red;
 }

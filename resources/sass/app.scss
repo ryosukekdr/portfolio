@@ -12,13 +12,13 @@ body{
 }
 
 .header{
-    margin-bottom: 13%;
-    height: 13%;
+    //margin-bottom: 13%;
+    position: sticky;
+    top: 0;
+    //height: 13%;
     width: 100%;
-    position: fixed;
     z-index: 999;
-    //margin-top: 0;
-    //background-color: blue;
+    background-color: #444444;
 }
 
 .py-4 {
@@ -60,6 +60,7 @@ article{
 
 .wall{
     width: 100%;
+    padding-left: 0;
     margin-bottom: 10%;
 }
 
@@ -227,6 +228,29 @@ $breakpoints: (
     }
 }
 
+.blog-detail-card {
+    margin: 2em auto;
+    padding: 2em;/*内側余白*/
+    border-left: solid 5px #e9b3a3;/*線の種類・太さ・色*/
+    background-color:#f5f5f5;/*背景色*/
+    box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.2);
+    //width: 70%;
+    
+    .detail-footer{
+        display: flex;
+        margin-top: 3%;
+    }
+}
+
+.responsive-width {
+    @include media(lg) {
+        width: 70%;
+    }
+    @include media(md) {
+        width: 90%;
+    }
+}
+
 .hamburger-inside {
     @include media(lg) {
         
@@ -330,67 +354,9 @@ $breakpoints: (
 //    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
 //}
 
-
-.blog-detail-card {
-margin: 2em auto;
-padding: 2em;/*内側余白*/
-border-left: solid 5px #e9b3a3;/*線の種類・太さ・色*/
-background-color:#f5f5f5;/*背景色*/
-box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.2);
-width: 70%;
-    
   
     
-    .detail-footer{
-        display: flex;
-        margin-top: 3%;
-        //height: auto;
-        //aspect-ratio: 30/1;
-        //align-items: strech;
-        
-       /* .create-date{
-            padding-left: 3%;
-            background-image: url(/edit.png);
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: left;
-            background-color: blue;
-            //display: block;
-            //width: auto;
-            //height: 100%;
-            //font-size: 1em;
-            //aspect-ratio: 30/1;
-        }*/
-        /*.date::before{
-            display: block;
-            padding-top: 50%;
-        }*/
-        
-        /* .update-date{
-            padding-left: 3%;
-            margin-left: 4%;
-            background-image: url(/reload.png);
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: left;
-        }*/
-        
-        /*.etsuran{
-            //hight: 30%;
-            /*padding-left: 4%;
-            margin-left: 4%;
-            background-image: url(/etsuran.png);
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: left;
-            background-color: red;*/
-            //display: block;
-            //width: auto;
-            //height: auto;
-            //font-size: 1em;
-        //}*/
-    }
-}
+    
 
 .margin-left-4{
     margin-left: 4%;
@@ -525,4 +491,27 @@ width: 70%;
 
 .textlength_alert {
     color: red;
+}
+
+#loading {
+    //transition: all 1s;
+    background-color: #ddd;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    display: grid;
+    place-items: center;
+}
+
+.spin {
+    //position: fixed;
+}
+
+.motion-image {
+    opacity: 0;
+    //visibility: hidden;
+}
+
+.red {
+    background-color: red;
 }

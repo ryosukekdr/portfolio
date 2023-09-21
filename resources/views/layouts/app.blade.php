@@ -19,14 +19,14 @@
     <link rel="icon" type="image/png" href="{{ secure_asset('chikyu.png') }}">
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <div id="top"></div>
     <!--<div id="app">-->
     <nav class="navbar navbar-expand-md navbar-light header">
-        <div class="container-fluid">
+        <!--<div class="container-fluid">-->
             <div></div> <!--ここにdivがないとハンバーガーメニューが左端に来てしまう-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -96,16 +96,14 @@
       
                     
                 </div>
-        </div>
+        <!--</div>-->
     </nav>
-        <main class="py-4">
-            @yield('content')
-        </main>
-            <a href="#top"><img alt="ページトップへのリンク" src="{{ secure_asset('toppage.png') }}"  class="toppage-icon"></a>
-        <footer>
-            <!--<div class="wrapper">-->
-            <p><small>&copy;2023 Ryosuke</small></p>
-            <!--</div>-->
-        </footer>
+        @yield('content')
+    <a href="#top"><img alt="ページトップへのリンク" src="{{ secure_asset('toppage.png') }}"  class="toppage-icon"></a>
+    <footer>
+        <!--<div class="wrapper">-->
+        <p><small>&copy;2023 Ryosuke</small></p>
+        <!--</div>-->
+    </footer>
     <!--</div>-->
 </html>

@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid margin-top5">
-    <div class="row display-flex">
+<div id="loading"><img class="spin" src="{{ secure_asset('spin.png') }}"></div>
+<div class="container-fluid">
+    <div class="row">
         <article class="col-md-9">
             <img class="wall" src="{{ secure_asset('ogasawara2.jpg') }}" alt="背景画像">
             <i class="fas fa-plane-departure"> 行った国</i>
@@ -26,9 +27,5 @@
             </div>
         </aside>
     </div>
-    
-    
-
-    
 </div>
 @endsection
