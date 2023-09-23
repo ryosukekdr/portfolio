@@ -495,7 +495,7 @@ $breakpoints: (
 
 #loading {
     //transition: all 1s;
-    background-color: #ddd;
+    background-color: #eee;
     position: fixed;
     z-index: 9999;
     inset: 0;
@@ -503,8 +503,12 @@ $breakpoints: (
     place-items: center;
 }
 
-.spin {
-    //position: fixed;
+#loading-screen {
+    background-color: #d5edeb;
+    position: fixed;
+    z-index: 9998;
+    inset: 0;
+    translate: 0 100%;
 }
 
 .motion-image {

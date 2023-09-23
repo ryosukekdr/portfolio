@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="loading"><img class="spin" src="{{ secure_asset('spin.png') }}"></div>
+<script>loading();</script>
+<div id="loading">
+    <img class="spin" src="{{ secure_asset('spin.png') }}">
+    <div id="loading-screen"></div>
+</div>
 <div class="container-fluid">
     <div class="row">
         <article class="col-md-9">
