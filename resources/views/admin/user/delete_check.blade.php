@@ -13,6 +13,7 @@
                         <div class="row mb-3">
                             本当に退会してもよろしいですか？
                             <a href="{{ route('admin.user.delete') }}">退会</a>
+                            <a href="{{ url('admin/user') }}" class="btn btn-primary">戻る</a>
                         </div>
                         
                     </form>

@@ -11,18 +11,22 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">  <!--リセットCSS読み込み-->
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" rel="stylesheet">  <!--webfontのFont Awesomeを使う-->
     <link rel="icon" type="image/png" href="{{ secure_asset('chikyu.png') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+
+
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    
 </head>
+
 <div id="top"></div>
     <!--<div id="app">-->
     <nav class="navbar navbar-expand-md navbar-light header">
@@ -43,13 +47,13 @@
                     <!-- Left Side Of Navbar -->
                 <div class="navbar-collapse collapse hamburger-inside" id="navbarTogglerDemo2" style="">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item list-style-none">
+                        <li class="nav-item header-menu">
                             <a href="{{ url('/') }}">ホーム</a>
                         </li>
-                        <li class="nav-item list-style-none">
+                        <li class="nav-item header-menu">
                             <a href="{{ route('blog') }}">ブログ閲覧</a>
                         </li>
-                        <li class="nav-item list-style-none">
+                        <li class="nav-item header-menu">
                             <a href="{{ route('itemlist_index') }}">持ち物リスト</a>
                         </li>
                         

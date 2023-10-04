@@ -1,6 +1,11 @@
 {
-    "/js/app.js": "/js/app.js?id=b31e90b663bf593ce95ac4a7897f9ef4",
-    "/css/app.css": "/css/app.css?id=42bcc8844e9199d2683a3c7bab1dc396",
-    "/css/front.css": "/css/front.css?id=449dc1a9f83993abbb3b9b393f59b460",
-    "/css/admin.css": "/css/admin.css?id=d366f1d7ca3f2d3b10c96a3cef38c36e"
+    "/js/app.js": "/js/app.js?id=1df2038b3bff9a599c90c06440887349",
+    "/js/counter.js": "/js/counter.js?id=9894176d7d958e3e3414fc0d8c4fc65f",
+    "/js/animation.js": "/js/animation.js?id=0235b11729dbec4974fcf14bf92d54fe",
+    "/js/loading.js": "/js/loading.js?id=86ad925e2ac6ab836e0475a09a96fec7",
+    "/js/country_menu.js": "/js/country_menu.js?id=822b5e8353287396552cde9ff81da691",
+    "/js/datepicker.js": "/js/datepicker.js?id=c4b054cbd1a6ae7ed66dc16b787015aa",
+    "/css/app.css": "/css/app.css?id=d7120448c758d861ed16634af4b08ef9",
+    "/css/front.css": "/css/front.css?id=68b329da9893e34099c7d8ad5cb9c940",
+    "/css/admin.css": "/css/admin.css?id=404accd0fdd4c27651dc096f93abf312"
 }

@@ -27,7 +27,7 @@
                 <br>
                 本当に削除してもよろしいですか？<br>
                 <a href="{{ route('admin.blog.delete', ['id' => $blog_form->id]) }}" class="btn btn-primary">削除</a>
-                <a href="{{ route('admin.blog.index') }}" class="btn btn-primary">戻る</a>
+                <a href="{{ url('admin/blog') }}" class="btn btn-primary">戻る</a>
             </div>
         </div>
     </div>

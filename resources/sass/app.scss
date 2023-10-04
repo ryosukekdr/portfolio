@@ -7,27 +7,28 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
-body{
-    //padding-top: 30%;
+//メディアクエリ設定
+$breakpoints: (
+    md: "screen and (max-width: 768px)",
+    lg: "screen and (min-width: 768px)",
+);
+@mixin media($breakpoint) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
 }
+
 
 .header{
-    //margin-bottom: 13%;
     position: sticky;
     top: 0;
-    //height: 13%;
     width: 100%;
     z-index: 999;
-    background-color: #444444;
-}
-
-.py-4 {
-    //padding-top: 30%;
+    background-color: white;
 }
 
 .margin-top5{
     margin-top: 5%;
-    //margin-left: 10%;
 }
 
 .blog img {
@@ -38,38 +39,35 @@ body{
     display: flex;
 }
 
-/*.blog {
-    display: flex;
-}*/
-
-// .btn-primary {
-//     background-image: url('../storage/airplane_favicon.png');
-//     background-size: 8%;
-//     background-repeat: no-repeat;
-//     background-position: left;
-// }
-
-//.me-auto li{
-//   padding-left: 10%;
-//    margin-left: 10%;
-//}
-
 article{
     margin-bottom: 10%;
+    
+    @include media(lg) {
+    }
+    @include media(md) {
+        width: 100%;
+    }
 }
 
 .wall{
     width: 100%;
-    padding-left: 0;
     margin-bottom: 10%;
 }
 
-aside{
-    //width: 20%;
-    //margin-left: 5%;
-    //background-color: blue;
-    padding-left: 3%;
-    padding-right: 3%;
+aside {
+    
+    @include media(lg) {
+        
+    }
+    @include media(md) {
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+}
+
+.margin-side3 {
+    margin-left: 3%;
+    margin-right: 3%;
 }
 
 .profile{
@@ -123,72 +121,13 @@ footer p {
     }
 }
 
-.navbar-main{
+.display-flex-space-between{
     display: flex;
     justify-content: space-between;
 }
 
 
-
-/*.list-style-none{
-    //padding-left: 10%;
-    //margin-right: 5%;
-    //background-image: url('../storage/airplane_favicon.png');
-    //background-size: 20%;
-    //background-repeat: no-repeat;
-    //background-position: left;
-    list-style: none;
-    //white-space: nowrap;
-    
-    a {
-        //position: relative;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin: 0 auto;
-        //max-width: 240px;
-        padding: 10px 25px;
-        color: #543618;
-        //transition: 0.3s ease-in-out;
-        font-weight: 600;
-        background: #eeee;
-        border-radius: 50px;
-        border: 0.2rem solid #543618;
-        box-shadow: 0.2rem 0.2rem 0px 0.1rem #cccccc;
-        text-decoration: none;
-        }
-    a:hover {
-        transform: translate3d(0.2rem, 0.2rem, 0);
-        box-shadow: none;
-        opacity: 1;
-        transition: all 0.2s;
-        }
-    //a:after {
-    //    content: '';
-    //    width: 5px;
-    //    height: 5px;
-    //    border-top: 3px solid #543618;
-    //    border-right: 3px solid #543618;
-    //    transform: rotate(45deg) translateY(-50%);
-    //    position: absolute;
-    //    top: 50%;
-    //    right: 20px;
-    //    border-radius: 1px;
-    //    transition: 0.3s ease-in-out;
-    //    }
-}*/
-
-$breakpoints: (
-    md: "screen and (max-width: 768px)",
-    lg: "screen and (min-width: 768px)",
-);
-@mixin media($breakpoint) {
-    @media #{map-get($breakpoints, $breakpoint)} {
-        @content;
-    }
-}
-
-.list-style-none {
+.header-menu {
     list-style: none;
     
     @include media(lg) {
@@ -223,7 +162,6 @@ $breakpoints: (
         a {
             color: #333333;
             text-decoration: none;
-            //border-bottom: solid black;
             }
     }
 }
@@ -279,26 +217,9 @@ $breakpoints: (
     text-align: center;
 }
 
-.facebook-icon{
-    width: 20%;
-    
-}
-
-/*.facebook{
-    //text-align: right;
-    list-style: none;
-}*/
-
-.admin-link {
-    //text-align: right;
-    //margin-right: 0;
-}
-
 
 
 .image-edit{
-    //display: flex;
-    
     img{
         cursor : pointer;
         width: 50%;
@@ -314,14 +235,6 @@ $breakpoints: (
          border: 2px solid black;
     }
 }
-
-
-
-/* input[type=image]:checked+label::before{
-        opacity: 0.5;
-        border: 3px solid #000;
-        box-sizing: border-box;
-    }*/
 
 
 .kaigyo{
@@ -348,16 +261,6 @@ $breakpoints: (
     padding-right: 0;
 }
 
-//.col-md-8 {
-//    margin: 2em 0;
-//    background: #f1f1f1;
-//    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
-//}
-
-  
-    
-    
-
 .margin-left-4{
     margin-left: 4%;
 }
@@ -365,15 +268,6 @@ $breakpoints: (
 .margin-left-20{
     margin-left: 20%;
 }
-/*.detail-container{
-    //margin-right: 0;
-    padding-top: 5%;
-    //width: 100%;
-}*/
-
-//#navbarSupportedContent{
-//    display: flex;
-//}
 
 .detail-title{
     font-size: 2rem;
@@ -483,11 +377,6 @@ $breakpoints: (
         width: 5%;
         margin: 3%;
     }
-    
-    
-.form-group {
-    margin-top: 10%;
-}
 
 .textlength_alert {
     color: red;
@@ -513,9 +402,15 @@ $breakpoints: (
 
 .motion-image {
     opacity: 0;
-    //visibility: hidden;
 }
 
+
+//要素範囲の確認用
 .red {
     background-color: red;
+}
+
+//bootstrapとjQueryで背景色が衝突したため、オーバーライド
+.placeholder{
+  background-color: transparent;
 }

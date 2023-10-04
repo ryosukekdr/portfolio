@@ -29,6 +29,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('メール送信') }}
                                 </button>
+                                <a href="{{ url('admin/user') }}" class="btn btn-primary">戻る</a>
                             </div>
                         </div>
                     </form>

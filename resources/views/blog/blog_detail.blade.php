@@ -1,12 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="{{ mix('js/animation.js') }}" defer></script>
+
     <div class="main">
         <div class="blog-detail-card responsive-width">
             <h1 class="detail-title">{{ $post->title }}</h1>
             <div class="row text-align-right">
                 <div class="kaigyo col-md-6">
-                    {{ $post->body }}
+                    {{ $post->body }} 
+                    @foreach ($post->countries as $country)
+                                    <li>{{ $country->name }}</li>
+                                @endforeach
                 </div>
                 <div class="detail-image col-md-6">
                     @if (!($post->images->isEmpty()))  {{--hasmanyリレーションで$postが複数持ってる画像を１枚ずつ表示。$post->images != NULLだと画像無くてもif文通過してしまう。imagesがコレクションのため--}}

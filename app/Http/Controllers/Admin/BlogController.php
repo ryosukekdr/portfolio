@@ -10,23 +10,34 @@ use App\Models\Blog;
 //use App\Models\History;
 use App\Models\Image;
 use App\Models\User;
+use App\Models\Country;
 use Carbon\Carbon;
 
 use Validator;
 
-class HomeController extends Controller
+class BlogController extends Controller
 {
     public function add()
     {
-        return view('admin.blog.create');
+        $countries = Country::all();
+        return view('admin.blog.create', ['countries' => $countries]);
     }
+    
      
     public function create(Request $request)
     {
         //$this->authorize('create', Blog::class);
         
-        DB::transaction(function () use ($request) { //トランザクション追加
         $this->validate($request, Blog::$rules);
+        $validator = Validator::make($request->all() , ['country' => 'required']); //Validatorをトランザクションの中に入れると、エラーが出たときcreate関数が即終了してしまう
+        if ($validator->fails()) {
+            return back()->withErrors('訪問先が選択されていません');
+            //return view('admin/blog', ['msg'=>$msg]);
+            //return redirect('admin/blog/create')->withErrors($validator)->withInput();
+        }
+        
+        DB::transaction(function () use ($request) { //トランザクション追加
+        
         $blog = new Blog;
         $form = $request->all();
         
@@ -51,6 +62,8 @@ class HomeController extends Controller
         }
         
         $blog->save();
+        $country_ids = $request->country;
+        $blog->countries()->sync($country_ids);
         
         if ($request->file('image')!= NULL) {     //inputタグをname="image[]"と配列にすると$request->file('image')に複数枚入る
             foreach($request->file('image') as $file) {               //inputタグで受け取った複数画像を１枚ずつデータベースに保存していく
@@ -76,6 +89,7 @@ class HomeController extends Controller
         return redirect('admin/blog');
     }
     
+    
     public function index(Request $request)
     {
         $cond_title = $request->cond_title;
@@ -87,25 +101,38 @@ class HomeController extends Controller
         return view('admin.blog.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
     
+    
     public function edit(Request $request)
     {
-        // Blog Modelからデータを取得する
         $blog = Blog::find($request->id);
         if (empty($blog)) {
             abort(404);
         }
+        
+        $countries = Country::all();
+        $selected_country_ids = [];
+        
+        foreach($blog->countries as $country){
+            array_push($selected_country_ids, $country->id);
+        }
+    
         $this->authorize('edit', $blog);  //ポリシー認可
         
-        return view('admin.blog.edit', ['blog_form' => $blog]);
+        return view('admin.blog.edit', ['blog' => $blog, 'countries' => $countries, 'selected_country_ids' => $selected_country_ids]);
     }
 
+
     public function update(Request $request)
-    { 
-        DB::transaction(function () use ($request) { //トランザクション追加
+    {
         $blog = Blog::find($request->blog_id);  //blog_idはinputタグのname
         //$this->authorize('update', $blog);  //ポリシー認可
         $this->validate($request, Blog::$rules);
+        $validator = Validator::make($request->all() , ['country' => 'required']); //Validatorをトランザクションの中に入れると、エラーが出たときcreate関数が即終了してしまう
+        if ($validator->fails()) {
+            return back()->withErrors('訪問先が選択されていません');
+        }
         
+        DB::transaction(function () use ($request) { //トランザクション追加
         
         $form = $request->all();
         //unset($blog['_token']);  //Blogモデルでブラックリスト作ってるからunset不要
@@ -118,7 +145,10 @@ class HomeController extends Controller
         else {
             $blog->status = 0;
         }
+        
         $blog->save();
+        $country_ids = $request->country;
+        $blog->countries()->sync($country_ids);
         
         if (isset($request->image_id)) { //画像削除の処理部分
             $selected_images = Image::find($request->image_id); //inputタグをneme=image_id[]と配列にすれば複数受け取れる
@@ -157,6 +187,7 @@ class HomeController extends Controller
         $this->authorize('delete_check', $blog); //ポリシー認可
         return view('admin.blog.delete_check', ['blog_form' => $blog]);
     }
+     
      
     public function delete(Request $request)
     {

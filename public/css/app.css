@@ -11987,7 +11987,7 @@ textarea.form-control-lg {
   top: 0;
   width: 100%;
   z-index: 999;
-  background-color: #444444;
+  background-color: white;
 }
 
 .margin-top5 {
@@ -12002,22 +12002,30 @@ textarea.form-control-lg {
   display: flex;
 }
 
-/*.blog {
-    display: flex;
-}*/
 article {
   margin-bottom: 10%;
+}
+@media screen and (max-width: 768px) {
+  article {
+    width: 100%;
+  }
 }
 
 .wall {
   width: 100%;
-  padding-left: 0;
   margin-bottom: 10%;
 }
 
-aside {
-  padding-left: 3%;
-  padding-right: 3%;
+@media screen and (max-width: 768px) {
+  aside {
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+}
+
+.margin-side3 {
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 .profile {
@@ -12056,63 +12064,16 @@ footer p {
   width: 35%;
 }
 
-.navbar-main {
+.display-flex-space-between {
   display: flex;
   justify-content: space-between;
 }
 
-/*.list-style-none{
-    //padding-left: 10%;
-    //margin-right: 5%;
-    //background-image: url('../storage/airplane_favicon.png');
-    //background-size: 20%;
-    //background-repeat: no-repeat;
-    //background-position: left;
-    list-style: none;
-    //white-space: nowrap;
-
-    a {
-        //position: relative;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin: 0 auto;
-        //max-width: 240px;
-        padding: 10px 25px;
-        color: #543618;
-        //transition: 0.3s ease-in-out;
-        font-weight: 600;
-        background: #eeee;
-        border-radius: 50px;
-        border: 0.2rem solid #543618;
-        box-shadow: 0.2rem 0.2rem 0px 0.1rem #cccccc;
-        text-decoration: none;
-        }
-    a:hover {
-        transform: translate3d(0.2rem, 0.2rem, 0);
-        box-shadow: none;
-        opacity: 1;
-        transition: all 0.2s;
-        }
-    //a:after {
-    //    content: '';
-    //    width: 5px;
-    //    height: 5px;
-    //    border-top: 3px solid #543618;
-    //    border-right: 3px solid #543618;
-    //    transform: rotate(45deg) translateY(-50%);
-    //    position: absolute;
-    //    top: 50%;
-    //    right: 20px;
-    //    border-radius: 1px;
-    //    transition: 0.3s ease-in-out;
-    //    }
-}*/
-.list-style-none {
+.header-menu {
   list-style: none;
 }
 @media screen and (min-width: 768px) {
-  .list-style-none a {
+  .header-menu a {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -12126,7 +12087,7 @@ footer p {
     box-shadow: 0.2rem 0.2rem 0px 0.1rem #cccccc;
     text-decoration: none;
   }
-  .list-style-none a:hover {
+  .header-menu a:hover {
     transform: translate3d(0.2rem, 0.2rem, 0);
     box-shadow: none;
     opacity: 1;
@@ -12134,7 +12095,7 @@ footer p {
   }
 }
 @media screen and (max-width: 768px) {
-  .list-style-none {
+  .header-menu {
     border-bottom: solid black;
     padding-bottom: 5%;
     padding-top: 5%;
@@ -12142,7 +12103,7 @@ footer p {
     margin-left: 5%;
     margin-right: 5%;
   }
-  .list-style-none a {
+  .header-menu a {
     color: #333333;
     text-decoration: none;
   }
@@ -12192,14 +12153,6 @@ footer p {
   text-align: center;
 }
 
-.facebook-icon {
-  width: 20%;
-}
-
-/*.facebook{
-    //text-align: right;
-    list-style: none;
-}*/
 .image-edit img {
   cursor: pointer;
   width: 50%;
@@ -12213,11 +12166,6 @@ footer p {
   border: 2px solid black;
 }
 
-/* input[type=image]:checked+label::before{
-        opacity: 0.5;
-        border: 3px solid #000;
-        box-sizing: border-box;
-    }*/
 .kaigyo {
   white-space: pre-line;
   text-align: left;
@@ -12246,11 +12194,6 @@ footer p {
   margin-left: 20%;
 }
 
-/*.detail-container{
-    //margin-right: 0;
-    padding-top: 5%;
-    //width: 100%;
-}*/
 .detail-title {
   font-size: 2rem;
   font-family: "Hannotate SC";
@@ -12359,10 +12302,6 @@ footer p {
   margin: 3%;
 }
 
-.form-group {
-  margin-top: 10%;
-}
-
 .textlength_alert {
   color: red;
 }
@@ -12390,4 +12329,8 @@ footer p {
 
 .red {
   background-color: red;
+}
+
+.placeholder {
+  background-color: transparent;
 }

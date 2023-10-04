@@ -36,4 +36,9 @@ class Blog extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function countries()
+    {
+        return $this->belongsToMany(Country::class);
+    }
 }

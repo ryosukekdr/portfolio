@@ -12,6 +12,12 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/counter.js', 'public/js')
+    .js('resources/js/animation.js', 'public/js')
+    .js('resources/js/loading.js', 'public/js')
+    .js('resources/js/country_menu.js', 'public/js')
+    .js('resources/js/datepicker.js', 'public/js')
+    //.json('resources/json/cate1.json', 'public/json')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/admin.scss', 'public/css')
     .sass('resources/sass/front.scss', 'public/css')

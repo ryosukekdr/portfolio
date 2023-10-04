@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
 
 /*use App\Http\Controllers\Auth\ResetPasswordController;
 Route::post('', 'original_reset')->name('original_reset');*/
@@ -37,8 +35,8 @@ Route::controller(UserController::class)->prefix('admin')->name('admin.')->middl
     //Route::get('user/password_confirm', 'password_confirm')->name('user.password_confirm');
 });
 
-use App\Http\Controllers\Admin\HomeController;
-Route::controller(HomeController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+use App\Http\Controllers\Admin\BlogController;
+Route::controller(BlogController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('blog/create', 'add')->name('blog.add');
     Route::post('blog/create', 'create')->name('blog.create');
     Route::get('blog', 'index')->name('blog.index');
@@ -48,21 +46,27 @@ Route::controller(HomeController::class)->prefix('admin')->name('admin.')->middl
     Route::get('blog/delete', 'delete')->name('blog.delete');
 });
 
-Auth::routes();
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 use App\Http\Controllers\HomeController as PublicHomeController;
-Route::get('/', [PublicHomeController::class, 'index'])->name('index');
-Route::get('/blog', [PublicHomeController::class, 'blog'])->name('blog');
-Route::get('/blog/detail', [PublicHomeController::class, 'blog_detail'])->name('blog_detail');
-Route::get('/test', [PublicHomeController::class, 'test'])->name('test');
+Route::get('/', [PublicHomeController::class, 'home']);
+Route::get('/test', [PublicHomeController::class, 'test']);
+
+use App\Http\Controllers\BlogController as PublicBlogController;
+Route::controller(PublicBlogController::class)->group(function () {
+    Route::get('/blog', 'blog')->name('blog');
+    Route::get('/blog/detail', 'blog_detail')->name('blog_detail');
+    Route::get('/search', 'blog');
+});
 
 use App\Http\Controllers\ItemlistController as PublicItemlistController;
 Route::get('/itemlist', [PublicItemlistController::class, 'index'])->name('itemlist_index');
 
+
 use App\Http\Controllers\CsvDownloadController;
 Route::get('/csv-download', [CsvDownloadController::class, 'downloadCsv'])->name('downloadCsv');
+
 
 use App\Http\Controllers\Admin\ItemlistController;
 Route::controller(ItemlistController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function () {

@@ -1,25 +1,55 @@
-{{-- layouts/admin.blade.phpを読み込む --}}
 @extends('layouts.admin')
-
-{{-- admin.blade.phpの@yield('title')に'ニュースの新規作成'を埋め込む --}}
 @section('title', 'ブログの新規作成')
 
-{{-- admin.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
+    <script src="{{ mix('js/counter.js') }}" defer></script>
+    {{-- humanityテーマのカレンダーCSS --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/humanity/jquery-ui.min.css">
+    
+    <!--jQueryプラグインMultiple Select読み込み-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
+    <script src="{{ mix('js/country_menu.js') }}" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css">
+    
+    {{-- jQuery UIのJavaScript--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    {{-- カレンダーを日本語にカスタマイズ --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+    <script src="{{ mix('js/datepicker.js') }}" defer></script>
+ 
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>ブログ新規作成</h2>
+                <h2 style="margin-bottom: 10%">ブログ新規作成</h2>
                 <form action="{{ route('admin.blog.create') }}" method="post" enctype="multipart/form-data">
-
                     @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)
-                               <font color="red"> <li class="list-style-none">⚠{{ $e }}</li></font>
+                                <font color="red"> <li class="list-style-none">⚠{{ $e }}</li></font>
                             @endforeach
                         </ul>
                     @endif
-                    {{--@php {{ echo $msg; }} @endphp--}}
+                    <div class="form-group row">
+                        <label class="col-md-3">訪問先</label>
+                        <div class="col-md-9">
+                            <select id="select" name="country[]" multiple="multiple" placeholder="国を選択">
+                                @foreach($countries as $country)
+                                    <option value="{{$country->id}}">{{ $country->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+            
+                    <div class="form-group row">
+                        <label class="col-md-3">旅行期間</label>
+                        <div class="col-md-9 display-flex-space-between">
+                            {{-- カレンダー挿入 --}}
+                            <input type="text" class="datepicker" name="departure" placeholder="出発日">
+                            <input type="text" class="datepicker" name="arrival" placeholder="帰着日">
+                        </div>
+                    </div>
+                    
                     <div class="form-group row">
                         <label class="col-md-3">タイトル</label>
                         <div class="col-md-9">
@@ -33,6 +63,7 @@
                             <textarea class="form-control" name="body" rows="20" placeholder="近況アップデートを投稿" onfocus="this.placeholder=''" onblur="this.placeholder='近況アップデートを投稿'">{{ old('body') }}</textarea>
                         </div>
                     </div>
+                    
                     <div class="form-group row">
                         <label class="col-md-3">画像（最大2MB）</label>
                         <div class="col-md-9">
@@ -42,7 +73,7 @@
                     @csrf
                     <input type="submit" class="btn btn-primary" name="status" value="投稿">
                     <input type="submit" class="btn btn-primary" name="status" value="下書き保存">
-                    <a href="{{ route('admin.blog.index') }}" class="btn btn-primary">戻る</a>
+                    <a href="{{ url('admin/blog') }}" class="btn btn-primary">戻る</a>
                 </form>
             </div>
         </div>
