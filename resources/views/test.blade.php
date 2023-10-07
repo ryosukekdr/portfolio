@@ -1,16 +1,14 @@
 <?php
-
+use App\Http\Client;
+ 
 $client = new http\Client;
 $request = new http\Client\Request;
-
-$request->setRequestUrl('https://greatcirclemapper.p.rapidapi.com/aircraft/read/A388');
+$request->setRequestUrl('https://ajayakv-rest-countries-v1.p.rapidapi.com/rest/v1/all');
 $request->setRequestMethod('GET');
 $request->setHeaders([
-	'X-RapidAPI-Key' => 'SIGN-UP-FOR-KEY',
-	'X-RapidAPI-Host' => 'greatcirclemapper.p.rapidapi.com'
+  'x-rapidapi-host' => 'ajayakv-rest-countries-v1.p.rapidapi.com',
+  'x-rapidapi-key' => 'cJvLRNK0GfdM9WSMbQe3inU7REn8JVy5'
 ]);
-
 $client->enqueue($request)->send();
 $response = $client->getResponse();
-
 echo $response->getBody();

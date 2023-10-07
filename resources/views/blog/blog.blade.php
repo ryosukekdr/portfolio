@@ -2,8 +2,14 @@
 
 @section('content')
 <div id="regions_div" class="mx-auto" style="width: 900px; height: 500px;"></div>
+<div id="app"><p id="salut" v-on:load="getSalut"></p></div>
 
 <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue2.6.10/dist/vue.js"></script>
+<!--世界のあいさつAPI-->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  
 <script>
     google.charts.load('current', {
         'packages':[
@@ -33,6 +39,37 @@
         chart.draw(data, options);
     }
 </script>
+
+
+
+
+ 
+  <script>
+    let app = new Vue({
+  el: "#app",
+  data: {
+    nation: "",
+    salut: ""
+  },
+  computed: {
+    getSalut: async function () {
+      //let lang_code = this.nation.split("：")[0];
+      let HelloSalutUrl = "https://hellosalut.stefanbohacek.dev/?cc=JP";
+      await axios
+        // HelloSalut API呼び出し
+        .get(HelloSalutUrl)
+        .then(function (response) {
+          return response["data"];
+        })
+        .then(function (jsonData) {
+          this.salut = jsonData["hello"];
+          document.getElementById("salut").innerHTML = `${this.salut}`;
+          //readAloud(decNumRefToString(this.salut), lang_code);
+        });
+    }
+  }
+});
+  </script>
 
 
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Image;
 use App\Models\Country;
+use Exception;
 
 class BlogController extends Controller
 {
@@ -65,13 +66,19 @@ class BlogController extends Controller
     
      public function blog_detail(Request $request)
     {   
-        $post = Blog::find($request->id);
-        if (empty($post)) {
+        $blog = Blog::find($request->id);
+      
+        try {
+            if (empty($blog)) {
+                throw new Exception();
+            }
+        } catch (Exception $e) {
             abort(404);
         }
-        $post->view_count ++;  //閲覧回数カウント変数。このアクションが実施される度に１を足す。
-        $post->save();
-        //dd($post->countries);
-        return view('blog/blog_detail', ['post' => $post]);
+        
+        $blog->view_count ++;  //閲覧回数カウント変数。このアクションが実施される度に１を足す。
+        $blog->save();
+        //dd($blog->countries);
+        return view('blog/blog_detail', ['blog' => $blog]);
     }
 }

@@ -105,7 +105,12 @@ class BlogController extends Controller
     public function edit(Request $request)
     {
         $blog = Blog::find($request->id);
-        if (empty($blog)) {
+        
+        try {
+            if (empty($blog)) {
+                throw new Exception();
+            }
+        } catch (Exception $e) {
             abort(404);
         }
         
@@ -181,9 +186,15 @@ class BlogController extends Controller
     public function delete_check(Request $request)
     {
         $blog = Blog::find($request->id);
-        if (empty($blog)) {
+        
+        try {
+            if (empty($blog)) {
+                throw new Exception();
+            }
+        } catch (Exception $e) {
             abort(404);
         }
+        
         $this->authorize('delete_check', $blog); //ポリシー認可
         return view('admin.blog.delete_check', ['blog_form' => $blog]);
     }
@@ -192,9 +203,9 @@ class BlogController extends Controller
     public function delete(Request $request)
     {
         $blog = Blog::find($request->id);
-        if (empty($blog)) {
-            abort(404);
-        }
+        // if (empty($blog)) {
+        //     abort(404);
+        // }
         //$this->authorize('delete', $blog);  //ポリシー認可
         
         /*foreach($blog->images as $image) {  //blog削除前にリレーションされた画像を削除。imagesテーブルのマイグレーションファイルでonDelete('cascade');を書いてもOK
