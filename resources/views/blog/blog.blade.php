@@ -54,7 +54,9 @@
   computed: {
     getSalut: async function () {
       //let lang_code = this.nation.split("：")[0];
-      let HelloSalutUrl = "https://hellosalut.stefanbohacek.dev/?cc=JP";
+      const searchparams = new URLSearchParams(window.location.search);
+      country_code = searchparams.get('country_code');
+      let HelloSalutUrl = "https://hellosalut.stefanbohacek.dev/?cc=" + country_code;
       await axios
         // HelloSalut API呼び出し
         .get(HelloSalutUrl)
@@ -86,6 +88,11 @@
                     <h5 class="card-title"><a href="{{ route('blog_detail', ['id' => $blog->id]) }}">{{ Str::limit($blog->title, 50) }}</a></h5>
                     <p class="card-text">{{ Str::limit($blog->body, 200) }}</p>
                 </div>
+                <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>
+                    @foreach ($blog->countries as $country)
+                        {{ $country->name }}{{'　'}}
+                    @endforeach
+                
                 <div class=footer>
                     <i class="fas fa-edit">{{ date('Y年m月d日', strtotime($blog->created_at)) }}</i>
                     <i class="far fa-eye margin-left-4">{{ $blog->view_count }}</i>

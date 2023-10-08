@@ -1,8 +1,10 @@
 <?php
-use App\Http\Client;
- 
-$client = new http\Client;
-$request = new http\Client\Request;
+//use NNV\RestCountries;
+
+//$restCountries = new RestCountries;
+//$restCountries->byName("viet");
+
+
 $request->setRequestUrl('https://ajayakv-rest-countries-v1.p.rapidapi.com/rest/v1/all');
 $request->setRequestMethod('GET');
 $request->setHeaders([

@@ -9,9 +9,6 @@
             <div class="row text-align-right">
                 <div class="kaigyo col-md-6">
                     {{ $blog->body }} 
-                    @foreach ($blog->countries as $country)
-                                    <li>{{ $country->name }}</li>
-                                @endforeach
                 </div>
                 <div class="detail-image col-md-6">
                     @if (!($blog->images->isEmpty()))  {{--hasmanyリレーションで$blogが複数持ってる画像を１枚ずつ表示。$blog->images != NULLだと画像無くてもif文通過してしまう。imagesがコレクションのため--}}
@@ -25,6 +22,10 @@
                     @endif
                 </div>
             </div>
+            <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>
+            @foreach ($blog->countries as $country)
+                {{ $country->name }}{{'　'}}
+            @endforeach
             <div class=detail-footer>
                 <i class="fas fa-edit">{{ date('Y年m月d日', strtotime($blog->created_at)) }}</i>
                 <i class="fas fa-redo-alt margin-left-4">{{ date('Y年m月d日', strtotime($blog->edited_at)) }}</i>
