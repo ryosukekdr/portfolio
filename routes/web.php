@@ -57,7 +57,7 @@ use App\Http\Controllers\BlogController as PublicBlogController;
 Route::controller(PublicBlogController::class)->group(function () {
     Route::get('/blog', 'blog')->name('blog');
     Route::get('/blog/detail', 'blog_detail')->name('blog_detail');
-    Route::get('/search', 'blog');
+    Route::get('/search', 'blog')->name('blog.search');
 });
 
 use App\Http\Controllers\ItemlistController as PublicItemlistController;

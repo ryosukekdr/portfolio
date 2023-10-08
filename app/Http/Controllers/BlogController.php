@@ -44,6 +44,9 @@ class BlogController extends Controller
             $blogs->whereHas('countries', function ($query) use ($country_code) {
                 $query->where('code', $country_code);
             });
+            
+            $country = Country::where('code', $country_code)->first();
+            //dd($country);
         }
         
        /* //世界地図をクリックされたら、国コードをクエリから取得
@@ -60,7 +63,7 @@ class BlogController extends Controller
         
         $blogs = $blogs->get()->sortBy('edited_at');
     
-        return view('blog/blog', ['blogs' => $blogs, 'codes' => $codes]);
+        return view('blog/blog', ['blogs' => $blogs, 'codes' => $codes, 'country' => $country]);
     }
 
     

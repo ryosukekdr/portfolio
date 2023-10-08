@@ -2,7 +2,16 @@
 
 @section('content')
 <div id="regions_div" class="mx-auto" style="width: 900px; height: 500px;"></div>
-<div id="app"><p id="salut" v-on:load="getSalut"></p></div>
+<div class="margin-top3 text-align-center">
+    @if (Request::routeIs('blog.search'))
+        ----------{{$country->name}}が <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>タグ付けされているブログを表示中----------
+        <br>
+        <div id="app"><p id="salut" v-on:load="getSalut" style="font-size: 1.5rem;"></p></div>
+        <a href="{{ route('blog') }}" class="margin-top3">すべてのブログを表示</a>
+    @else
+    ----------すべてのブログを表示中----------
+    @endif
+</div>
 
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -20,7 +29,7 @@
 
     google.charts.setOnLoadCallback(drawRegionsMap);
 
-    // 国がクリックされたら、国名コードをGETパラメータにして記事一覧ページへ送る
+    // 世界地図がクリックされたら、国名コードをGETパラメータにして記事一覧ページへ送る
     function selectHandler(reg) {
         window.location.href = '/search?country_code=' + reg.region;
     }
@@ -40,22 +49,18 @@
     }
 </script>
 
-
-
-
- 
-  <script>
+<script>
     let app = new Vue({
   el: "#app",
   data: {
-    nation: "",
     salut: ""
   },
   computed: {
     getSalut: async function () {
-      //let lang_code = this.nation.split("：")[0];
+      //世界地図がクリックされたときの国コードをクエリから取得
       const searchparams = new URLSearchParams(window.location.search);
       country_code = searchparams.get('country_code');
+      //取得した国コードをHelloSalut APIに送る
       let HelloSalutUrl = "https://hellosalut.stefanbohacek.dev/?cc=" + country_code;
       await axios
         // HelloSalut API呼び出し
@@ -65,13 +70,13 @@
         })
         .then(function (jsonData) {
           this.salut = jsonData["hello"];
-          document.getElementById("salut").innerHTML = `${this.salut}`;
-          //readAloud(decNumRefToString(this.salut), lang_code);
+          const country_name = @json($country->name);
+          document.getElementById("salut").innerHTML = country_name + 'のあいさつ：　' + `${this.salut}`;
         });
     }
   }
 });
-  </script>
+</script>
 
 
 
@@ -94,8 +99,8 @@
                     @endforeach
                 
                 <div class=footer>
-                    <i class="fas fa-edit">{{ date('Y年m月d日', strtotime($blog->created_at)) }}</i>
-                    <i class="far fa-eye margin-left-4">{{ $blog->view_count }}</i>
+                    <i class="fas fa-edit" style="color: gray;">{{ date('Y年m月d日', strtotime($blog->created_at)) }}</i>
+                    <i class="far fa-eye margin-left-4" style="color: gray;">{{ $blog->view_count }}</i>
                 </div>
             </div>
         </div>

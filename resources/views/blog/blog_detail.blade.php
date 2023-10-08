@@ -27,9 +27,9 @@
                 {{ $country->name }}{{'　'}}
             @endforeach
             <div class=detail-footer>
-                <i class="fas fa-edit">{{ date('Y年m月d日', strtotime($blog->created_at)) }}</i>
-                <i class="fas fa-redo-alt margin-left-4">{{ date('Y年m月d日', strtotime($blog->edited_at)) }}</i>
-                <i class="far fa-eye margin-left-4">{{ $blog->view_count }}</i>
+                <i class="fas fa-edit" style="color: gray;">{{ date('Y年m月d日', strtotime($blog->created_at)) }}</i>
+                <i class="fas fa-redo-alt margin-left-4" style="color: gray;">{{ date('Y年m月d日', strtotime($blog->edited_at)) }}</i>
+                <i class="far fa-eye margin-left-4" style="color: gray;">{{ $blog->view_count }}</i>
             </div>
         </div>
     </div>
