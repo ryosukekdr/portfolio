@@ -26,7 +26,7 @@
                     @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)
-                                <font color="red"> <li class="list-style-none">⚠{{ $e }}</li></font>
+                                <font color="red"> <li style="list-style: none;">⚠{{ $e }}</li></font>
                             @endforeach
                         </ul>
                     @endif
@@ -45,8 +45,8 @@
                         <label class="col-md-3">旅行期間</label>
                         <div class="col-md-9 display-flex-space-between">
                             {{-- カレンダー挿入 --}}
-                            <input type="text" class="datepicker" name="departure" placeholder="出発日">
-                            <input type="text" class="datepicker" name="arrival" placeholder="帰着日">
+                            <input type="text" class="datepicker" name="departure_date" placeholder="出発日" value="{{ old('departure_date') }}">
+                            <input type="text" class="datepicker" name="arrival_date" placeholder="帰着日" value="{{ old('arrival_date') }}">
                         </div>
                     </div>
                     

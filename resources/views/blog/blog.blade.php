@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+<div style="background-color: white;">
 <div id="regions_div" class="mx-auto" style="width: 900px; height: 500px;"></div>
 <div class="margin-top3 text-align-center">
     @if (Request::routeIs('blog.search'))
-        ----------{{$country->name}}が <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>タグ付けされているブログを表示中----------
-        <br>
-        <div id="app"><p id="salut" v-on:load="getSalut" style="font-size: 1.5rem;"></p></div>
-        <a href="{{ route('blog') }}" class="margin-top3">すべてのブログを表示</a>
+        <h class="head-border">{{$selected_country->name}}が <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>タグ付けされているブログを表示中</h>
+        <div class="margin-top3 text-align-right" style="margin-right: 3%;"><a href="{{ route('blog') }}">すべてのブログを表示</a></div>
+        <div id="app"><p id="salut" v-on="getSalut" style="font-size: 1.5rem;"></p></div>
     @else
-    ----------すべてのブログを表示中----------
+    <h class="head-border">すべてのブログを表示中</h>
     @endif
 </div>
 
@@ -70,7 +70,7 @@
         })
         .then(function (jsonData) {
           this.salut = jsonData["hello"];
-          const country_name = @json($country->name);
+          const country_name = @json($selected_country->name);
           document.getElementById("salut").innerHTML = country_name + 'のあいさつ：　' + `${this.salut}`;
         });
     }
@@ -78,7 +78,32 @@
 });
 </script>
 
-
+{{--
+<script>
+    $(function () {
+        const searchparams = new URLSearchParams(window.location.search);
+        const country_code = searchparams.get('country_code');
+      $.ajax({
+          type: 'GET',
+          //data: param,
+          url: "https://hellosalut.stefanbohacek.dev/?cc=" + country_code,
+          dataType: 'json',
+      })
+      .done(function(response) {
+        //function (response) {
+        return response["data"];
+        //}
+        //function (jsonData) {
+          const salut = jsonData["hello"];
+          const country_name = @json($selected_country->name);
+          //console.log(country_name);
+          document.getElementById("salut").innerHTML = country_name + 'のあいさつ：　' + salut;
+        //}
+          
+      });
+    });
+</script>
+--}}
 
 <div class="row row-cols-sm-2">
     @foreach($blogs as $blog)
@@ -91,20 +116,22 @@
                 @endif
                 <div class="card-body">
                     <h5 class="card-title"><a href="{{ route('blog_detail', ['id' => $blog->id]) }}">{{ Str::limit($blog->title, 50) }}</a></h5>
-                    <p class="card-text">{{ Str::limit($blog->body, 200) }}</p>
-                </div>
+                    <i class="fas fa-plane" style="color: gray;"></i> {{ date('Y/m/d', strtotime($blog->departure_date)) }}　～　{{ date('Y/m/d', strtotime($blog->arrival_date)) }}<br>
+                    <p class="card-text margin-top3">{{ Str::limit($blog->body, 200) }}</p>
+                </div><br>
                 <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>
                     @foreach ($blog->countries as $country)
                         {{ $country->name }}{{'　'}}
                     @endforeach
                 
                 <div class=footer>
-                    <i class="fas fa-edit" style="color: gray;">{{ date('Y年m月d日', strtotime($blog->created_at)) }}</i>
-                    <i class="far fa-eye margin-left-4" style="color: gray;">{{ $blog->view_count }}</i>
+                    <i class="fas fa-edit" style="color: gray;"> {{ date('Y年m月d日', strtotime($blog->created_at)) }}</i>
+                    <i class="far fa-eye margin-left-4" style="color: gray;"> {{ $blog->view_count }}</i>
                 </div>
             </div>
         </div>
    @endforeach
+</div>
 </div>
 @endsection
 

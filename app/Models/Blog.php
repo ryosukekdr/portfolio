@@ -12,6 +12,8 @@ class Blog extends Model
     protected $guarded = array('id');
 
     public static $rules = array(
+        'departure_date' => 'required',
+        'arrival_date' => 'required',
         'title' => 'required|max:255',
         'body' => 'required',
         //'image.*' => 'image|max:2048|mimetypes:image/jpg,image/jpeg,image/png,image/gif,image/bmp,image/svg,image/webp',  

@@ -26,14 +26,14 @@
                     @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)
-                                <font color="red"> <li class="list-style-none">⚠{{ $e }}</li></font>
+                                <font color="red"> <li style="list-style: none;">⚠{{ $e }}</li></font>
                             @endforeach
                         </ul>
                     @endif
                     <div class="form-group row">
                         <label class="col-md-3">訪問先</label>
                         <div class="col-md-9">
-                            <select id="select" name="country[]" multiple="multiple">
+                            <select id="select" name="country[]" multiple="multiple" placeholder="国を選択">
                                 @foreach($countries as $country)
                                     @if(in_array($country->id, $selected_country_ids))
                                         <option value="{{$country->id}}" selected>{{ $country->name }}</option>
@@ -49,22 +49,22 @@
                         <label class="col-md-3">旅行期間</label>
                         <div class="col-md-9 display-flex-space-between">
                             {{-- カレンダー挿入 --}}
-                            <input type="text" class="datepicker" name="departure" placeholder="{{ $blog->departure }}">
-                            <input type="text" class="datepicker" name="arrival" placeholder="{{ $blog->arrival }}">
+                            <input type="text" class="datepicker" name="departure_date" placeholder="出発日" value="{{ $blog->departure_date }}">
+                            <input type="text" class="datepicker" name="arrival_date" placeholder="帰着日" value="{{ $blog->arrival_date }}">
                         </div>
                     </div>
                     
                     <div class="form-group row">
                         <label class="col-md-3" for="title">タイトル</label>
                         <div class="col-md-9">
-                            <input type="text" id="title" class="form-control" name="title" value="{{ $blog->title }}">
+                            <input type="text" id="title" class="form-control" name="title" value="{{ $blog->title }}" placeholder="タイトル" onfocus="this.placeholder=''" onblur="this.placeholder='タイトル'">
                             <p>255文字まで（現在 <span id="count">0</span> 文字）</p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3" for="body">本文</label>
                         <div class="col-md-9">
-                            <textarea class="form-control" name="body" rows="20">{{ $blog->body }}</textarea>
+                            <textarea class="form-control" name="body" rows="20" placeholder="近況アップデートを投稿" onfocus="this.placeholder=''" onblur="this.placeholder='近況アップデートを投稿'">{{ $blog->body }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">

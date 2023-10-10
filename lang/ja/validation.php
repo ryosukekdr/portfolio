@@ -171,6 +171,8 @@ return [
         'body' => '本文',
         'image.*' => 'アップロードする画像',
         'password' => 'パスワード',
+        'departure_date' => '出発日',
+        'arrival_date' => '帰着日',
     ],
 
 ];

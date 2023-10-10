@@ -37,6 +37,8 @@ class BlogController extends Controller
                 array_push($codes, [$country->code, $country->name]);
             }
         }
+        //国が選択されていないときのエラー対策
+        $selected_country = new Country;
         
         //世界地図をクリックされたら、国コードをクエリから取得
         if($request->has('country_code')) {
@@ -45,8 +47,7 @@ class BlogController extends Controller
                 $query->where('code', $country_code);
             });
             
-            $country = Country::where('code', $country_code)->first();
-            //dd($country);
+            $selected_country = Country::where('code', $country_code)->first();
         }
         
        /* //世界地図をクリックされたら、国コードをクエリから取得
@@ -59,11 +60,12 @@ class BlogController extends Controller
             });
             $blogs = $blogs->sortBy('edited_at');
         }*/
-        
+        //dd($selected_country);
+        //$selected_country = $countries = Country::all()->first();
         
         $blogs = $blogs->get()->sortBy('edited_at');
     
-        return view('blog/blog', ['blogs' => $blogs, 'codes' => $codes, 'country' => $country]);
+        return view('blog/blog', ['blogs' => $blogs, 'codes' => $codes, 'selected_country' => $selected_country]);
     }
 
     

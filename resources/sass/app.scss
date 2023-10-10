@@ -418,3 +418,32 @@ footer p {
 .bbb {
     font-family: 'Young Serif', serif;
 }
+
+.head-border {
+    display: flex;
+    align-items: center;
+}
+ 
+.head-border:before,
+.head-border:after {
+    content: "";
+    height: 1px;
+    flex-grow: 1;
+    background-color: #666;
+}
+ 
+.head-border:before {
+    margin-right: 1rem;
+}
+ 
+.head-border:after {
+    margin-left: 1rem;
+}
+
+.head-border::before {
+    background: linear-gradient(-90deg, #666, transparent);
+}
+
+.head-border::after {
+    background: linear-gradient(90deg, #666, transparent);
+}

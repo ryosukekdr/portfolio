@@ -31,7 +31,7 @@ class BlogController extends Controller
         $this->validate($request, Blog::$rules);
         $validator = Validator::make($request->all() , ['country' => 'required']); //Validatorをトランザクションの中に入れると、エラーが出たときcreate関数が即終了してしまう
         if ($validator->fails()) {
-            return back()->withErrors('訪問先が選択されていません');
+            return back()->withErrors('訪問先が選択されていません')->withInput();
             //return view('admin/blog', ['msg'=>$msg]);
             //return redirect('admin/blog/create')->withErrors($validator)->withInput();
         }
@@ -134,7 +134,7 @@ class BlogController extends Controller
         $this->validate($request, Blog::$rules);
         $validator = Validator::make($request->all() , ['country' => 'required']); //Validatorをトランザクションの中に入れると、エラーが出たときcreate関数が即終了してしまう
         if ($validator->fails()) {
-            return back()->withErrors('訪問先が選択されていません');
+            return back()->withErrors('訪問先が選択されていません')->withInput();
         }
         
         DB::transaction(function () use ($request) { //トランザクション追加
