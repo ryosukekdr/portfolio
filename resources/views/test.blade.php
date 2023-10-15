@@ -1,28 +1,36 @@
-@extends('layouts.app')
 
-@section('content')
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-<div id="app">hhh</div>
-
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>-->
+<body>
+<div id="regions_div" style="margin-right: 10%; margin-left: 10%"></div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
-$(function () {
-const settings = {
-	async: true,
-	crossDomain: true,
-	url: 'https://rest-countries10.p.rapidapi.com/country/japan',
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '61a635900bmshb0c147b7bcd9251p1969c1jsn1fd32e2a6ad9',
-		'X-RapidAPI-Host': 'rest-countries10.p.rapidapi.com'
-	}
-};
+    google.charts.load('current', {
+        'packages':[
+            'geochart'
+        ],
+        'mapsApiKey': 'ここにAPIキーをいれてね'
+    });
 
-$.ajax(settings).done(function (response) {
-	console.log(response);
-	$('#app').html(response);
-});
-});
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    // 世界地図がクリックされたら、国名コードをGETパラメータにして記事一覧ページへ送る
+    function selectHandler(reg) {
+        window.location.href = '/search?country_code=' + reg.region;
+    }
+    
+    function drawRegionsMap() {
+        // 国名コードと国名の配列をBlogControllerから受け取る。
+        const codes = [["country", "name"]];
+        
+        const data = google.visualization.arrayToDataTable(codes);
+        const options = {
+            defaultColor:'#FF8C00',
+        };
+        const chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        google.visualization.events.addListener(chart, 'regionClick', selectHandler);
+        chart.draw(data, options);
+    }
 </script>
-@endsection
+</body>

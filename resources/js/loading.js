@@ -11,8 +11,8 @@ window.addEventListener('load', () => {
             visibility: 'hidden',
         },
         {
-            duration: 2000,
-            delay: 1200,
+            duration: 500,
+            delay: 600,
             fill: 'forwards',
             easing: 'ease',
         }
@@ -24,8 +24,8 @@ window.addEventListener('load', () => {
             translate: ['0 100%', '0 0', '0 -100%'],
         },
         {
-            duration: 2000,
-            delay: 800,
+            duration: 500,
+            delay: 400,
             fill: 'forwards',
             easing: 'ease',
         }
@@ -37,7 +37,7 @@ window.addEventListener('load', () => {
             opacity: [1, 0],
         },
         {
-            duration: 1200,
+            duration: 800,
             fill: 'forwards',
             easing: 'ease',
         }

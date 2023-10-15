@@ -11982,6 +11982,57 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+@media screen and (min-width: 768px) {
+  .responsive-flag {
+    width: 10%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .responsive-flag {
+    width: 20%;
+  }
+}
+
+.header-menu {
+  list-style: none;
+}
+@media screen and (min-width: 768px) {
+  .header-menu a {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 25px;
+    color: #543618;
+    font-weight: 600;
+    background: rgba(238, 238, 238, 0.9333333333);
+    border-radius: 50px;
+    border: 0.2rem solid #543618;
+    box-shadow: 0.2rem 0.2rem 0px 0.1rem #cccccc;
+    text-decoration: none;
+  }
+  .header-menu a:hover {
+    transform: translate3d(0.2rem, 0.2rem, 0);
+    box-shadow: none;
+    opacity: 1;
+    transition: all 0.2s;
+  }
+}
+@media screen and (max-width: 768px) {
+  .header-menu {
+    border-bottom: solid black;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    padding-left: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .header-menu a {
+    color: #333333;
+    text-decoration: none;
+  }
+}
+
 .header {
   position: sticky;
   top: 0;
@@ -12067,46 +12118,6 @@ footer p {
 .display-flex-space-between {
   display: flex;
   justify-content: space-between;
-}
-
-.header-menu {
-  list-style: none;
-}
-@media screen and (min-width: 768px) {
-  .header-menu a {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0 auto;
-    padding: 10px 25px;
-    color: #543618;
-    font-weight: 600;
-    background: rgba(238, 238, 238, 0.9333333333);
-    border-radius: 50px;
-    border: 0.2rem solid #543618;
-    box-shadow: 0.2rem 0.2rem 0px 0.1rem #cccccc;
-    text-decoration: none;
-  }
-  .header-menu a:hover {
-    transform: translate3d(0.2rem, 0.2rem, 0);
-    box-shadow: none;
-    opacity: 1;
-    transition: all 0.2s;
-  }
-}
-@media screen and (max-width: 768px) {
-  .header-menu {
-    border-bottom: solid black;
-    padding-bottom: 5%;
-    padding-top: 5%;
-    padding-left: 5%;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-  .header-menu a {
-    color: #333333;
-    text-decoration: none;
-  }
 }
 
 .blog-detail-card {

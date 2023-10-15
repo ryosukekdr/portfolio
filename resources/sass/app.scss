@@ -18,6 +18,54 @@ $breakpoints: (
     }
 }
 
+.responsive-flag{
+    
+    @include media(lg) {
+        width: 10%;
+    }
+    @include media(md) {
+        width: 20%;
+    }
+}
+
+.header-menu {
+    list-style: none;
+    
+    @include media(lg) {
+        a {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 0 auto;
+            padding: 10px 25px;
+            color: #543618;
+            font-weight: 600;
+            background: #eeee;
+            border-radius: 50px;
+            border: 0.2rem solid #543618;
+            box-shadow: 0.2rem 0.2rem 0px 0.1rem #cccccc;
+            text-decoration: none;
+            }
+            a:hover {
+            transform: translate3d(0.2rem, 0.2rem, 0);
+            box-shadow: none;
+            opacity: 1;
+            transition: all 0.2s;
+            }
+    }
+    @include media(md) {
+        border-bottom: solid black;
+        padding-bottom: 5%;
+        padding-top: 5%;
+        padding-left: 5%;
+        margin-left: 5%;
+        margin-right: 5%;
+        a {
+            color: #333333;
+            text-decoration: none;
+            }
+    }
+}
 
 .header{
     position: sticky;
@@ -127,44 +175,7 @@ footer p {
 }
 
 
-.header-menu {
-    list-style: none;
-    
-    @include media(lg) {
-        a {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 0 auto;
-            padding: 10px 25px;
-            color: #543618;
-            font-weight: 600;
-            background: #eeee;
-            border-radius: 50px;
-            border: 0.2rem solid #543618;
-            box-shadow: 0.2rem 0.2rem 0px 0.1rem #cccccc;
-            text-decoration: none;
-            }
-            a:hover {
-            transform: translate3d(0.2rem, 0.2rem, 0);
-            box-shadow: none;
-            opacity: 1;
-            transition: all 0.2s;
-            }
-    }
-    @include media(md) {
-        border-bottom: solid black;
-        padding-bottom: 5%;
-        padding-top: 5%;
-        padding-left: 5%;
-        margin-left: 5%;
-        margin-right: 5%;
-        a {
-            color: #333333;
-            text-decoration: none;
-            }
-    }
-}
+
 
 .blog-detail-card {
     margin: 2em auto;

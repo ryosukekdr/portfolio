@@ -36,6 +36,7 @@ class BlogController extends Controller
             foreach($map->countries as $country){
                 array_push($codes, [$country->code, $country->name]);
             }
+            //$codes = $map->countries->pluck('name', 'code')->toArray();
         }
         //国が選択されていないときのエラー対策
         $selected_country = new Country;

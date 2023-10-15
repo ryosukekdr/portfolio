@@ -2,12 +2,17 @@
 
 @section('content')
 <div style="background-color: white;">
-<div id="regions_div" class="mx-auto" style="width: 900px; height: 500px;"></div>
+<div id="regions_div" class="mx-auto" style="width: 90%; box-sizing: border-box;"></div>
 <div class="margin-top3 text-align-center">
     @if (Request::routeIs('blog.search'))
         <h class="head-border">{{$selected_country->name}}が <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>タグ付けされているブログを表示中</h>
-        <div class="margin-top3 text-align-right" style="margin-right: 3%;"><a href="{{ route('blog') }}">すべてのブログを表示</a></div>
-        <div id="app"><p id="salut" v-on="getSalut" style="font-size: 1.5rem;"></p></div>
+        <div class="display-flex" style="justify-content: space-between;">
+            <div style="margin-left: 3%">　　　　　　　　　　</div>
+            <img src="" id="flag" class="responsive-flag">
+            <div class="margin-top3" style="margin-right: 3%"><a href="{{ route('blog') }}">すべてのブログを表示</a></div>
+        </div>
+        <div id="english_name"></div>
+        <div id="app"><p id="salut" v-on="getSalut" style="font-size: 1.5rem; margin-top: 3%;"></p></div>
     @else
     <h class="head-border">すべてのブログを表示中</h>
     @endif
@@ -49,12 +54,41 @@
     }
 </script>
 
-<script>
+{{--<script>
+async function getSalut() {
+      //世界地図がクリックされたときの国コードをクエリから取得
+      const searchparams = new URLSearchParams(window.location.search);
+      country_code = searchparams.get('country_code');
+      //取得した国コードをHelloSalut APIに送る
+      let HelloSalutUrl = "https://hellosalut.stefanbohacek.dev/?cc=" + country_code;
+      await axios
+        // HelloSalut API呼び出し
+        .get(HelloSalutUrl)
+        .then(function (response) {
+          return response["data"];
+        })
+        .then(function (jsonData) {
+          this.salut = jsonData["hello"];
+          const country_name = @json($selected_country->name);
+        });
+    }
+    getSalut();
+    
+    let app = new Vue({
+  el:'#app',          // 関連付けるDOM要素
+  data : {            // データ
+    msg:country_name + 'のあいさつ：　' + `${this.salut}`
+  }
+});
+</script>--}}
+
+
+
+
+
+    <script>
     let app = new Vue({
   el: "#app",
-  data: {
-    salut: ""
-  },
   computed: {
     getSalut: async function () {
       //世界地図がクリックされたときの国コードをクエリから取得
@@ -71,7 +105,11 @@
         .then(function (jsonData) {
           this.salut = jsonData["hello"];
           const country_name = @json($selected_country->name);
-          document.getElementById("salut").innerHTML = country_name + 'のあいさつ：　' + `${this.salut}`;
+          if (this.salut =='') {
+            document.getElementById("salut").innerHTML = '';
+          } else {
+            document.getElementById("salut").innerHTML = country_name + 'のあいさつ：　' + `${this.salut}`;
+          }
         });
     }
   }
@@ -80,7 +118,7 @@
 
 {{--
 <script>
-    $(function () {
+  
         const searchparams = new URLSearchParams(window.location.search);
         const country_code = searchparams.get('country_code');
       $.ajax({
@@ -101,9 +139,32 @@
         //}
           
       });
-    });
+
 </script>
 --}}
+
+
+
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>-->
+<script>
+
+const settings = {
+	async: true,
+	crossDomain: true,
+	url: 'https://rest-countries10.p.rapidapi.com/country/' + @json($selected_country->english_name),
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '61a635900bmshb0c147b7bcd9251p1969c1jsn1fd32e2a6ad9',
+		'X-RapidAPI-Host': 'rest-countries10.p.rapidapi.com'
+	}
+};
+
+$.ajax(settings).done(function (response) {
+	$('#english_name').html(response[0].name.shortname);
+	$("#flag").attr("src",response[0].flag.officialflag.svg);
+});
+</script>
 
 <div class="row row-cols-sm-2">
     @foreach($blogs as $blog)
