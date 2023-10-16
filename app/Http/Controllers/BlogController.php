@@ -32,12 +32,18 @@ class BlogController extends Controller
         $maps = $blogs->get();  //geochartを塗りつぶすために$map作成
         $codes = [["dummy","dummy"]];
         
+        //dd(Country::select('name', 'code')->get()->toArray());
+        
         foreach($maps as $map){
             foreach($map->countries as $country){
                 array_push($codes, [$country->code, $country->name]);
             }
-            //$codes = $map->countries->pluck('name', 'code')->toArray();
         }
+            /*foreach($maps as $map){
+            $codes = $map->countries::select('name', 'code');
+            }
+            dd($codes);*/
+       
         //国が選択されていないときのエラー対策
         $selected_country = new Country;
         

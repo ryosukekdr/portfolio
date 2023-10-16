@@ -2,7 +2,9 @@
 
 @section('content')
 <div style="background-color: white;">
+{{--世界地図表示==\\--}}
 <div id="regions_div" class="mx-auto" style="width: 90%; box-sizing: border-box;"></div>
+
 <div class="margin-top3 text-align-center">
     @if (Request::routeIs('blog.search'))
         <h class="head-border">{{$selected_country->name}}が <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>タグ付けされているブログを表示中</h>
@@ -18,12 +20,7 @@
     @endif
 </div>
 
-<script src="https://www.gstatic.com/charts/loader.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/vue2.6.10/dist/vue.js"></script>
-<!--世界のあいさつAPI-->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  
+{{--geochartのAPIで世界地図読み込み--}}
 <script>
     google.charts.load('current', {
         'packages':[
@@ -85,8 +82,8 @@ async function getSalut() {
 
 
 
-
-    <script>
+{{--世界地図がクリックされたらAPIで世界のあいさつ読み込み--}}
+{{--<script>
     let app = new Vue({
   el: "#app",
   computed: {
@@ -114,9 +111,9 @@ async function getSalut() {
     }
   }
 });
-</script>
+</script>--}}
 
-{{--
+
 <script>
   
         const searchparams = new URLSearchParams(window.location.search);
@@ -128,27 +125,29 @@ async function getSalut() {
           dataType: 'json',
       })
       .done(function(response) {
-        //function (response) {
-        return response["data"];
-        //}
-        //function (jsonData) {
+      console.log(response);
+            return response["data"];
+    
           const salut = jsonData["hello"];
           const country_name = @json($selected_country->name);
           //console.log(country_name);
           document.getElementById("salut").innerHTML = country_name + 'のあいさつ：　' + salut;
-        //}
-          
+        
+      })
+      
+      .fail(function(response) {
+          console.log(response);
       });
+    
 
 </script>
---}}
 
 
 
 
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>-->
+
+<!--世界地図がクリックされたらAPIで国旗の読み込み-->
 <script>
-
 const settings = {
 	async: true,
 	crossDomain: true,

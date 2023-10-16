@@ -129,7 +129,6 @@ class BlogController extends Controller
 
     public function update(Request $request)
     {
-        $blog = Blog::find($request->blog_id);  //blog_idはinputタグのname
         //$this->authorize('update', $blog);  //ポリシー認可
         $this->validate($request, Blog::$rules);
         $validator = Validator::make($request->all() , ['country' => 'required']); //Validatorをトランザクションの中に入れると、エラーが出たときcreate関数が即終了してしまう
@@ -139,6 +138,7 @@ class BlogController extends Controller
         
         DB::transaction(function () use ($request) { //トランザクション追加
         
+        $blog = Blog::find($request->blog_id);  //blog_idはinputタグのname
         $form = $request->all();
         //unset($blog['_token']);  //Blogモデルでブラックリスト作ってるからunset不要
         $blog->fill($form);
@@ -193,7 +193,7 @@ class BlogController extends Controller
             }
         } catch (Exception $e) {
             abort(404);
-        }
+            }
         
         $this->authorize('delete_check', $blog); //ポリシー認可
         return view('admin.blog.delete_check', ['blog_form' => $blog]);
