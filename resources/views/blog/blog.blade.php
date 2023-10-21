@@ -38,9 +38,9 @@
     
     function drawRegionsMap() {
         // 国名コードと国名の配列をBlogControllerから受け取る。
-        const codes = @json($codes);
+        const country_codes = @json($country_codes);
         
-        const data = google.visualization.arrayToDataTable(codes);
+        const data = google.visualization.arrayToDataTable(country_codes);
         const options = {
             defaultColor:'#FF8C00',
         };
@@ -113,33 +113,29 @@ async function getSalut() {
 });
 </script>--}}
 
-
+{{--世界地図がクリックされたらAPIで世界のあいさつ読み込み--}}
 <script>
-  
-        const searchparams = new URLSearchParams(window.location.search);
-        const country_code = searchparams.get('country_code');
-      $.ajax({
-          type: 'GET',
-          //data: param,
-          url: "https://hellosalut.stefanbohacek.dev/?cc=" + country_code,
-          dataType: 'json',
-      })
-      .done(function(response) {
-      console.log(response);
-            return response["data"];
-    
-          const salut = jsonData["hello"];
-          const country_name = @json($selected_country->name);
-          //console.log(country_name);
-          document.getElementById("salut").innerHTML = country_name + 'のあいさつ：　' + salut;
-        
-      })
-      
-      .fail(function(response) {
-          console.log(response);
-      });
-    
+const searchparams = new URLSearchParams(window.location.search);
+const country_code = searchparams.get('country_code');
 
+$.ajax({
+    //type: 'GET',
+    data: {cc:country_code},
+    url: "https://hellosalut.stefanbohacek.dev",
+    //url: "https://hellosalut.stefanbohacek.dev/?cc=" + country_code,
+    //dataType: 'json',
+})
+.done(
+    function (jsonData) {
+        const salut = jsonData.hello;
+        const country_name = @json($selected_country->name);
+        if (salut =='') {
+            $('#salut').html('');
+        } else {
+            $('#salut').html(country_name + 'のあいさつ：　' + salut);
+        }
+    }
+);
 </script>
 
 

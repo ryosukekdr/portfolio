@@ -29,21 +29,30 @@ class BlogController extends Controller
      public function blog(Request $request)
     {
         $blogs = Blog::where('user_id', \Auth::user()->id)->where('status',1);    //status=1のみに絞る。0は非公開（下書き保存）。ここではgetせずに条件分岐後でgetする。
-        $maps = $blogs->get();  //geochartを塗りつぶすために$map作成
-        $codes = [["dummy","dummy"]];
+        $blogs_id = $blogs->pluck("id");
         
-        //dd(Country::select('name', 'code')->get()->toArray());
+        $visited_countries = Country::whereHas('blogs', function($q) use($blogs_id)  {
+            $q->whereIn('blogs.id', $blogs_id);
+        })->get();
         
-        foreach($maps as $map){
+        $country_codes = [["code","name"]];
+        foreach($visited_countries as $visited_country){
+            array_push($country_codes, [$visited_country->code, $visited_country->name]);
+        }
+        
+        //$codes = Country::select('code', 'name')->get()->toArray();  //世界地図が表示されなくなる
+        //array_unshift($codes, ["dummy","dummy"]);
+        //$codes = array_values($codes);
+        //dd($codes);
+        
+        //$maps = $blogs->get();  //geochartを塗りつぶすために$map作成
+        
+        /*foreach($maps as $map){
             foreach($map->countries as $country){
                 array_push($codes, [$country->code, $country->name]);
             }
-        }
-            /*foreach($maps as $map){
-            $codes = $map->countries::select('name', 'code');
-            }
-            dd($codes);*/
-       
+        }*/
+        
         //国が選択されていないときのエラー対策
         $selected_country = new Country;
         
@@ -57,27 +66,14 @@ class BlogController extends Controller
             $selected_country = Country::where('code', $country_code)->first();
         }
         
-       /* //世界地図をクリックされたら、国コードをクエリから取得
-        if(isset($_GET['country_code'])) {  //$request  has?
-            $country_code = $_GET['country_code'];
-            $country_id = Country::where('code', $country_code)->first()->id;  //get()だと->idで取得できない
-            $blogs_country = Country::find($country_id)->blogs;
-            $blogs = $blogs_country->filter(function ($e) {
-                return $e["status"] == 1 && $e["user_id"] == \Auth::user()->id;
-            });
-            $blogs = $blogs->sortBy('edited_at');
-        }*/
-        //dd($selected_country);
-        //$selected_country = $countries = Country::all()->first();
-        
         $blogs = $blogs->get()->sortBy('edited_at');
     
-        return view('blog/blog', ['blogs' => $blogs, 'codes' => $codes, 'selected_country' => $selected_country]);
+        return view('blog/blog', ['blogs' => $blogs, 'country_codes' => $country_codes, 'selected_country' => $selected_country]);
     }
 
     
      public function blog_detail(Request $request)
-    {   
+    {
         $blog = Blog::find($request->id);
       
         try {
