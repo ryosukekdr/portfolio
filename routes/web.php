@@ -79,5 +79,9 @@ Route::controller(ItemlistController::class)->prefix('admin')->name('admin.')->m
     Route::get('itemlist/delete', 'delete')->name('itemlist.delete');
 });
 
+use App\Http\Controllers\Admin\LikeController;
+    Route::post('/like', [LikeController::class, 'like']);
+
+
 //use App\Http\Controllers\NewsController as PublicNewsController;
 //Route::get('/', [PublicNewsController::class, 'index'])->name('news.index');

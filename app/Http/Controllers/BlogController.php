@@ -28,7 +28,7 @@ class BlogController extends Controller
 
      public function blog(Request $request)
     {
-        $blogs = Blog::where('user_id', \Auth::user()->id)->where('status',1);    //status=1のみに絞る。0は非公開（下書き保存）。ここではgetせずに条件分岐後でgetする。
+        $blogs = Blog::withCount('likes')->where('user_id', \Auth::user()->id)->where('status',1);    //status=1のみに絞る。0は非公開（下書き保存）。ここではgetせずに条件分岐後でgetする。
         $blogs_id = $blogs->pluck("id");
         
         $visited_countries = Country::whereHas('blogs', function($q) use($blogs_id)  {
@@ -74,7 +74,7 @@ class BlogController extends Controller
     
      public function blog_detail(Request $request)
     {
-        $blog = Blog::find($request->id);
+        $blog = Blog::withCount('likes')->find($request->id);
       
         try {
             if (empty($blog)) {

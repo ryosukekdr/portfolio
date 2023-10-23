@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Blog;
-//use App\Models\History;
 use App\Models\Image;
 use App\Models\User;
 use App\Models\Country;

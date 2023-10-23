@@ -12378,3 +12378,7 @@ footer p {
 .head-border::after {
   background: linear-gradient(90deg, #666, transparent);
 }
+
+.liked {
+  color: #0066FF;
+}

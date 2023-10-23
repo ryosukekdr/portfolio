@@ -43,4 +43,9 @@ class Blog extends Model
     {
         return $this->belongsToMany(Country::class);
     }
+    
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }
