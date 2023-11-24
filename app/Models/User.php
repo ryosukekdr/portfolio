@@ -71,4 +71,8 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+    
+    // public function alreadyliked($user): bool {
+    //     return \Auth::user()->likes->pluck("blog_id")->contains($request->blog_id);
+    // }
 }

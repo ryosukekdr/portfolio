@@ -115,11 +115,11 @@ async function getSalut() {
     const country_code = searchparams.get('country_code');
 
     $.ajax({
-        //type: 'GET',
+        type: 'GET',
         data: {cc:country_code},
         url: "https://hellosalut.stefanbohacek.dev",
         //url: "https://hellosalut.stefanbohacek.dev/?cc=" + country_code,
-        //dataType: 'json',
+        dataType: 'json',
     })
     .done(
         function (jsonData) {

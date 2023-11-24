@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     use HasFactory;
-    // 以下を追記
+    
     protected $guarded = array('id');
 
     public static $rules = array(
@@ -22,12 +22,6 @@ class Blog extends Model
     
     );
     //protected $table = 'blog'; //テーブル名を勝手に複数形blogsにされるのを回避！
-    
-    
-    /*public function histories()
-    {
-        return $this->hasMany('App\Models\History');
-    }*/
     
     public function images()
     {
@@ -48,4 +42,8 @@ class Blog extends Model
     {
         return $this->hasMany(Like::class);
     }
+    
+    /*public function isLikedBy($user): bool {
+        return $user->likes->pluck("blog_id")->contains($this->id);
+    }*/
 }

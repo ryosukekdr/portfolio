@@ -24,7 +24,7 @@
                 @endif
             </div>
         </div>
-        <!-- 以下はいいねボタン表示 -->
+        
         <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>
         @foreach ($blog->countries as $country)
             {{ $country->name }}{{'　'}}
@@ -34,6 +34,7 @@
             <i class="fas fa-redo-alt margin-left-4" style="color: gray;"> {{ date('Y年m月d日', strtotime($blog->edited_at)) }}</i>
             <i class="far fa-eye margin-left-4" style="color: gray;"> {{ $blog->view_count }}</i>
         </div>
+        <!-- 以下はいいねボタン表示 -->
         @auth
             {{--ユーザがまだいいねを押していなかったら--}}
             @if (!Auth::user()->likes->pluck("blog_id")->contains($blog->id))

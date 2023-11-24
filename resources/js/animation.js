@@ -1,7 +1,7 @@
 const showImage = (entries, obs) => {
-    //entries.forEach((entry) => {
-        //if (entry.isIntersecting) {
-            entries[0].target.animate(
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.animate(
                 {
                     opacity: [0, 1],
                     //translate: ['200px 0', 0],
@@ -15,9 +15,9 @@ const showImage = (entries, obs) => {
                 }
             );
             //animateが１度発動したら監視をやめる。obsはimageObserverの別名。
-            obs.unobserve(entries[0].target);
-        //}
-    //});
+            obs.unobserve(entry.target);
+        }
+    });
 };
 
 const options = {
