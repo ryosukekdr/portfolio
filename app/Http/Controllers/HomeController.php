@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-//use App\Models\Blog;
-//use App\Models\Country;
 
 class HomeController extends Controller
 {

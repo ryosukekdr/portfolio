@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB; //トランザクションに必要
 
 use App\Models\Blog;
 use App\Models\Image;
@@ -14,28 +14,37 @@ use Carbon\Carbon;
 
 use Validator;
 
+/**
+  *ブログ投稿のCRUD機能のコントローラ。
+  */
 class BlogController extends Controller
 {
+    /**
+     * ブログの新規作成ボタンをクリックされたら、作成画面に飛ばす。
+     * 
+     * @return view
+     */
     public function add()
     {
-        $countries = Country::all();
+        $countries = Country::all(); //国を取得して渡す。
+        
         return view('admin.blog.create', ['countries' => $countries]);
     }
     
-     
+     /**
+     * ブログを新規作成する。
+     * 作成画面の入力情報をデータベースに保存する。
+     * 
+     * @param Request $request
+     * @return redirect
+     */
     public function create(Request $request)
     {
-        //$this->authorize('create', Blog::class);
-        
+        //BlogモデルｌCountruモデルで定義した条件でバリデーション。
         $this->validate($request, Blog::$rules);
-        $validator = Validator::make($request->all() , ['country' => 'required']); //Validatorをトランザクションの中に入れると、エラーが出たときcreate関数が即終了してしまう
-        if ($validator->fails()) {
-            return back()->withErrors('訪問先が選択されていません')->withInput();
-            //return view('admin/blog', ['msg'=>$msg]);
-            //return redirect('admin/blog/create')->withErrors($validator)->withInput();
-        }
+        $this->validate($request, Country::$rules);
         
-        DB::transaction(function () use ($request) { //トランザクション追加
+        DB::transaction(function () use ($request) { //トランザクション
         
         $blog = new Blog;
         $form = $request->all();
@@ -85,6 +94,7 @@ class BlogController extends Controller
             }
         }
         });
+        
         return redirect('admin/blog');
     }
     

@@ -9,6 +9,10 @@ class Country extends Model
 {
     use HasFactory;
     
+    public static $rules = array(
+        'country' => 'required',
+    );
+    
     public function blogs()
     {
         return $this->belongsToMany(Blog::class);

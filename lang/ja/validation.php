@@ -173,6 +173,7 @@ return [
         'password' => 'パスワード',
         'departure_date' => '出発日',
         'arrival_date' => '帰着日',
+        'country' => '訪問国',
     ],
 
 ];

@@ -11,7 +11,6 @@ use Exception;
 /**
   *ブログを表示するためのコントローラ
   */
-
 class BlogController extends Controller
 {
     public function __construct()
@@ -44,20 +43,7 @@ class BlogController extends Controller
             array_push($country_codes, [$visited_country->code, $visited_country->name]);
         }
         
-        //$codes = Country::select('code', 'name')->get()->toArray();  //世界地図が表示されなくなる
-        //array_unshift($codes, ["dummy","dummy"]);
-        //$codes = array_values($codes);
-        //dd($codes);
-        
-        //$maps = $blogs->get();  //geochartを塗りつぶすために$map作成
-        
-        /*foreach($maps as $map){
-            foreach($map->countries as $country){
-                array_push($codes, [$country->code, $country->name]);
-            }
-        }*/
-        
-        //国が選択されていないときのエラー対策
+        //世界地図がクリックされていないときのエラー対策
         $selected_country = new Country;
         
         //世界地図をクリックされた場合の処理
@@ -68,25 +54,26 @@ class BlogController extends Controller
             $blogs->whereHas('countries', function ($q) use ($country_code) {
                 $q->where('code', $country_code);
             });
-            //クリックされた国を取得する。あいさつAPIと国旗APIに必要なため。
+            //クリックされた国をCountryモデルから取得する。あいさつAPIと国旗APIに必要なため。
             $selected_country = Country::where('code', $country_code)->first();
         }
-        
+        //条件分岐で生成したクエリビルダ結果をgetする
         $blogs = $blogs->get()->sortBy('edited_at');
     
         return view('blog/blog', ['blogs' => $blogs, 'country_codes' => $country_codes, 'selected_country' => $selected_country]);
     }
 
     /**
-     * ブログ一覧ページでタイトルをクリックすると、ブログ詳細を表示
+     * ブログ一覧ページでタイトルをクリックすると、ブログ詳細を表示させる
      * 
      * @param Request $request
      * @return view
      */
      public function blog_detail(Request $request)
     {
-        //クリックされたブログを取得
+        //クリックされたブログを取得。いいね付与数も同時に取得。
         $blog = Blog::withCount('likes')->find($request->id);
+        
         //存在しないクエリパラメータにアクセスされたときの例外処理
         try {
             if (empty($blog)) {
@@ -96,7 +83,7 @@ class BlogController extends Controller
             abort(404);
         }
         
-        $blog->view_count ++;  //ブログ閲覧回数カウント変数
+        $blog->view_count ++;  //ブログ閲覧回数カウント変数を更新
         $blog->save();
         
         return view('blog/blog_detail', ['blog' => $blog]);
