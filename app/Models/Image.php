@@ -9,7 +9,7 @@ class Image extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['filename'];
+    protected $fillable = ['filename']; //ホワイトリスト
     
     /*public static $rules = array(
         'image_path' => 'required',
@@ -17,10 +17,5 @@ class Image extends Model
         'image' => 'mimetypes:image/jpg,image/jpeg,image/png,image/gif,image/bmp,image/svg,image/webp',
         //'file' => 'mimes:jpg',
     );*/
-
-    /*public function blog()
-    {
-        return $this->belongsTo(Blog::class);
-    }*/
 }
     

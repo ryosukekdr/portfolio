@@ -26,8 +26,7 @@ class LikeTest extends TestCase
     {
         //$user = factory(User::class)->create();
         $response = $this->ActingAs($this->user)->post('/like',['blog_id' => '3']);
-        $response->assertOk();
-        //$response->assertStatus(200);
+        $response->assertStatus(200);
         
         //$this->assertDatabaseHas('likes', ['user_id' => , 'blog_id' => ]);
     }

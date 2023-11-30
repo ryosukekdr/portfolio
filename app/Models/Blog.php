@@ -11,17 +11,14 @@ class Blog extends Model
     
     protected $guarded = array('id');
 
+    /** @var array $rules バリデーションで検証する設定情報の配列 */
     public static $rules = array(
         'departure_date' => 'required',
         'arrival_date' => 'required',
         'title' => 'required|max:255',
         'body' => 'required',
-        //'image.*' => 'image|max:2048|mimetypes:image/jpg,image/jpeg,image/png,image/gif,image/bmp,image/svg,image/webp',  
-        'image.*' => 'image|max:2000', //|mimes:jpg,jpeg,png,gif,bmp,svg,webp',  //image.*とすることで、requestで受け取った複数の画像を１枚ずつバリデーションできる
-        //'file.*' => 'max:2048',
-    
+        'image.*' => 'image|max:2000', //image.*とすることで、requestで受け取った複数の画像を１枚ずつバリデーションできる
     );
-    //protected $table = 'blog'; //テーブル名を勝手に複数形blogsにされるのを回避！
     
     public function images()
     {
@@ -43,7 +40,14 @@ class Blog extends Model
         return $this->hasMany(Like::class);
     }
     
-    /*public function isLikedBy($user): bool {
+   /**
+    * いいねボタンを押したユーザに既に押されているか判定
+    * ユーザがいいね済みのブログのidをpluckで取得し、その中に新しくいいねされたブログのidが含まれるかどうかを判定
+    *
+    * @param \App\Models\User $user
+    * @return bool
+    */
+    public function isLikedBy($user): bool {
         return $user->likes->pluck("blog_id")->contains($this->id);
-    }*/
+    }
 }

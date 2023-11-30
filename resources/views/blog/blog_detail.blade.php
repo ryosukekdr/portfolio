@@ -37,7 +37,7 @@
         <!-- 以下はいいねボタン表示 -->
         @auth
             {{--ユーザがまだいいねを押していなかったら--}}
-            @if (!Auth::user()->likes->pluck("blog_id")->contains($blog->id))
+            @if (!$blog->isLikedBy(Auth::user()))
                 <span class="likes">
                     <i class="far fa-thumbs-up like-toggle" data-blog_id="{{ $blog->id }}" style="cursor: pointer;"></i>
                     <span class="like-counter">{{$blog->likes_count}}</span>

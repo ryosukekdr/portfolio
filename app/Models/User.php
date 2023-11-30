@@ -24,16 +24,19 @@ class User extends Authenticatable
         'password',
     ];
     
-    public static $name_rules = array(   //RegisterController.phpからコピペ
-        'name' => 'required|string|max:255',
+    /** @var array $name_rules バリデーションで検証する設定情報の配列 */
+    public static $name_rules = array(
+        'name' => 'required|string|max:255', //RegisterController.phpからコピペ
     );
     
-    public static $email_rules = array(   //RegisterController.phpからコピペ
-        'email' => 'required|string|email|max:255|unique:users',
+    /** @var array $email_rules バリデーションで検証する設定情報の配列 */
+    public static $email_rules = array(
+        'email' => 'required|string|email|max:255|unique:users', //RegisterController.phpからコピペ
     );
     
-    public static $password_rules = array(   //RegisterController.phpからコピペ
-        'password' => 'required|string|min:8|confirmed',
+    /** @var array $password_rules バリデーションで検証する設定情報の配列 */
+    public static $password_rules = array(
+        'password' => 'required|string|min:8|confirmed', //RegisterController.phpからコピペ
     );
 
 
@@ -66,13 +69,14 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
     
-    //パスワードリセットメールをカスタマイズするためにオーバーライド
+    /**
+     * パスワードリセットメールをカスタマイズするためのオーバーライド
+     * 
+     * @param $token
+     * @return void
+     */
     public function sendPasswordResetNotification($token): void
     {
         $this->notify(new ResetPasswordNotification($token));
     }
-    
-    // public function alreadyliked($user): bool {
-    //     return \Auth::user()->likes->pluck("blog_id")->contains($request->blog_id);
-    // }
 }

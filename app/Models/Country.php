@@ -9,6 +9,7 @@ class Country extends Model
 {
     use HasFactory;
     
+    /** @var array $rules バリデーションで検証する設定情報の配列 */
     public static $rules = array(
         'country' => 'required',
     );
