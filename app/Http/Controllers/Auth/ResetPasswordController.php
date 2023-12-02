@@ -34,17 +34,23 @@ class ResetPasswordController extends Controller
     //protected $redirectTo = RouteServiceProvider::HOME;
     
     
-    
-   public function reset(Request $request)  //現在のパスワードを確認させるためにresetアクションをオーバーライド
+    /**
+     * パスワードリセットの前に現在のパスワードを確認させるため、resetアクションをオーバーライド
+     * 
+     * @param Request $request
+     */
+    public function reset(Request $request)
     {
+        //入力されたパスワードcurrent_passwordが間違っていたらエラーメッセージを表示
         if (! Hash::check($request->current_password, Auth::user()->password)) {
             return back()->withErrors(['current-password' => ['パスワードに誤りがあります']]);
         }
         
         $request->session()->passwordConfirmed();
+        
         return $this->original_reset($request);
     }
 
-protected $redirectTo = 'admin/user';   //リダイレクト先を変更
+    protected $redirectTo = 'admin/user';   //リダイレクト先を変更
 
 }

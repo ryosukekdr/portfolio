@@ -50,7 +50,6 @@
                                         @else
                                             下書き
                                         @endif
-                                       
                                     </td>
                                     <td>
                                         <div>

@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <title>地球を散歩する♪</title>
+    <title>旅行好きブログ投稿サイト</title>
     <meta name="discription" content="旅行の記録、役立ち情報をご紹介">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

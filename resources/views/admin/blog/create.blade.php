@@ -2,28 +2,30 @@
 @section('title', 'ブログの新規作成')
 
 @section('content')
-    <script src="{{ mix('js/counter.js') }}" defer></script>
     {{-- humanityテーマのカレンダーCSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/humanity/jquery-ui.min.css">
     
     <!--jQueryプラグインMultiple Select読み込み-->
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <script src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
-    <script src="{{ mix('js/country_menu.js') }}" defer></script>
     <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css">
     
     {{-- jQuery UIのJavaScript--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    {{-- カレンダーを日本語にカスタマイズ --}}
+    
+    {{-- jQueryのカレンダーを日本語にカスタマイズ --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
-    <script src="{{ mix('js/datepicker.js') }}" defer></script>
+    
+    <script src="{{ mix('js/datepicker.js') }}" defer></script> {{-- jQueryのカレンダーをカスタマイズ --}}
+    <script src="{{ mix('js/country_menu.js') }}" defer></script> {{-- 訪問国のプルダウンメニューをカスタマイズ --}}
+    <script src="{{ mix('js/counter.js') }}" defer></script> {{-- ブログタイトルの文字数カウンター --}}
  
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2 style="margin-bottom: 10%">ブログ新規作成</h2>
                 <form action="{{ route('admin.blog.create') }}" method="post" enctype="multipart/form-data">
-                    @if (count($errors) > 0)
+                    @if (count($errors) > 0) {{--バリデーションに引っかかったらエラー表示--}}
                         <ul>
                             @foreach($errors->all() as $e)
                                 <font color="red"> <li style="list-style: none;">⚠{{ $e }}</li></font>
@@ -33,14 +35,13 @@
                     <div class="form-group row">
                         <label class="col-md-3">訪問先</label>
                         <div class="col-md-9">
-                            <select id="select" name="country[]" multiple="multiple" placeholder="国を選択">
+                            <select id="select" name="country[]" multiple="multiple" placeholder="国を選択"> {{--国のプルダウンメニュー生成--}}
                                 @foreach($countries as $country)
                                     <option value="{{$country->id}}">{{ $country->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-            
                     <div class="form-group row">
                         <label class="col-md-3">旅行期間</label>
                         <div class="col-md-9 display-flex-space-between">
@@ -49,7 +50,6 @@
                             <input type="text" class="datepicker" name="arrival_date" placeholder="帰着日" value="{{ old('arrival_date') }}">
                         </div>
                     </div>
-                    
                     <div class="form-group row">
                         <label class="col-md-3">タイトル</label>
                         <div class="col-md-9">
@@ -63,7 +63,6 @@
                             <textarea class="form-control" name="body" rows="20" placeholder="近況アップデートを投稿" onfocus="this.placeholder=''" onblur="this.placeholder='近況アップデートを投稿'">{{ old('body') }}</textarea>
                         </div>
                     </div>
-                    
                     <div class="form-group row">
                         <label class="col-md-3">画像（最大2MB）</label>
                         <div class="col-md-9">

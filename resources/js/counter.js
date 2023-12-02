@@ -1,4 +1,4 @@
-//↓ブログタイトルの文字数カウンター
+//ブログタイトルの文字数カウンター
 const target_text = document.querySelector('#title');
 const count = document.querySelector('#count');
 

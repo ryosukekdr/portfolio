@@ -140,60 +140,69 @@ class BlogController extends Controller
         return view('admin.blog.edit', ['blog' => $blog, 'countries' => $countries, 'selected_country_ids' => $selected_country_ids]);
     }
 
-
+    /**
+     * 作成済みブログの編集
+     * 
+     * @param Request $request
+     * @return view
+     */
     public function update(Request $request)
     {
         //Blogモデル,Countruモデルで定義した条件でバリデーション
         $this->validate($request, Blog::$rules);
         $this->validate($request, Country::$rules);
         
-        DB::transaction(function () use ($request) { //トランザクション追加
+        DB::transaction(function () use ($request) { //トランザクション
         
-        $blog = Blog::find($request->blog_id);  //blog_idはinputタグのname
-        $form = $request->all();
-        //unset($blog['_token']);  //Blogモデルでブラックリスト作ってるからunset不要
-        $blog->fill($form);
-        $blog->edited_at = Carbon::now();
-        
-        if ($request->status == "投稿") {
-            $blog->status = 1;
-        }
-        else {
-            $blog->status = 0;
-        }
-        
-        $blog->save();
-        $country_ids = $request->country;
-        $blog->countries()->sync($country_ids);
-        
-        if (isset($request->image_id)) { //画像削除の処理部分
-            $selected_images = Image::find($request->image_id); //inputタグをneme=image_id[]と配列にすれば複数受け取れる
+            $blog = Blog::find($request->blog_id);
+            $form = $request->all();
+            //unset($blog['_token']);  //Blogモデルでブラックリスト作ってるからunset不要
+            $blog->fill($form);
+            $blog->edited_at = Carbon::now(); //編集日を保存
             
-            foreach($selected_images as $selected_image) {
-                $selected_image->delete();             //配列で受け取った$imageにはdelete();が効かないからforeachで１つずつdeleteする
+            //投稿ボタンが押されたら1、下書き保存ボタンが押されたら0を格納
+            if ($request->status == "投稿") {
+                $blog->status = 1;
             }
-        }
+            else {
+                $blog->status = 0;
+            }
         
-        if ($request->file('image')!= NULL) {                         //画像追加の処理部分
-            foreach($request->file('image') as $file) {               //inputタグで受け取った複数画像を１枚ずつデータベースに保存していく
-                $image = new Image;                       //foreachの前にインスタンス化してしまうと上書きされてラスト１枚しか保存されないから毎回インスタンス化する
-                $path = $file->store('public/image');
-                $image->image_path = basename($path);
-                $image->blog_id = $blog->id;              //複数の画像に同じblog->idを紐づける
-                $image->filename = $file->getClientOriginalName();
-                $image->save();
+            $blog->save();
+            //選択された国のidを中間テーブルblog_country_tableに保存
+            $country_ids = $request->country;
+            $blog->countries()->sync($country_ids);
+            //削除画像が選択されている場合の処理
+            if (isset($request->image_id)) {
+                $selected_images = Image::find($request->image_id); //viewのinputタグをneme=image_id[]と配列にすれば複数受け取れる
+                //選択された画像を削除
+                foreach($selected_images as $selected_image) {
+                    $selected_image->delete();
+                }
             }
-        }
+            //投稿画像が追加されている場合の処理
+            if ($request->file('image')!= NULL) {
+                //複数画像を１枚ずつデータベースに保存していく
+                foreach($request->file('image') as $file) {
+                    $image = new Image;
+                    $path = $file->store('public/image');
+                    $image->image_path = basename($path);
+                    $image->blog_id = $blog->id;             //複数の画像に同じblog->idを紐づける
+                    $image->filename = $file->getClientOriginalName();
+                    $image->save();
+                }
+            }
         });
-        /*$history = new History();
-        $history->blog_id = $blog->id;
-        $history->edited_at = Carbon::now();
-        $history->save();*/
 
         return redirect('admin/blog');
     }
     
-     
+    /**
+     * ブログ削除ボタンが押されたら確認ページに飛ばす
+     * 
+     * @param Request $request
+     * @return view
+     */
     public function delete_check(Request $request)
     {
         $blog = Blog::find($request->id);
@@ -212,19 +221,15 @@ class BlogController extends Controller
         return view('admin.blog.delete_check', ['blog_form' => $blog]);
     }
      
-     
+    /**
+     * ブログ削除確認ページで「はい」が押されたら削除する
+     * 外部キー制約によりブログの全画像が削除される
+     * 
+     * @param Request $request
+     */
     public function delete(Request $request)
     {
         $blog = Blog::find($request->id);
-        // if (empty($blog)) {
-        //     abort(404);
-        // }
-        //$this->authorize('delete', $blog);  //ポリシー認可
-        
-        /*foreach($blog->images as $image) {  //blog削除前にリレーションされた画像を削除。imagesテーブルのマイグレーションファイルでonDelete('cascade');を書いてもOK
-            $image->delete();
-        }*/
-
         $blog->delete();
         
         return redirect('admin/blog');

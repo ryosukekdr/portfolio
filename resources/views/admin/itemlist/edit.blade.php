@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'ブログの編集')
+@section('title', '持ち物リストの編集')
 
 @section('content')
     <div class="container">
