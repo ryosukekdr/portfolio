@@ -222,10 +222,11 @@ class BlogController extends Controller
     }
      
     /**
-     * ブログ削除確認ページで「はい」が押されたら削除する
+     * ブログ削除確認ページで「削除」が押されたら削除する
      * 外部キー制約によりブログの全画像が削除される
      * 
      * @param Request $request
+     * @return redirect
      */
     public function delete(Request $request)
     {

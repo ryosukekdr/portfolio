@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Blog;
 
 class LikeTest extends TestCase
 {
@@ -20,11 +21,11 @@ class LikeTest extends TestCase
     {
         parent::setUp();
         $this->user = User::factory()->create();
+        $this->blog = Blog::factory()->create(['id' => '3',]);
     }
     
     public function testLike()
     {
-        //$user = factory(User::class)->create();
         $response = $this->ActingAs($this->user)->post('/like',['blog_id' => '3']);
         $response->assertStatus(200);
         

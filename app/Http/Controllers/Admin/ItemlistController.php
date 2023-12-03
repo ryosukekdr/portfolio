@@ -7,21 +7,37 @@ use Illuminate\Http\Request;
 
 use App\Models\Itemlist;
 
+use Exception;
+
+/**
+  *持ち物リストのCRUD機能のコントローラ
+  */
 class ItemlistController extends Controller
 {
-    
+    /**
+     * 持ち物リストの新規作成ボタンをクリックされたら、作成画面に飛ばす。
+     * 
+     * @return view
+     */
     public function add()
     {
         return view('admin.itemlist.create');
     }
 
+    /**
+     * 持ち物リストを新規作成する
+     * 作成画面の入力情報をデータベースに保存する
+     * 
+     * @param Request $request
+     * @return redirect
+     */
     public function create(Request $request)
     {
         $this->validate($request, Itemlist::$rules);
         $itemlist = new Itemlist;
         $form = $request->all();
         
-        unset($form['_token']);
+        //unset($form['_token']);  Itemlistモデルでブラックリスト作ってるからunset不要
 
         $itemlist->fill($form);
         $itemlist->save();
@@ -29,28 +45,43 @@ class ItemlistController extends Controller
         return redirect('admin/itemlist/index');
     }
     
+    /**
+     * 作成済み持ち物リストの編集
+     * 
+     * @param Request $request
+     * @return redirect
+     */
     public function update(Request $request)
     {
         $this->validate($request, Itemlist::$rules);
         $itemlist = Itemlist::find($request->id);
-        $itemlist_form = $request->all();
+        $form = $request->all();
         
-        //unset($itemlist_form['remove']);
-        unset($itemlist_form['_token']);
+        //unset($itemlist_form['remove']);  Itemlistモデルでブラックリスト作ってるからunset不要
+        //unset($itemlist_form['_token']);  Itemlistモデルでブラックリスト作ってるからunset不要
         
-        $itemlist->fill($itemlist_form)->save();
+        $itemlist->fill($form)->save();
         
         return redirect('admin/itemlist/index');
     }
     
+    /**
+     * adminページの持ち物リスト一覧表示
+     * 
+     * @return view
+     */
     public function index()
     {
         $posts = Itemlist::all()->sortByDesc('updated_at');
         
-        //return view('admin/itemlist/index');
         return view('admin.itemlist.index', ['posts' => $posts]);
     }
     
+    /**
+     * 一般閲覧ページの持ち物リスト一覧表示
+     * 
+     * @return view
+     */
     public function itemlist()
     {
         $posts = Itemlist::all()->sortByDesc('updated_at');
@@ -58,22 +89,58 @@ class ItemlistController extends Controller
         return view('itemlist.index', ['posts' => $posts]);
     }
 
+    /**
+     * 持ち物リストの編集ボタンが押されたら編集ページに飛ばす
+     * 
+     * @param Request $request
+     * @return view
+     */
     public function edit(Request $request)
     {
         $itemlist = Itemlist::find($request->id);
-        if (empty($itemlist)) {
+        //存在しないクエリパラメータにアクセスされたときの例外処理
+        try {
+            if (empty($itemlist)) {
+                throw new Exception();
+            }
+        } catch (Exception $e) {
             abort(404);
         }
+        
+        //$this->authorize('edit', $itemlist);  //ポリシー認可
+        
         return view('admin.itemlist.edit', ['itemlist_form' => $itemlist]);
     }
     
+    /**
+     * 持ち物リストの削除ボタンが押されたら確認ページに飛ばす
+     * 
+     * @param Request $request
+     * @return view
+     */
       public function delete_check(Request $request)
     {
         $itemlist = Itemlist::find($request->id);
+        //存在しないクエリパラメータにアクセスされたときの例外処理
+        try {
+            if (empty($itemlist)) {
+                throw new Exception();
+            }
+        } catch (Exception $e) {
+            abort(404);
+        }
+        
+        //$this->authorize('edit', $itemlist);  //ポリシー認可
 
         return view('admin.itemlist.delete_check', ['itemlist_form' => $itemlist]);
     }
 
+    /**
+     * 持ち物リストの削除確認ページで「削除」が押されたら削除する
+     * 
+     * @param Request $request
+     * @return redirect
+     */
      public function delete(Request $request)
     {
         $itemlist = Itemlist::find($request->id);
