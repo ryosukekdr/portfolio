@@ -27,7 +27,7 @@
 
 <div id="top"></div>
     <!--<div id="app">-->
-    <nav class="navbar navbar-expand-md navbar-light header">
+    <nav class="navbar navbar-expand-md navbar-light header" style ="box-shadow: 0 10px 10px -10px;">
         <!--<div class="container-fluid">-->
             <div></div> <!--ここにdivがないとハンバーガーメニューが左端に来てしまう-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">

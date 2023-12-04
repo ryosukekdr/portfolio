@@ -9,7 +9,13 @@
 </div>
 <div class="row" style="width: 100%;">
     <article class="col-md-9">
-        <img class="wall" src="{{ secure_asset('ogasawara2.jpg') }}" alt="背景画像">
+        
+        @if (!(\Auth::user()->wall->isEmpty()))
+            <img src="{{ secure_asset('storage/image/' . \Auth::user()->wall->image_path) }}" class="card-img-top" alt="写真">
+        @else
+            <div class="wall-box"><a href="{{ url('admin/blog') }}"><div style="text-align: center;">背景画像を設定できます</div></a></div>
+        @endif
+                        
         <div class="margin-side3">
         <i class="fas fa-plane-departure"> 行った国</i>
         <p>オーストラリア、アメリカ（ハワイ、グアム、サイパン、ニューヨーク、シカゴ）、フィリピン（セブ島）、タイ（プーケット、バンコク、チェンマイ）
