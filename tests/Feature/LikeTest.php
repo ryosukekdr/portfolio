@@ -22,7 +22,7 @@ class LikeTest extends TestCase
     {
         parent::setUp();
         $this->viewer = User::factory()->create(['id' => 22]); //いいねするユーザ準備
-        $this->poster = User::factory()->create(['id' => 11]); //いいねされるユーザ準備。blogsテーブルにuser_idを外部キー制約しているため準備必須
+        $this->poster = User::factory()->create(['id' => 11//定数]); //いいねされるユーザ準備。blogsテーブルにuser_idを外部キー制約しているため準備必須
         $this->blog = Blog::factory()->create(['id' => 99]); //いいねされるブログ準備。投稿者はposter
     }
     

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -19,13 +21,23 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function home()
+    
+    public function userlist()
     {
-        return view('home');
+        $users = User::all();
+        
+        return view('home', ['users' => $users]);
     }
     
-    public function test()
+    public function userpage(Request $request)
     {
-        return view('test');
+        $user = User::find($request->user_id);
+        
+        return view('mypage', ['user' => $user]);
+    }
+    
+    public function mypage()
+    {
+        return view('mypage');
     }
 }

@@ -31,6 +31,9 @@ Route::controller(UserController::class)->prefix('admin')->name('admin.')->middl
     Route::get('user/password_change', 'password_edit')->name('user.password_edit');
     Route::get('user/delete_check', 'delete_check')->name('user.delete_check');
     Route::get('user/delete', 'delete')->name('user.delete');
+    Route::get('user/cover_photo/create', 'cover_photo_add')->name('user.cover_photo.add');
+    Route::post('user/cover_photo/create', 'cover_photo_create')->name('user.cover_photo.create');
+    Route::get('user/cover_photo/delete', 'cover_photo_delete')->name('user.cover_photo.delete');
     
     //Route::get('user/password_confirm', 'password_confirm')->name('user.password_confirm');
 });
@@ -50,8 +53,10 @@ Route::controller(BlogController::class)->prefix('admin')->name('admin.')->middl
 
 
 use App\Http\Controllers\HomeController as PublicHomeController;
-Route::get('/', [PublicHomeController::class, 'home']);
-Route::get('/test', [PublicHomeController::class, 'test']);
+//Route::get('/', [PublicHomeController::class, 'home']);
+Route::get('/', [PublicHomeController::class, 'userlist']);
+Route::get('/userpage', [PublicHomeController::class, 'userpage'])->name('userpage');
+Route::get('/mypage', [PublicHomeController::class, 'mypage'])->name('mypage');
 
 use App\Http\Controllers\BlogController as PublicBlogController;
 Route::controller(PublicBlogController::class)->group(function () {

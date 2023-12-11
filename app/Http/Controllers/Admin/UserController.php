@@ -118,4 +118,42 @@ class UserController extends Controller
         return redirect('/');
     }
     
+    public function cover_photo_add()
+    {
+        return view('admin.user.cover_phpto_create');
+    }
+    
+    /**
+     * xxx
+     * xxx
+     * 
+     * @param Request $request
+     * @return redirect
+     */
+    public function cover_photo_create(Request $request)
+    {
+        //Userモデルで定義した条件でバリデーション
+        $this->validate($request, User::$cover_photo_rules);
+        
+        $path = $request->file('cover_photo')->store('public/image');
+        $user = Auth::user();
+        $user->cover_photo = basename($path);
+        $user->save();
+                    
+        return redirect('/mypage');
+    }
+    
+    public function cover_photo_delete()
+    {
+        $user = Auth::user();
+        $user->cover_photo = "";
+        $user->save();
+        
+        return redirect('/mypage');
+    }
+    
+    public function mypage()
+    {
+        return view('home');
+    }
 }

@@ -9,13 +9,26 @@
 </div>
 <div class="row" style="width: 100%;">
     <article class="col-md-9">
-        
-        @if (!(\Auth::user()->wall->isEmpty()))
-            <img src="{{ secure_asset('storage/image/' . \Auth::user()->wall->image_path) }}" class="card-img-top" alt="写真">
+    @if (Request::routeIs('userpage'))
+        @if ($user->cover_photo != NULL)
+            <img src="{{ secure_asset('storage/image/' . $user->cover_photo) }}" class="wall" alt="カバー写真">
         @else
-            <div class="wall-box"><a href="{{ url('admin/blog') }}"><div style="text-align: center;">背景画像を設定できます</div></a></div>
+            <img src="{{ secure_asset('cover_photo.png') }}" style="width: 70%;" alt="カバー写真">
         @endif
-                        
+    @else
+        @if (\Auth::user()->cover_photo != NULL)
+        <a href="{{ route('admin.user.cover_photo.add') }}">
+            <div class="wall">
+                <img src="{{ secure_asset('storage/image/' . \Auth::user()->cover_photo) }}" style="width: 100%;" alt="カバー写真">
+                <div class="mask">
+                    <div class="caption">カバー写真の編集</div>
+                </div>
+            </div>
+        </a>
+        @else
+            <div class="wall-box"><a href="{{ route('admin.user.cover_photo.add') }}"><div style="text-align: center;">背景画像を設定できます</div></a></div>
+        @endif
+    @endif
         <div class="margin-side3">
         <i class="fas fa-plane-departure"> 行った国</i>
         <p>オーストラリア、アメリカ（ハワイ、グアム、サイパン、ニューヨーク、シカゴ）、フィリピン（セブ島）、タイ（プーケット、バンコク、チェンマイ）

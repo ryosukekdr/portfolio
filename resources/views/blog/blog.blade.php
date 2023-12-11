@@ -14,7 +14,7 @@
                 <div class="display-flex" style="justify-content: space-between;">
                     <div style="margin-left: 3%">　　　　　　　　　　</div>
                     <img src="" id="flag" class="responsive-flag">
-                    <div class="margin-top3" style="margin-right: 3%"><a href="{{ route('blog') }}">すべてのブログを表示</a></div>
+                    <div class="margin-top3" style="margin-right: 3%"><a href="{{ route('blog', ['user_id' => $user_id]) }}">すべてのブログを表示</a></div>
                 </div>
                 <div id="english_name"></div>
                 <div id="app"><p id="salut" v-on="getSalut" style="font-size: 1.5rem; margin-top: 3%;"></p></div>

@@ -38,6 +38,11 @@ class User extends Authenticatable
     public static $password_rules = array(
         'password' => 'required|string|min:8|confirmed', //RegisterController.phpからコピペ
     );
+    
+    /** @var array $rules バリデーションで検証する設定情報の配列 */
+    public static $cover_photo_rules = array(
+        'cover_photo' => 'required|image|max:2000',
+    );
 
 
     /**

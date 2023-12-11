@@ -28,7 +28,7 @@ class BlogController extends Controller
     public function blog(Request $request)
     {
         //status=1（公開状態）のみに絞り、いいね数を取得。ここではgetせずに条件分岐後でgetする。
-        $blogs = Blog::withCount('likes')->where('user_id', \Auth::user()->id)->where('status',1);
+        $blogs = Blog::withCount('likes')->where('user_id', $request->user_id)->where('status',1);
         $blogs_id = $blogs->pluck("id");
         
         //中間テーブルによって上記$blogs_idと紐づけられている国を全て取得する
@@ -60,7 +60,7 @@ class BlogController extends Controller
         //条件分岐で生成したクエリビルダ結果をgetする
         $blogs = $blogs->get()->sortBy('edited_at');
     
-        return view('blog/blog', ['blogs' => $blogs, 'country_codes' => $country_codes, 'selected_country' => $selected_country]);
+        return view('blog/blog', ['blogs' => $blogs, 'country_codes' => $country_codes, 'selected_country' => $selected_country, 'user_id' => $request->user_id]);
     }
 
     /**

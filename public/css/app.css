@@ -11995,48 +11995,54 @@ textarea.form-control-lg {
 
 .header-menu {
   list-style: none;
+  margin-left: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  /*@include media(lg) {
+      a {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          margin: 0 auto;
+          padding: 10px 25px;
+          color: #543618;
+          font-weight: 600;
+          background: #eeee;
+          border-radius: 50px;
+          border: 0.2rem solid #543618;
+          box-shadow: 0.2rem 0.2rem 0px 0.1rem #cccccc;
+          text-decoration: none;
+      }
+      a:hover {
+          transform: translate3d(0.2rem, 0.2rem, 0);
+          box-shadow: none;
+          opacity: 1;
+          transition: all 0.2s;
+      }
+  }
+  @include media(md) {
+      border-bottom: solid black;
+      padding-bottom: 5%;
+      padding-top: 5%;
+      padding-left: 5%;
+      margin-left: 5%;
+      margin-right: 5%;
+      a {
+          color: #333333;
+          text-decoration: none;
+      }
+  }*/
 }
-@media screen and (min-width: 768px) {
-  .header-menu a {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0 auto;
-    padding: 10px 25px;
-    color: #543618;
-    font-weight: 600;
-    background: rgba(238, 238, 238, 0.9333333333);
-    border-radius: 50px;
-    border: 0.2rem solid #543618;
-    box-shadow: 0.2rem 0.2rem 0px 0.1rem #cccccc;
-    text-decoration: none;
-  }
-  .header-menu a:hover {
-    transform: translate3d(0.2rem, 0.2rem, 0);
-    box-shadow: none;
-    opacity: 1;
-    transition: all 0.2s;
-  }
-}
-@media screen and (max-width: 768px) {
-  .header-menu {
-    border-bottom: solid black;
-    padding-bottom: 5%;
-    padding-top: 5%;
-    padding-left: 5%;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-  .header-menu a {
-    color: #333333;
-    text-decoration: none;
-  }
+.header-menu a {
+  color: white;
+  text-decoration: none;
 }
 
 .header {
   position: sticky;
   top: 0;
   width: 100%;
+  height: 100%;
   z-index: 999;
   background-color: black;
 }
@@ -12060,11 +12066,6 @@ article {
   article {
     width: 100%;
   }
-}
-
-.wall {
-  width: 100%;
-  margin-bottom: 10%;
 }
 
 @media screen and (max-width: 768px) {
@@ -12177,7 +12178,7 @@ footer p {
   border: 2px solid black;
 }
 
-.kaigyo {
+.detail-body {
   white-space: pre-line;
   text-align: left;
   margin-bottom: 10%;
@@ -12346,10 +12347,6 @@ footer p {
   background-color: transparent;
 }
 
-.bbb {
-  font-family: "Young Serif", serif;
-}
-
 .head-border {
   display: flex;
   align-items: center;
@@ -12389,4 +12386,54 @@ footer p {
   padding: 20%;
   width: 100%;
   margin-bottom: 10%;
+}
+
+.user-list {
+  border: double 4px #21b384;
+  padding: 0.5em 1em 0.5em 2.3em;
+  position: relative;
+}
+
+.user-list li {
+  line-height: 1.5;
+  padding: 0.5em 0;
+  list-style-type: none !important; /*ポチ消す*/
+}
+
+.user-list li:before {
+  position: absolute;
+  left: 1em; /*左端からのアイコンまで*/
+  color: #21b384; /*アイコン色*/
+}
+
+.wall {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin-bottom: 10%;
+}
+
+.wall .caption {
+  font-size: 200%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: #fff;
+}
+
+.wall .mask {
+  padding-bottom: 10%;
+  width: 100%;
+  height: 100%;
+  position: absolute; /* 絶対位置指定 */
+  top: 0;
+  left: 0;
+  opacity: 0; /* マスクを表示しない */
+  background-color: rgba(0, 0, 0, 0.4); /* マスクは半透明 */
+  transition: all 0.2s ease;
+}
+
+.wall:hover .mask {
+  opacity: 1; /* マスクを表示する */
 }

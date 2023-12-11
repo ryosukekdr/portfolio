@@ -11,7 +11,7 @@
             <h1 class="detail-title">{{ $blog->title }}</h1>
             <i class="fas fa-plane" style="color: gray;"></i> {{ date('Y/m/d', strtotime($blog->departure_date)) }}　～　{{ date('Y/m/d', strtotime($blog->arrival_date)) }}<br>
             <div class="row text-align-right">
-                <div class="kaigyo col-md-6">
+                <div class="detail-body col-md-6">
                     {{ $blog->body }} 
                 </div>
                 <div class="detail-image col-md-6">

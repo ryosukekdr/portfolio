@@ -44,58 +44,35 @@
                     
                     <!-- Left Side Of Navbar -->
                 <div class="navbar-collapse collapse hamburger-inside" id="navbarTogglerDemo2" style="">
-                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item header-menu">
+                    <ul class="navbar-nav me-auto" style="width: 50%">
+                        <li class="header-menu">
                             <a href="{{ url('/') }}">ホーム</a>
                         </li>
-                        <li class="nav-item header-menu">
+                        <li class="header-menu">
                             <a href="{{ route('blog') }}">ブログ閲覧</a>
                         </li>
-                        <li class="nav-item header-menu">
+                        <li class="header-menu">
                             <a href="{{ route('itemlist_index') }}">持ち物リスト</a>
                         </li>
-                        
-                    <!-- Right Side Of Navbar -->
-
-                        <!-- Authentication Links -->
-                        <!--@guest
-                            @if (Route::has('login'))
-                                <li class="nav-item margin-0-auto">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item margin-0-auto">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown margin-0-auto">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest-->
                     </ul>
-                    
-                <!--</div>-->
-            <!--</div>-->
-                      <!-- <a href="https://www.facebook.com/kodera.ryosuke" class="text-align-right"><img alt="Facebook" src="{{ secure_asset('facebook.png') }}"  class="facebook-icon"></a>-->
+
+       @if (Request::routeIs('mypage'))
        <a href="{{ route('admin.blog.index') }}">ブログ編集</a>
        <a href="{{ route('admin.user.show') }}">アカウント設定</a>
-      
+       <li class="nav-item dropdown">
+                                    <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('messages.logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+       @endif
                     
                 </div>
         <!--</div>-->

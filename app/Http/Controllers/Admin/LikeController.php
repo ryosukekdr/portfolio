@@ -29,8 +29,8 @@ class LikeController extends Controller
         } else { //ユーザーがこの投稿に既にいいねしていたら、データベースからいいねを削除
             $blog->likes->where('user_id', \Auth::user()->id)->first()->delete();
         }
-        //Blogモデルのリレーション名likesにLaravelのwithCountメソッドをすることで、このブログの最新の総いいね数を取得
-        $blog_likes_count = Blog::withCount('likes')->find($request->blog_id)->likes_count;
+        //likesテーブル更新後の$blogのいいね総数を取得
+        $blog_likes_count = $blog->refresh()->likes->count();
         $param = ['blog_likes_count' => $blog_likes_count];
         
         return response()->json($param); //JSONデータをjQueryに返す
