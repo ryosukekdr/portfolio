@@ -34,6 +34,15 @@ Route::controller(UserController::class)->prefix('admin')->name('admin.')->middl
     Route::get('user/cover_photo/create', 'cover_photo_add')->name('user.cover_photo.add');
     Route::post('user/cover_photo/create', 'cover_photo_create')->name('user.cover_photo.create');
     Route::get('user/cover_photo/delete', 'cover_photo_delete')->name('user.cover_photo.delete');
+    Route::get('user/free_comment/create', 'free_comment_add')->name('user.free_comment.add');
+    Route::post('user/free_comment/create', 'free_comment_create')->name('user.free_comment.create');
+    Route::get('user/free_comment/delete', 'free_comment_delete')->name('user.free_comment.delete');
+    Route::get('user/profile_comment/create', 'profile_comment_add')->name('user.profile_comment.add');
+    Route::post('user/profile_comment/create', 'profile_comment_create')->name('user.profile_comment.create');
+    Route::get('user/profile_comment/delete', 'profile_comment_delete')->name('user.profile_comment.delete');
+    Route::get('user/profile_icon/create', 'profile_icon_add')->name('user.profile_icon.add');
+    Route::post('user/profile_icon/create', 'profile_icon_create')->name('user.profile_icon.create');
+    Route::get('user/profile_icon/delete', 'profile_icon_delete')->name('user.profile_icon.delete');
     
     //Route::get('user/password_confirm', 'password_confirm')->name('user.password_confirm');
 });

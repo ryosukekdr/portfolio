@@ -27,12 +27,12 @@
 
 <div id="top"></div>
     <!--<div id="app">-->
-    <nav class="navbar navbar-expand-md navbar-light header" style ="box-shadow: 0 10px 10px -10px;">
+<nav class="navbar navbar-expand-md navbar-light header" style ="box-shadow: 0 10px 10px -10px;">
         <!--<div class="container-fluid">-->
-            <div></div> <!--ここにdivがないとハンバーガーメニューが左端に来てしまう-->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <div></div> <!--ここにdivがないとハンバーガーメニューが左端に来てしまう-->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
         
             <!--<div class="container">-->
                 <!--
@@ -43,46 +43,67 @@
                 <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">-->
                     
                     <!-- Left Side Of Navbar -->
-                <div class="navbar-collapse collapse hamburger-inside" id="navbarTogglerDemo2" style="">
-                    <ul class="navbar-nav me-auto" style="width: 50%">
-                        <li class="header-menu">
-                            <a href="{{ url('/') }}">ホーム</a>
-                        </li>
-                        <li class="header-menu">
-                            <a href="{{ route('blog') }}">ブログ閲覧</a>
-                        </li>
-                        <li class="header-menu">
-                            <a href="{{ route('itemlist_index') }}">持ち物リスト</a>
-                        </li>
-                    </ul>
+    <div class="navbar-collapse collapse hamburger-inside" id="navbarTogglerDemo2" style="">
+        <ul class="navbar-nav me-auto" style="width: 50%">
+            <li class="header-menu-left">
+                <a href="{{ url('/') }}">ユーザー一覧</a>
+            </li>
+            <li class="header-menu-left">
+                <a href="{{ url('/userpage') }}">ホーム</a>
+            </li>
+            <li class="header-menu-left">
+                <a href="{{ route('blog') }}">ブログ閲覧</a>
+            </li>
+            <li class="header-menu-left">
+                <a href="{{ route('itemlist_index') }}">私の持ち物リスト</a>
+            </li>
+        </ul>
+        <div style="margin-right: 0;">
+        <ul class="navbar-nav">
+            @if (Request::routeIs('mypage'))
+                <li class="header-menu-right">
+                    <a href="{{ route('admin.blog.index') }}">ブログ編集</a>
+                </li>
+                <li class="header-menu-right">
+                    <a href="{{ route('admin.user.show') }}">アカウント設定</a>
+                </li>
+            @endif
+            <li class="header-menu-right">
+                <a href="{{ route('mypage') }}">マイページ</a>
+            </li>
+            @guest
+                            
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: white;">
+                                    {{ Auth::user()->name }}
+                                </a>
 
-       @if (Request::routeIs('mypage'))
-       <a href="{{ route('admin.blog.index') }}">ブログ編集</a>
-       <a href="{{ route('admin.user.show') }}">アカウント設定</a>
-       <li class="nav-item dropdown">
-                                    <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            {{ __('messages.logout') }}
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-       @endif
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+        </ul></div>
+    </div>
+       
+       
+       
                     
-                </div>
-        <!--</div>-->
-    </nav>
-        @yield('content')
-    <a href="#top"><img alt="ページトップへのリンク" src="{{ secure_asset('toppage.png') }}"  class="toppage-icon"></a>
-    <footer>
-        <!--<div class="wrapper">-->
-        <p><small>&copy;2023 Ryosuke</small></p>
-        <!--</div>-->
-    </footer>
-    <!--</div>-->
+</nav>
+    @yield('content')
+<a href="#top"><img alt="ページトップへのリンク" src="{{ secure_asset('toppage.png') }}"  class="toppage-icon"></a>
+
+<footer>
+    <p><small>&copy;2023 Ryosuke</small></p>
+</footer>
+
 </html>

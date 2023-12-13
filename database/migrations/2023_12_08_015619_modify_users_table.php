@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             
-            $table->string('cover_photo')->after('remember_token'); //画像のパス
-            $table->string('profile_icon')->after('cover_photo'); //画像のパス
-            $table->string('profile_comment')->after('profile_icon');
-            $table->string('free_comment')->after('profile_comment');
+            $table->string('cover_photo')->nullable()->after('remember_token'); //画像のパス
+            $table->string('profile_icon')->nullable()->after('cover_photo'); //画像のパス
+            $table->string('profile_comment')->nullable()->after('profile_icon');
+            $table->string('free_comment')->nullable()->after('profile_comment');
         });
     }
 

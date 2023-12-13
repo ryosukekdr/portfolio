@@ -152,8 +152,103 @@ class UserController extends Controller
         return redirect('/mypage');
     }
     
-    public function mypage()
+   public function profile_icon_add()
     {
-        return view('home');
+        return view('admin.user.profile_icon_create');
+    }
+    
+    /**
+     * xxx
+     * xxx
+     * 
+     * @param Request $request
+     * @return redirect
+     */
+    public function profile_icon_create(Request $request)
+    {
+        //Userモデルで定義した条件でバリデーション
+        $this->validate($request, User::$profile_icon_rules);
+        
+        $path = $request->file('profile_icon')->store('public/image');
+        $user = Auth::user();
+        $user->profile_icon = basename($path);
+        $user->save();
+                    
+        return redirect('/mypage');
+    }
+    
+    public function profile_icon_delete()
+    {
+        $user = Auth::user();
+        $user->profile_icon = "";
+        $user->save();
+        
+        return redirect('/mypage');
+    }
+   
+   public function profile_comment_add()
+    {
+        return view('admin.user.profile_comment_create');
+    }
+    
+    /**
+     * xxx
+     * xxx
+     * 
+     * @param Request $request
+     * @return redirect
+     */
+    public function profile_comment_create(Request $request)
+    {
+        //Userモデルで定義した条件でバリデーション
+        $this->validate($request, User::$profile_comment_rules);
+        
+        $user = Auth::user();
+        $user->profile_comment = $request->profile_comment;
+        $user->save();
+                    
+        return redirect('/mypage');
+    }
+    
+    public function profile_comment_delete()
+    {
+        $user = Auth::user();
+        $user->profile_comment = "";
+        $user->save();
+        
+        return redirect('/mypage');
+    }
+   
+   public function free_comment_add()
+    {
+        return view('admin.user.free_comment_create');
+    }
+    
+    /**
+     * xxx
+     * xxx
+     * 
+     * @param Request $request
+     * @return redirect
+     */
+    public function free_comment_create(Request $request)
+    {
+        //Userモデルで定義した条件でバリデーション
+        $this->validate($request, User::$free_comment_rules);
+        
+        $user = Auth::user();
+        $user->free_comment = $request->free_comment;
+        $user->save();
+                    
+        return redirect('/mypage');
+    }
+    
+    public function free_comment_delete()
+    {
+        $user = Auth::user();
+        $user->free_comment = "";
+        $user->save();
+        
+        return redirect('/mypage');
     }
 }

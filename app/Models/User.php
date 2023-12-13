@@ -39,11 +39,25 @@ class User extends Authenticatable
         'password' => 'required|string|min:8|confirmed', //RegisterController.phpからコピペ
     );
     
-    /** @var array $rules バリデーションで検証する設定情報の配列 */
+    /** @var array $cover_photo_rules バリデーションで検証する設定情報の配列 */
     public static $cover_photo_rules = array(
         'cover_photo' => 'required|image|max:2000',
     );
+    
+    /** @var array $profile_icon_rules バリデーションで検証する設定情報の配列 */
+    public static $profile_icon_rules = array(
+        'profile_icon' => 'required|image|max:2000',
+    );
 
+    /** @var array $free_comment_rules バリデーションで検証する設定情報の配列 */
+    public static $free_comment_rules = array(
+        'free_comment' => 'required|max:255',
+    );
+    
+    /** @var array $profile_comment_rules バリデーションで検証する設定情報の配列 */
+    public static $profile_comment_rules = array(
+        'profile_comment' => 'required|max:255',
+    );
 
     /**
      * The attributes that should be hidden for serialization.

@@ -1,5 +1,5 @@
 //ブログタイトルの文字数カウンター
-const target_text = document.querySelector('#title');
+const target_text = document.querySelector('#count_target');
 const count = document.querySelector('#count');
 
 target_text.addEventListener('keyup', () => {
