@@ -146,7 +146,7 @@ class UserController extends Controller
     public function cover_photo_delete()
     {
         $user = Auth::user();
-        $user->cover_photo = "";
+        $user->cover_photo = null;
         $user->save();
         
         return redirect('/mypage');
@@ -180,7 +180,7 @@ class UserController extends Controller
     public function profile_icon_delete()
     {
         $user = Auth::user();
-        $user->profile_icon = "";
+        $user->profile_icon = null;
         $user->save();
         
         return redirect('/mypage');
@@ -213,7 +213,7 @@ class UserController extends Controller
     public function profile_comment_delete()
     {
         $user = Auth::user();
-        $user->profile_comment = "";
+        $user->profile_comment = null;
         $user->save();
         
         return redirect('/mypage');
@@ -246,7 +246,7 @@ class UserController extends Controller
     public function free_comment_delete()
     {
         $user = Auth::user();
-        $user->free_comment = "";
+        $user->free_comment = null;
         $user->save();
         
         return redirect('/mypage');

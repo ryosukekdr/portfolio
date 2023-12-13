@@ -42,7 +42,7 @@
                     <div class="margin-side3">{{\Auth::user()->free_comment}}</div>
                 </a>
             @else
-                <div class="wall-box"><a href="{{ route('admin.user.free_comment.add') }}"><div style="text-align: center;">コメントを記載できます</div></a></div>
+                <div class="comment-box" style="margin-left: 5%;"><a href="{{ route('admin.user.free_comment.add') }}"><div style="text-align: center;">コメントを記載できます</div></a></div>
             @endif
         @endif
     </article>
@@ -92,7 +92,7 @@
                     <div class="margin-side3">{{\Auth::user()->profile_comment}}</div>
                 </a>
             @else
-                <div class="wall-box"><a href="{{ route('admin.user.profile_comment.add') }}"><div style="text-align: center;">プロフィールを記載できます</div></a></div>
+                <div class="comment-box"><a href="{{ route('admin.user.profile_comment.add') }}"><div style="text-align: center;">プロフィールを記載できます</div></a></div>
             @endif
         @endif
         </div>

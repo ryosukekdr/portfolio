@@ -9,7 +9,7 @@ class Image extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['filename']; //ホワイトリスト
+    protected $guarded = array('id'); //ブラックトリスト
     
     /*public static $rules = array(
         'image_path' => 'required',

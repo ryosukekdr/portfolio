@@ -12448,3 +12448,30 @@ footer p {
 .wall:hover .mask {
   opacity: 1; /* マスクを表示する */
 }
+
+.comment-box {
+  position: relative;
+  padding: 0.25em 1em;
+}
+
+.comment-box:before, .comment-box:after {
+  content: "";
+  width: 20px;
+  height: 30px;
+  position: absolute;
+  display: inline-block;
+}
+
+.comment-box:before {
+  border-left: solid 2px #5767bf;
+  border-top: solid 2px #5767bf;
+  top: 0;
+  left: 0;
+}
+
+.comment-box:after {
+  border-right: solid 2px #5767bf;
+  border-bottom: solid 2px #5767bf;
+  bottom: 0;
+  right: 0;
+}

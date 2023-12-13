@@ -77,7 +77,6 @@ class BlogController extends Controller
                     $path = $file->store('public/image');
                     $image->image_path = basename($path);
                     $image->blog_id = $blog->id;              //複数の画像に同じblog->idを紐づける
-                    $image->filename = $file->getClientOriginalName();
                     $image->save();
                 }
             }
@@ -188,7 +187,6 @@ class BlogController extends Controller
                     $path = $file->store('public/image');
                     $image->image_path = basename($path);
                     $image->blog_id = $blog->id;             //複数の画像に同じblog->idを紐づける
-                    $image->filename = $file->getClientOriginalName();
                     $image->save();
                 }
             }
