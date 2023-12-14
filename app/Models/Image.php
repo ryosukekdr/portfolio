@@ -9,13 +9,11 @@ class Image extends Model
 {
     use HasFactory;
     
-    protected $guarded = array('id'); //ブラックトリスト
+    protected $guarded = array('id'); //ブラックリスト
     
-    /*public static $rules = array(
-        'image_path' => 'required',
-        'image' => 'image|max:2048',
-        'image' => 'mimetypes:image/jpg,image/jpeg,image/png,image/gif,image/bmp,image/svg,image/webp',
-        //'file' => 'mimes:jpg',
-    );*/
+    /** @var array $rules バリデーションで検証する設定情報の配列 */
+    public static $rules = array(
+        'image.*' => 'image|max:2000', //image.*とすることで、requestで受け取った複数の画像を１枚ずつバリデーションできる
+    );
 }
     

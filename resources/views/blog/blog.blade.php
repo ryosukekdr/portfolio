@@ -34,7 +34,7 @@
 
             // 世界地図がクリックされたら、国名コードをGETパラメータにして記事一覧ページへ送る
             function selectHandler(reg) {
-                window.location.href = '/search?country_code=' + reg.region;
+                window.location.href = '/blog/search?user_id={{$user_id}}&country_code=' + reg.region;
             }
     
             function drawRegionsMap() {

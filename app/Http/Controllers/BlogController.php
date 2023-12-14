@@ -49,7 +49,7 @@ class BlogController extends Controller
         //世界地図をクリックされた場合の処理
         if($request->has('country_code')) {
             //クリックされた国のコードをクエリパラメータから取得
-            $country_code = $request->query('country_code');
+            $country_code = $request->country_code;
             //取得した国コードが紐づけられたブログだけに絞り込む
             $blogs->whereHas('countries', function ($q) use ($country_code) {
                 $q->where('code', $country_code);
@@ -69,7 +69,7 @@ class BlogController extends Controller
      * @param Request $request
      * @return view
      */
-     public function blog_detail(Request $request)
+    public function blog_detail(Request $request)
     {
         //クリックされたブログを取得。いいね付与数も同時に取得。
         $blog = Blog::withCount('likes')->find($request->id);

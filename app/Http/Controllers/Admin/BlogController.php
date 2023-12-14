@@ -40,8 +40,9 @@ class BlogController extends Controller
      */
     public function create(Request $request)
     {
-        //Blogモデル,Countruモデルで定義した条件でバリデーション
+        //モデルで定義した条件でバリデーション
         $this->validate($request, Blog::$rules);
+        $this->validate($request, Image::$rules);
         $this->validate($request, Country::$rules);
         
         DB::transaction(function () use ($request) { //トランザクション
@@ -147,8 +148,9 @@ class BlogController extends Controller
      */
     public function update(Request $request)
     {
-        //Blogモデル,Countruモデルで定義した条件でバリデーション
+        //モデルで定義した条件でバリデーション
         $this->validate($request, Blog::$rules);
+        $this->validate($request, Image::$rules);
         $this->validate($request, Country::$rules);
         
         DB::transaction(function () use ($request) { //トランザクション

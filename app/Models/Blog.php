@@ -9,7 +9,7 @@ class Blog extends Model
 {
     use HasFactory;
     
-    protected $guarded = array('id');
+    protected $guarded = array('id'); //ブラックリスト
 
     /** @var array $rules バリデーションで検証する設定情報の配列 */
     public static $rules = array(
@@ -17,7 +17,6 @@ class Blog extends Model
         'arrival_date' => 'required',
         'title' => 'required|max:255',
         'body' => 'required',
-        'image.*' => 'image|max:2000', //image.*とすることで、requestで受け取った複数の画像を１枚ずつバリデーションできる
     );
     
     public function images()

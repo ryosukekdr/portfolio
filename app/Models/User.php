@@ -98,4 +98,23 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+    
+    /**
+    * ユーザの訪問国数をカウントする（同じ国を複数投稿していても1カウント）
+    *
+    * @return int 
+    */
+    public function CountryCount() {
+        //ユーザが公開状態にしているブログ（status=1）にを取得
+        $blogs = Blog::where('user_id', $this->id)->where('status',1);
+        //$blogsのブログidを取得
+        $blogs_id = $blogs->pluck("id");
+        
+        //中間テーブルによって上記$blogs_idと紐づけられている国を全て取得する
+        $visited_countries = Country::whereHas('blogs', function($q) use($blogs_id)  {
+            $q->whereIn('blogs.id', $blogs_id);
+        });
+        
+        return $visited_countries->count();
+    }
 }
