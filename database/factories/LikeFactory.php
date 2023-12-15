@@ -17,8 +17,8 @@ class LikeFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 22,
-            'blog_id' => 99,
+            //'user_id' => 22,
+            //'blog_id' => 99,
         ];
     }
 }

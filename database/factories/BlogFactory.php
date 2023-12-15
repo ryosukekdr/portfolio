@@ -17,7 +17,8 @@ class BlogFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 11//定数, //blogsテーブルにuser_idを外部キー制約しているため準備必須
+            //'user_id' => random_int(1,99),
+            //'user_id' => 11, //blogsテーブルにuser_idを外部キー制約しているため準備必須
         ];
     }
 }
