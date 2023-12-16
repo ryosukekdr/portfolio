@@ -29,42 +29,33 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="navbar-collapse collapse hamburger-inside" id="navbarTogglerDemo2" style="">
-            <!-- Left Side Of Navbar -->
+        <div class="navbar-collapse collapse" id="navbarTogglerDemo2" style="">
+            <!-- ナビバー左サイド -->
             <ul class="navbar-nav me-auto" style="width: 50%">
                 <li class="header-menu-left">
                     <a href="{{ url('/') }}">ユーザー一覧</a>
                 </li>
                 <li class="header-menu-left">
-                   <a href="{{ url('/userpage') }}">ホーム</a>
+                    @yield('home-link')
                 </li>
                 <li class="header-menu-left">
-                   <a href="{{ route('blog') }}">ブログ閲覧</a>
+                    @yield('blog-index')
+                   
                 </li>
                 <li class="header-menu-left">
                    <a href="{{ route('itemlist_index') }}">私の持ち物リスト</a>
                 </li>
             </ul>
-            <!-- Right Side Of Navbar -->
+            <!-- ナビバー右サイド -->
             <ul class="navbar-nav ms-auto">
-                @if (Request::routeIs('mypage'))
-                    <li class="header-menu-right">
-                        <a href="{{ route('admin.blog.index') }}">ブログ編集</a>
-                    </li>
-                    <li class="header-menu-right">
-                        <a href="{{ route('admin.user.show') }}">アカウント設定</a>
-                    </li>
-                @endif
-                @guest
-                @else
-                    <li class="header-menu-right">
-                      <a href="{{ route('mypage') }}">マイページ</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: white;">
                             {{ Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('mypage') }}">マイページ</a>
+                            <a class="dropdown-item" href="{{ route('admin.blog.index') }}">ブログ編集</a>
+                            <a class="dropdown-item" href="{{ route('admin.user.show') }}">アカウント設定</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('messages.logout') }}
                             </a>
@@ -73,7 +64,6 @@
                             </form>
                         </div>
                     </li>
-                @endguest
             </ul>
         </div>
     </nav>

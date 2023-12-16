@@ -1,5 +1,17 @@
 @extends('layouts.app')
 
+    @if (Request::routeIs('userpage'))
+        @section('home-link')<a href="{{ route('userpage', ['user_id' => $user->id]) }}">ホーム</a>@endsection
+    @else
+        @section('home-link')<a href="{{ route('mypage') }}">ホーム</a>@endsection
+    @endif
+
+    @if (Request::routeIs('userpage'))
+        @section('blog-index')<a href="{{ route('blog', ['user_id' => $user->id]) }}">ブログ閲覧</a>@endsection
+    @else
+        @section('blog-index')<a href="{{ route('blog', ['user_id' => \Auth::user()->id]) }}">ブログ閲覧</a>@endsection
+    @endif
+
 @section('content')
     <script src="{{ mix('js/loading.js') }}" defer></script>
     

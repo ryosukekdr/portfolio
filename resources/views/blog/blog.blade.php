@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+        @section('home-link')<a href="{{ route('userpage', ['user_id' => $user_id]) }}">ホーム</a>@endsection
+
 @section('content')
     {{--ajaxによる非同期通信いいね--}}
     <script src="{{ mix('js/like.js') }}" defer></script>

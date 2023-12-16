@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Blog;
 use App\Models\Image;
 use App\Models\Country;
@@ -29,6 +30,16 @@ class BlogController extends Controller
     {
         //status=1（公開状態）のみに絞り、いいね数を取得。ここではgetせずに条件分岐後でgetする。
         $blogs = Blog::withCount('likes')->where('user_id', $request->user_id)->where('status',1);
+        
+        //存在しないクエリパラメータにアクセスされたときの例外処理
+        try {
+            if (!User::where('id', $request->user_id)->exists()) {
+                throw new Exception();
+            }
+        } catch (Exception $e) {
+            abort(404);
+        }
+        
         $blogs_id = $blogs->pluck("id");
         
         //中間テーブルによって上記$blogs_idと紐づけられている国を全て取得する
