@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 @section('title', 'コメントの編集')
 
+@section('home-link')<a href="{{ route('mypage') }}">ホーム</a>@endsection
+@section('blog-index')<a href="{{ route('blog', ['user_id' => \Auth::user()->id]) }}">ブログ閲覧</a>@endsection
+
 @section('content')
     <script src="{{ mix('js/counter.js') }}" defer></script> {{-- ブログタイトルの文字数カウンター --}}
  
@@ -19,7 +22,7 @@
                     
                     <div class="form-group row">
                         <div class="col-md-9">
-                            <textarea id="count_target" class="form-control" name="free_comment" rows="10" placeholder="コメント" onfocus="this.placeholder=''" onblur="this.placeholder='コメント'">{{ \Auth::user()->free_comment }}</textarea>
+                            <textarea id="count_target" class="form-control" name="free_comment" rows="10" placeholder="コメント" onfocus="this.placeholder=''" onblur="this.placeholder='コメント'">{{ old('free_comment', \Auth::user()->free_comment) }}</textarea>
                             <p>255文字まで（現在 <span id="count">0</span> 文字）</p>
                         </div>
                     </div>

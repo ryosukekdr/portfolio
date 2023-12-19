@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 @section('title', 'ブログの新規作成')
 
+@section('home-link')<a href="{{ route('mypage') }}">ホーム</a>@endsection
+@section('blog-index')<a href="{{ route('blog', ['user_id' => \Auth::user()->id]) }}">ブログ閲覧</a>@endsection
+
 @section('content')
     {{-- humanityテーマのカレンダーCSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/humanity/jquery-ui.min.css">
@@ -53,7 +56,7 @@
                     <div class="form-group row">
                         <label class="col-md-3">タイトル</label>
                         <div class="col-md-9">
-                            <input type="text" id="title" class="form-control" name="title" value="{{ old('title') }}" placeholder="タイトル" onfocus="this.placeholder=''" onblur="this.placeholder='タイトル'">
+                            <input type="text" id="count_target" class="form-control" name="title" value="{{ old('title') }}" placeholder="タイトル" onfocus="this.placeholder=''" onblur="this.placeholder='タイトル'">
                             <p>255文字まで（現在 <span id="count">0</span> 文字）</p>
                         </div>
                     </div>

@@ -1,4 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+
+@section('home-link')<a href="{{ route('mypage') }}">ホーム</a>@endsection
+@section('blog-index')<a href="{{ route('blog', ['user_id' => \Auth::user()->id]) }}">ブログ閲覧</a>@endsection
 
 @section('content')
     <div class="container">

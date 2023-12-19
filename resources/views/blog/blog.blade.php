@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
-        @section('home-link')<a href="{{ route('userpage', ['user_id' => $user_id]) }}">ホーム</a>@endsection
+@if (\Auth::user()->id == $user_id)
+    @section('home-link')<a href="{{ route('mypage') }}">ホーム</a>@endsection
+    @section('username')自分のページ@endsection
+@else
+    @section('home-link')<a href="{{ route('userpage', ['user_id' => $user_id]) }}">ホーム</a>@endsection
+    @section('username'){{DB::table('users')->find($user_id)->name}}さんのページ@endsection
+@endif
+
+@section('blog-index')<a href="{{ route('blog', ['user_id' => $user_id]) }}">ブログ閲覧</a>@endsection
 
 @section('content')
     {{--ajaxによる非同期通信いいね--}}
@@ -104,7 +112,7 @@
                             <img src="{{ secure_asset('storage/image/' . $image->image_path) }}" class="card-img-top" alt="写真">
                         @endif
                         <div class="card-body">
-                            <h5 class="card-title"><a href="{{ route('blog_detail', ['id' => $blog->id]) }}">{{ Str::limit($blog->title, 50) }}</a></h5>
+                            <h5 class="card-title"><a href="{{ route('blog_detail', ['id' => $blog->id, 'user_id' => $user_id]) }}">{{ Str::limit($blog->title, 50) }}</a></h5>
                             <i class="fas fa-plane" style="color: gray;"></i> {{ date('Y/m/d', strtotime($blog->departure_date)) }}　～　{{ date('Y/m/d', strtotime($blog->arrival_date)) }}<br>
                             <p class="card-text margin-top3">{{ Str::limit($blog->body, 200) }}</p>
                         </div><br>

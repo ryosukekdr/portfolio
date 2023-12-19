@@ -17,13 +17,13 @@
                     <div class="form-group row">
                         <label class="col-md-2" for="item">アイテム</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="item" value="{{ $itemlist_form->item }}">
+                            <input type="text" class="form-control" name="item" value="{{ old('item', $itemlist_form->item) }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2" for="note">備考</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="note" value="{{ $itemlist_form->note }}">
+                            <input type="text" class="form-control" name="note" value="{{ old('note', $itemlist_form->note) }}">
                         </div>
                     </div>
                     <div class="form-group row">

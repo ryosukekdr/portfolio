@@ -13,6 +13,7 @@ class Itemlist extends Model
 
     /** @var array $rules バリデーションで検証する設定情報の配列 */
     public static $rules = array(
-        'item' => 'required'
+        'item' => 'required|max:255',
+        'note' => 'required|max:255',
     );
 }

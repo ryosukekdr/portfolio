@@ -97,6 +97,6 @@ class BlogController extends Controller
         $blog->view_count ++;  //ブログ閲覧回数カウント変数を更新
         $blog->save();
         
-        return view('blog/blog_detail', ['blog' => $blog]);
+        return view('blog/blog_detail', ['blog' => $blog, 'user_id' => $request->user_id]);
     }
 }

@@ -1,5 +1,17 @@
 @extends('layouts.app')
 
+@if (\Auth::user()->id == $user_id)
+    @section('home-link')<a href="{{ route('mypage') }}">ホーム</a>@endsection
+@else
+    @section('home-link')<a href="{{ route('userpage', ['user_id' => $user_id]) }}">ホーム</a>@endsection
+@endif
+
+@section('blog-index')<a href="{{ route('blog', ['user_id' => $user_id]) }}">ブログ閲覧</a>@endsection
+
+@if (\Auth::user()->id != $user_id)
+    @section('username'){{DB::table('users')->find($user_id)->name}}さんのページ@endsection
+@endif
+
 @section('content')
     {{--画像のフェードインアニメーション--}}
     <script src="{{ mix('js/animation.js') }}" defer></script>

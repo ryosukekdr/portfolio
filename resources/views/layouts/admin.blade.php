@@ -2,6 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
+        <title>旅行好きブログ投稿サイト</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,61 +11,63 @@
 
         <title>@yield('title')</title>
 
-        <!-- Scripts -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script> <!--jQuery-->
         <script src="{{ mix('js/app.js') }}" defer></script>
 
-        <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+        
+        <link rel="icon" type="image/png" href="{{ secure_asset('chikyu.png') }}"> <!-- ファビコン -->
 
-        <!-- Styles -->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
     </head>
-    <body>
+    <body style ="margin-bottom: 5%">
         <div id="app">
             {{-- 画面上部に表示するナビゲーションバー --}}
-            <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- ナビバー左サイド -->
-                        <ul class="navbar-nav ms-auto"></ul>
-                        <!-- ナビバー右サイド -->
-                        <ul class="navbar-nav">
-                            {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
-                            @guest
-                                <li><a class="nav-link" href="{{ route('login') }}">{{ __('messages.login') }}</a></li>
-                            {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
-                            @else
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ Auth::user()->name }} <span class="caret"></span>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            {{ __('messages.logout') }}
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                            @endguest
-                        </ul>
-                    </div>
+            <nav class="navbar navbar-expand-md navbar-dark header" style ="box-shadow: 0 10px 10px -10px; margin-bottom: 5%">
+                <div></div> <!--ここにdivがないとハンバーガーメニューが左端に来てしまう-->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse" id="navbarTogglerDemo2" style="">
+                    <!-- ナビバー -->
+                    <ul class="navbar-nav" style ="width: 100%;">
+                        <li class="header-menu-left underline">
+                            <a href="{{ url('/') }}">ユーザー一覧</a>
+                        </li>
+                        <li class="header-menu-left underline">
+                            @yield('home-link')
+                        </li>
+                        <li class="header-menu-left underline">
+                            @yield('blog-index')
+                        </li>
+                        <li class="header-menu-left underline">
+                            <a href="{{ route('itemlist_index') }}">私の持ち物リスト</a>
+                        </li>
+                        @guest
+                        @else
+                        <li class="dropdown hamburger-inside">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: white;">
+                                {{ Auth::user()->name }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('mypage') }}">マイページ</a>
+                                <a class="dropdown-item" href="{{ route('admin.blog.index') }}">ブログ編集</a>
+                                <a class="dropdown-item" href="{{ route('admin.user.show') }}">アカウント設定</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('messages.logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>@endguest
+                    </ul>
                 </div>
             </nav>
             {{-- ここまでナビゲーションバー --}}
-            <main class="py-4">
-                @yield('content')
-            </main>
+            @yield('content')
         </div>
     </body>
 </html>

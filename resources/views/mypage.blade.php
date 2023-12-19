@@ -2,14 +2,12 @@
 
     @if (Request::routeIs('userpage'))
         @section('home-link')<a href="{{ route('userpage', ['user_id' => $user->id]) }}">ホーム</a>@endsection
+        @section('blog-index')<a href="{{ route('blog', ['user_id' => $user->id]) }}">ブログ閲覧</a>@endsection
+        @section('username'){{$user->name}}さんのページ@endsection
     @else
         @section('home-link')<a href="{{ route('mypage') }}">ホーム</a>@endsection
-    @endif
-
-    @if (Request::routeIs('userpage'))
-        @section('blog-index')<a href="{{ route('blog', ['user_id' => $user->id]) }}">ブログ閲覧</a>@endsection
-    @else
         @section('blog-index')<a href="{{ route('blog', ['user_id' => \Auth::user()->id]) }}">ブログ閲覧</a>@endsection
+        @section('username')自分のページ@endsection
     @endif
 
 @section('content')

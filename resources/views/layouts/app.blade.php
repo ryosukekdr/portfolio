@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>旅行好きブログ投稿サイト</title>
-        <meta name="discription" content="旅行好きブログ投稿サイト介">
+        <meta name="discription" content="旅行好きブログ投稿サイト">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- CSRF Token -->
@@ -11,10 +11,10 @@
 
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <link rel="dns-prefetch" href="//fonts.bunny.net">
-        <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">  <!--リセットCSS読み込み-->
         <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">  <!--リセットCSS読み込み-->
         <link href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" rel="stylesheet">  <!--webfontのFont Awesomeを使う-->
-        <link rel="icon" type="image/png" href="{{ secure_asset('chikyu.png') }}">
+        <link rel="icon" type="image/png" href="{{ secure_asset('chikyu.png') }}"> <!-- ファビコン -->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script> <!--jQuery-->
         <script src="https://www.gstatic.com/charts/loader.js"></script> <!--geocharts-->
@@ -24,46 +24,46 @@
     </head>
 
     <div id="top"></div>
-    <nav class="navbar navbar-expand-md navbar-light header" style ="box-shadow: 0 10px 10px -10px;">
+    {{-- 画面上部に表示するナビゲーションバー --}}
+    <nav class="navbar navbar-expand-md navbar-dark header" style ="box-shadow: 0 10px 10px -10px;">
         <div></div> <!--ここにdivがないとハンバーガーメニューが左端に来てしまう-->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-collapse collapse" id="navbarTogglerDemo2" style="">
-            <!-- ナビバー左サイド -->
-            <ul class="navbar-nav me-auto" style="width: 50%">
-                <li class="header-menu-left">
+            <!-- ナビバー -->
+            <ul class="navbar-nav" style ="width: 100%;">
+                <li class="header-menu-left underline">
                     <a href="{{ url('/') }}">ユーザー一覧</a>
                 </li>
-                <li class="header-menu-left">
+                <li class="header-menu-left underline">
                     @yield('home-link')
                 </li>
-                <li class="header-menu-left">
+                <li class="header-menu-left underline">
                     @yield('blog-index')
-                   
                 </li>
-                <li class="header-menu-left">
-                   <a href="{{ route('itemlist_index') }}">私の持ち物リスト</a>
+                <li class="header-menu-left underline">
+                    <a href="{{ route('itemlist_index') }}">私の持ち物リスト</a>
                 </li>
-            </ul>
-            <!-- ナビバー右サイド -->
-            <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: white;">
-                            {{ Auth::user()->name }}
+                <li style="margin: 1% 0 1% auto; color: white;">
+                    @yield('username')
+                </li>
+                <li class="dropdown hamburger-inside" style="margin-left: 3%">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: white;">
+                        {{ Auth::user()->name }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('mypage') }}">マイページ</a>
+                        <a class="dropdown-item" href="{{ route('admin.blog.index') }}">ブログ編集</a>
+                        <a class="dropdown-item" href="{{ route('admin.user.show') }}">アカウント設定</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {{ __('messages.logout') }}
                         </a>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('mypage') }}">マイページ</a>
-                            <a class="dropdown-item" href="{{ route('admin.blog.index') }}">ブログ編集</a>
-                            <a class="dropdown-item" href="{{ route('admin.user.show') }}">アカウント設定</a>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                {{ __('messages.logout') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>

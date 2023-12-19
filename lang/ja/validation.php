@@ -86,7 +86,7 @@ return [
         'array' => 'The :attribute must not have more than :max items.',
         'file' => 'The :attribute must not be greater than :max kilobytes.',
         'numeric' => 'The :attribute must not be greater than :max.',
-        'string' => 'The :attribute must not be greater than :max characters.',
+        'string' => ':attributeは255文字以下にしてください',
         'image' => 'The :attribute must not be greater than :max kilobytes.', //画像サイズ追加
     ],
     'mimes' => ':attributeは :values形式にしてください。',
@@ -175,6 +175,9 @@ return [
         'arrival_date' => '帰着日',
         'country' => '訪問国',
         'cover_photo' => 'カバー写真',
+        'profile_icon' => 'アイコン',
+        'profile_comment' => 'プロフィール',
+        'free_comment' => 'コメント',
     ],
 
 ];

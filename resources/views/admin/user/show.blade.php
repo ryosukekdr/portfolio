@@ -1,4 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+
+@section('home-link')<a href="{{ route('mypage') }}">ホーム</a>@endsection
+@section('blog-index')<a href="{{ route('blog', ['user_id' => \Auth::user()->id]) }}">ブログ閲覧</a>@endsection
 
 @section('content')
     <div class="container">
@@ -22,7 +25,6 @@
                         <div class="col-md-8 col-form-label text-md-end">パスワード　：　{{ "●●●●●●●● "}} <a href="{{ route('admin.user.password_edit') }}">編集</a></div>
                         <div class="col-md-6 offset-md-4">
                             <a href="{{ route('admin.user.delete_check') }}" class="btn btn-primary">退会</a>
-                            <a href="{{ url('/') }}" class="btn btn-primary">戻る</a>
                         </div>
                     </div>
                 </div>
