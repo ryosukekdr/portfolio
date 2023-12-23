@@ -87,7 +87,7 @@ class BlogController extends Controller
         
         //存在しないクエリパラメータにアクセスされたときの例外処理
         try {
-            if (empty($blog)) {
+            if (empty($blog)||$blog->user_id != $request->user_id) {
                 throw new Exception();
             }
         } catch (Exception $e) {

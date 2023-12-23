@@ -75,7 +75,7 @@ Route::controller(PublicBlogController::class)->group(function () {
 });
 
 use App\Http\Controllers\ItemlistController as PublicItemlistController;
-Route::get('/itemlist', [PublicItemlistController::class, 'index'])->name('itemlist_index');
+Route::get('/itemlist', [PublicItemlistController::class, 'index'])->name('itemlist');
 
 
 use App\Http\Controllers\CsvDownloadController;

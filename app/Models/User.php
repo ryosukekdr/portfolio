@@ -88,6 +88,11 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
     
+    public function itemlists()
+    {
+        return $this->hasMany(Itemlist::class);
+    }
+    
     /**
      * パスワードリセットメールをカスタマイズするためのオーバーライド
      * 

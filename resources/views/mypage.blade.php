@@ -3,10 +3,12 @@
     @if (Request::routeIs('userpage'))
         @section('home-link')<a href="{{ route('userpage', ['user_id' => $user->id]) }}">ホーム</a>@endsection
         @section('blog-index')<a href="{{ route('blog', ['user_id' => $user->id]) }}">ブログ閲覧</a>@endsection
+        @section('itemlist-index')<a href="{{ route('itemlist', ['user_id' => $user->id]) }}">私の持ち物リスト</a>@endsection
         @section('username'){{$user->name}}さんのページ@endsection
     @else
         @section('home-link')<a href="{{ route('mypage') }}">ホーム</a>@endsection
         @section('blog-index')<a href="{{ route('blog', ['user_id' => \Auth::user()->id]) }}">ブログ閲覧</a>@endsection
+        @section('itemlist-index')<a href="{{ route('itemlist', ['user_id' => \Auth::user()->id]) }}">私の持ち物リスト</a>@endsection
         @section('username')自分のページ@endsection
     @endif
 
@@ -42,14 +44,14 @@
         
             @if (Request::routeIs('userpage'))
                 @if ($user->free_comment != NULL)
-                    <div class="margin-side3">{{$user->free_comment}}</div>
+                    <div class="margin-side3" style="white-space: pre-line;">{{$user->free_comment}}</div>
                 @else
                     <div class="margin-side3">コメントが記載されていません</div>
                 @endif
             @else
                 @if (\Auth::user()->free_comment != NULL)
                     <a href="{{ route('admin.user.free_comment.add') }}">
-                        <div class="margin-side3">{{\Auth::user()->free_comment}}</div>
+                        <div class="margin-side3" style="white-space: pre-line;">{{\Auth::user()->free_comment}}</div>
                     </a>
                 @else
                     <div class="comment-box" style="margin-left: 5%;"><a href="{{ route('admin.user.free_comment.add') }}"><div style="text-align: center;">コメントを記載できます</div></a></div>
@@ -91,14 +93,14 @@
             <div class="margin-top3">
             @if (Request::routeIs('userpage'))
                 @if ($user->profile_comment != NULL)
-                    <div class="margin-side3">{{$user->profile_comment}}</div>
+                    <div class="margin-side3" style="white-space: pre-line;">{{$user->profile_comment}}</div>
                 @else
                     <div class="margin-side3">プロフィールが記載されていません</div>
                 @endif
             @else
                 @if (\Auth::user()->profile_comment != NULL)
                     <a href="{{ route('admin.user.profile_comment.add') }}">
-                        <div class="margin-side3">{{\Auth::user()->profile_comment}}</div>
+                        <div class="margin-side3" style="white-space: pre-line;">{{\Auth::user()->profile_comment}}</div>
                     </a>
                 @else
                     <div class="comment-box"><a href="{{ route('admin.user.profile_comment.add') }}"><div style="text-align: center;">プロフィールを記載できます</div></a></div>

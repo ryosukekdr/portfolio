@@ -16,4 +16,9 @@ class Itemlist extends Model
         'item' => 'required|max:255',
         'note' => 'required|max:255',
     );
+    
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

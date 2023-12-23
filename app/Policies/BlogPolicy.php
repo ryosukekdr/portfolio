@@ -14,6 +14,7 @@ class BlogPolicy
      * Determine whether the user can view any models.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function edit(User $user, Blog $blog)

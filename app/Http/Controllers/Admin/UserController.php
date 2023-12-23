@@ -34,7 +34,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         
-        return view('admin.user.email_change', ['user' => $user]);
+        return view('admin.user.email_change');
     }
     
     /**
@@ -63,7 +63,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         
-        return view('admin.user.name_change', ['user' => $user]);
+        return view('admin.user.name_change');
     }
     
     /**

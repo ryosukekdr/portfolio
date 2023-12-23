@@ -20,8 +20,8 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <div class="col-md-8 col-form-label text-md-end">ユーザー名　：　{{ $user->name }} <a href="{{ route('admin.user.name_edit', ['email' => $user->email]) }}">編集</a></div>
-                        <div class="col-md-8 col-form-label text-md-end">メールアドレス　：　{{ $user->email }} <a href="{{ route('admin.user.email_edit', ['email' => $user->email]) }}">編集</a></div>
+                        <div class="col-md-8 col-form-label text-md-end">ユーザー名　：　{{ $user->name }} <a href="{{ route('admin.user.name_edit') }}">編集</a></div>
+                        <div class="col-md-8 col-form-label text-md-end">メールアドレス　：　{{ $user->email }} <a href="{{ route('admin.user.email_edit') }}">編集</a></div>
                         <div class="col-md-8 col-form-label text-md-end">パスワード　：　{{ "●●●●●●●● "}} <a href="{{ route('admin.user.password_edit') }}">編集</a></div>
                         <div class="col-md-6 offset-md-4">
                             <a href="{{ route('admin.user.delete_check') }}" class="btn btn-primary">退会</a>

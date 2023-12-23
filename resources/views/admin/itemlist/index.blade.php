@@ -24,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($posts as $itemlist)
+                            @foreach($itemlists as $itemlist)
                                 <tr>
                                     <th>{{ $itemlist->id }}</th>
                                     <td>{{ Str::limit($itemlist->item, 100) }}</td>

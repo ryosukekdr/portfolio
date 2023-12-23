@@ -43,7 +43,7 @@
                             @yield('blog-index')
                         </li>
                         <li class="header-menu-left underline">
-                            <a href="{{ route('itemlist_index') }}">私の持ち物リスト</a>
+                            <a href="{{ route('itemlist') }}">私の持ち物リスト</a>
                         </li>
                         @guest
                         @else
@@ -54,6 +54,7 @@
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('mypage') }}">マイページ</a>
                                 <a class="dropdown-item" href="{{ route('admin.blog.index') }}">ブログ編集</a>
+                                <a class="dropdown-item" href="{{ route('admin.itemlist.index') }}">持ち物リスト編集</a>
                                 <a class="dropdown-item" href="{{ route('admin.user.show') }}">アカウント設定</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('messages.logout') }}

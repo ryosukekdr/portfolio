@@ -9,6 +9,7 @@
 @endif
 
 @section('blog-index')<a href="{{ route('blog', ['user_id' => $user_id]) }}">ブログ閲覧</a>@endsection
+@section('itemlist-index')<a href="{{ route('itemlist', ['user_id' => $user_id]) }}">私の持ち物リスト</a>@endsection
 
 @section('content')
     {{--ajaxによる非同期通信いいね--}}

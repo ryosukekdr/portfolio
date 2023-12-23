@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request; 
 
 use App\Models\Itemlist;
+use App\Models\User;
 
 use Exception;
 
@@ -40,6 +41,7 @@ class ItemlistController extends Controller
         //unset($form['_token']);  Itemlistモデルでブラックリスト作ってるからunset不要
 
         $itemlist->fill($form);
+        $itemlist->user_id = \Auth::id();  //投稿者のuser_idを保存
         $itemlist->save();
 
         return redirect('admin/itemlist/index');
@@ -72,21 +74,9 @@ class ItemlistController extends Controller
      */
     public function index()
     {
-        $posts = Itemlist::all()->sortByDesc('updated_at');
+        $itemlists = \Auth::user()->itemlists;
         
-        return view('admin.itemlist.index', ['posts' => $posts]);
-    }
-    
-    /**
-     * 一般閲覧ページの持ち物リスト一覧表示
-     * 
-     * @return view
-     */
-    public function itemlist()
-    {
-        $posts = Itemlist::all()->sortByDesc('updated_at');
-        
-        return view('itemlist.index', ['posts' => $posts]);
+        return view('admin.itemlist.index', ['itemlists' => $itemlists]);
     }
 
     /**
@@ -107,7 +97,7 @@ class ItemlistController extends Controller
             abort(404);
         }
         
-        //$this->authorize('edit', $itemlist);  //ポリシー認可
+        $this->authorize('edit', $itemlist);  //ポリシー認可
         
         return view('admin.itemlist.edit', ['itemlist_form' => $itemlist]);
     }
@@ -130,7 +120,7 @@ class ItemlistController extends Controller
             abort(404);
         }
         
-        //$this->authorize('edit', $itemlist);  //ポリシー認可
+        $this->authorize('delete_check', $itemlist);  //ポリシー認可
 
         return view('admin.itemlist.delete_check', ['itemlist_form' => $itemlist]);
     }
