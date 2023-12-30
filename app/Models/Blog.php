@@ -19,21 +19,33 @@ class Blog extends Model
         'body' => 'required',
     );
     
+    /**
+     * ブログの画像を取得
+     */
     public function images()
     {
         return $this->hasMany(Image::class);
     }
     
+    /**
+     * ブログの投稿者を取得
+     */
     public function users()
     {
         return $this->belongsTo(User::class);
     }
     
+    /**
+     * ブログの国を取得
+     */
     public function countries()
     {
         return $this->belongsToMany(Country::class);
     }
     
+    /**
+     * ブログに付与されたいいねを取得
+     */
     public function likes()
     {
         return $this->hasMany(Like::class);

@@ -78,16 +78,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    /**
+     * ユーザが投稿したブログを取得
+     */
     public function blogs()
     {
         return $this->hasMany(Blog::class);
     }
     
+    /**
+     * ユーザが付与したいいねを取得
+     */
     public function likes()
     {
         return $this->hasMany(Like::class);
     }
     
+    /**
+     * ユーザが投稿した持ち物リストを取得
+     */
     public function itemlists()
     {
         return $this->hasMany(Itemlist::class);

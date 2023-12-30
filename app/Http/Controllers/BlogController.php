@@ -9,11 +9,10 @@ use App\Models\Image;
 use App\Models\Country;
 use Exception;
 
-/**
-  *ブログを表示するためのコントローラ
-  */
+/***ブログを表示するためのコントローラ*/
 class BlogController extends Controller
 {
+    /*** @return void*/
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,14 +22,13 @@ class BlogController extends Controller
      * 投稿者が公開状態にしているブログ一覧を表示すると同時に、ブログに紐づけられた国を地図上で塗りつぶす
      * 世界地図上の国がクリックされたら、クリックされた国が紐づけられたブログだけに絞り込む
      * 
-     * @param Request $request
-     * @return view
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     * 
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function blog(Request $request)
     {
-        //status=1（公開状態）のみに絞り、いいね数を取得。ここではgetせずに条件分岐後でgetする。
-        $blogs = Blog::withCount('likes')->where('user_id', $request->user_id)->where('status',1);
-        
         //存在しないクエリパラメータにアクセスされたときの例外処理
         try {
             if (!User::where('id', $request->user_id)->exists()) {
@@ -40,6 +38,8 @@ class BlogController extends Controller
             abort(404);
         }
         
+        //status=1（公開状態）のみに絞り、いいね数と共に取得。ここではgetせずに条件分岐後でgetする。
+        $blogs = Blog::withCount('likes')->where('user_id', $request->user_id)->where('status',1);
         $blogs_id = $blogs->pluck("id");
         
         //中間テーブルによって上記$blogs_idと紐づけられている国を全て取得する
@@ -77,8 +77,10 @@ class BlogController extends Controller
     /**
      * ブログ一覧ページでタイトルをクリックすると、ブログ詳細を表示させる
      * 
-     * @param Request $request
-     * @return view
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     * 
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function blog_detail(Request $request)
     {

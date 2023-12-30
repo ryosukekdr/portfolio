@@ -21,14 +21,21 @@
 
         <div class="margin-top3 text-align-center">
             @if (Request::routeIs('blog.search'))
-                <h class="head-border">{{$selected_country->name}}が <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>タグ付けされているブログを表示中</h>
+                <h class="head-border">{{$selected_country->name}}が
+                    <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>
+                    タグ付けされているブログを表示中
+                </h>
                 <div class="display-flex" style="justify-content: space-between;">
                     <div style="margin-left: 3%">　　　　　　　　　　</div>
                     <img src="" id="flag" class="responsive-flag">
-                    <div class="margin-top3" style="margin-right: 3%"><a href="{{ route('blog', ['user_id' => $user_id]) }}">すべてのブログを表示</a></div>
+                    <div class="margin-top3" style="margin-right: 3%">
+                        <a href="{{ route('blog', ['user_id' => $user_id]) }}">
+                            すべてのブログを表示
+                        </a>
+                    </div>
                 </div>
                 <div id="english_name"></div>
-                <div id="app"><p id="salut" v-on="getSalut" style="font-size: 1.5rem; margin-top: 3%;"></p></div>
+                <p id="salut" style="font-size: 1.5rem; margin-top: 3%;"></p>
             @else
                 <h class="head-border">すべてのブログを表示中</h>
             @endif
@@ -105,7 +112,7 @@
 
         <div class="row row-cols-sm-2">
             @foreach($blogs as $blog)
-                <div>   {{--このdivがないとなぜが横並びのblog2つがくっついてしまう--}}
+                <div>   {{--このdivがないと横並びのblog2つがくっついてしまう--}}
                     <div class="blog-card">
                         @if (!($blog->images->isEmpty()))  {{--画像がある場合に１枚目だけを表示させるための処理。なぜか$blog->images != NULLだとエラー。たぶんimagesがコレクションのため--}}
                             @php $image = $blog->images->first() @endphp  {{--@phpで囲わないとコードがview画面に出てしまう--}}
@@ -113,10 +120,19 @@
                             <img src="{{ secure_asset('storage/image/' . $image->image_path) }}" class="card-img-top" alt="写真">
                         @endif
                         <div class="card-body">
-                            <h5 class="card-title"><a href="{{ route('blog_detail', ['id' => $blog->id, 'user_id' => $user_id]) }}">{{ Str::limit($blog->title, 50) }}</a></h5>
-                            <i class="fas fa-plane" style="color: gray;"></i> {{ date('Y/m/d', strtotime($blog->departure_date)) }}　～　{{ date('Y/m/d', strtotime($blog->arrival_date)) }}<br>
-                            <p class="card-text margin-top3">{{ Str::limit($blog->body, 200) }}</p>
-                        </div><br>
+                            <h5 class="card-title">
+                                <a href="{{ route('blog_detail', ['id' => $blog->id, 'user_id' => $user_id]) }}">
+                                    {{ Str::limit($blog->title, 50) }}
+                                </a>
+                            </h5>
+                            <i class="fas fa-plane" style="color: gray;"></i> 
+                            {{ date('Y/m/d', strtotime($blog->departure_date)) }}　～　{{ date('Y/m/d', strtotime($blog->arrival_date)) }}
+                            <br>
+                            <p class="card-text margin-top3">
+                                {{ Str::limit($blog->body, 200) }}
+                            </p>
+                        </div>
+                        <br>
                         <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>
                         @foreach ($blog->countries as $country)
                             {{ $country->name }}{{'　'}}

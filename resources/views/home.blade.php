@@ -17,29 +17,28 @@
     </head>
 
     <div id="top"></div>
-    <nav class="navbar navbar-expand-md navbar-light header" style ="box-shadow: 0 10px 10px -10px;">
+    <nav class="navbar navbar-expand-md navbar-light header" style ="box-shadow: 0 10px 10px -10px; padding-top: 1%; padding-bottom: 1%;">
         <div style="margin: 0 auto; color: white; font-size: 1.2rem;">旅行好きブログ投稿サイトへようこそ</div>
-            <!-- ナビバー右サイド -->
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: white;">
-                        {{ Auth::user()->name }}
+        <!-- ナビバー右サイド -->
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: white;">
+                    {{ Auth::user()->name }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('mypage') }}">マイページ</a>
+                    <a class="dropdown-item" href="{{ route('admin.blog.index') }}">ブログ編集</a>
+                    <a class="dropdown-item" href="{{ route('admin.itemlist.index') }}">持ち物リスト編集</a>
+                    <a class="dropdown-item" href="{{ route('admin.user.show') }}">アカウント設定</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{ __('messages.logout') }}
                     </a>
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('mypage') }}">マイページ</a>
-                        <a class="dropdown-item" href="{{ route('admin.blog.index') }}">ブログ編集</a>
-                        <a class="dropdown-item" href="{{ route('admin.itemlist.index') }}">持ち物リスト編集</a>
-                        <a class="dropdown-item" href="{{ route('admin.user.show') }}">アカウント設定</a>
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('messages.logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-            </ul>
-        
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </li>
+        </ul>
     </nav>
     <div style="width: 50%; margin: 10% auto;">
         <ul class="user-list">

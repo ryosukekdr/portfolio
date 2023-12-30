@@ -33,11 +33,4 @@ class ItemlistPolicy
     {
         return $user->id === $itemlist->user_id;
     }
-
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
 }

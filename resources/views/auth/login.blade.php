@@ -1,13 +1,13 @@
-@extends('layouts.admin')
+@extends('layouts.guest')
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="login-box card">
-                    <div class="login-header card-header mx-auto">{{ __('messages.login') }}</div>
+                <div class="card">
+                    <div class="card-header">{{ __('messages.login') }}</div>
 
-                    <div class="login-body card-body">
+                    <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group row">
@@ -25,7 +25,6 @@
 
                             <div class="form-group row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('messages.password') }}</label>
-
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
@@ -34,6 +33,9 @@
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
                                     @endif
+                                </div>
+                                <div class="col-md-8 offset-md-4">
+                                    <a href="{{ ('/password/reset')}}">パスワードをお忘れの方</a>
                                 </div>
                             </div>
 
@@ -55,18 +57,11 @@
                                 </div>
                             </div>
                             
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-0" style="margin-top: 5%;">
                                 <div class="col-md-8 offset-md-4">
-                                    <a href="{{ ('/register')}}">アカウント作成</a>
+                                    <a href="{{ ('/register')}}">新しくアカウントを作成する</a>
                                 </div>
                             </div>
-                            
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <a href="{{ ('/password/reset')}}">パスワードをお忘れの方</a>
-                                </div>
-                            </div>
-                            
                         </form>
                     </div>
                 </div>

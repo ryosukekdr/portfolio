@@ -17,6 +17,9 @@ class Itemlist extends Model
         'note' => 'required|max:255',
     );
     
+    /**
+     * 持ち物リストの投稿者を取得
+     */
     public function users()
     {
         return $this->belongsTo(User::class);

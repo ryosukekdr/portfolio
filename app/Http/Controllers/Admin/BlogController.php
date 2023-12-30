@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; //トランザクションに必要
-
 use App\Models\Blog;
 use App\Models\Image;
 use App\Models\User;
@@ -14,15 +13,13 @@ use Carbon\Carbon;
 use Exception;
 use Validator;
 
- /**
-  *ブログ投稿のCRUD機能のコントローラ
-  */
+ /***ブログ投稿のCRUD機能のコントローラ*/
 class BlogController extends Controller
 {
     /**
      * ブログの新規作成ボタンをクリックされたら、作成画面に飛ばす。
      * 
-     * @return view
+     * @return \Illuminate\View\View
      */
     public function add()
     {
@@ -35,8 +32,8 @@ class BlogController extends Controller
      * ブログを新規作成する
      * 作成画面の入力情報をデータベースに保存する
      * 
-     * @param Request $request
-     * @return redirect
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
     {
@@ -89,8 +86,8 @@ class BlogController extends Controller
     /**
      * adminページのブログ一覧表示
      * 
-     * @param Request $request
-     * @return view
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -109,8 +106,10 @@ class BlogController extends Controller
     /**
      * ブログの編集ボタンが押されたら編集ページに飛ばす
      * 
-     * @param Request $request
-     * @return view
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     * 
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Request $request)
     {
@@ -143,8 +142,8 @@ class BlogController extends Controller
     /**
      * 作成済みブログの編集
      * 
-     * @param Request $request
-     * @return view
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
@@ -200,8 +199,10 @@ class BlogController extends Controller
     /**
      * ブログ削除ボタンが押されたら確認ページに飛ばす
      * 
-     * @param Request $request
-     * @return view
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     * 
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function delete_check(Request $request)
     {
@@ -225,8 +226,8 @@ class BlogController extends Controller
      * ブログ削除確認ページで「削除」が押されたら削除する
      * 外部キー制約によりブログの全画像が削除される
      * 
-     * @param Request $request
-     * @return redirect
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function delete(Request $request)
     {

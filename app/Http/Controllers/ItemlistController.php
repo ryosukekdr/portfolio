@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Itemlist;
 use App\Models\User;
-
 use Exception;
 
+/***持ち物リストを表示するためのコントローラ*/
 class ItemlistController extends Controller
 {
     /**
      * 一般閲覧ページの持ち物リスト一覧表示
      * 
-     * @return view
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     * 
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request)
     {
@@ -30,7 +32,7 @@ class ItemlistController extends Controller
             abort(404);
         }
         
-        $No = 1;
+        $No = 1; //持ち物リストをナンバリングするために準備
         
         return view('itemlist.index', ['itemlists' => $itemlists, 'user_id' => $request->user_id, 'No' => $No]);
     }

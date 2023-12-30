@@ -43,7 +43,7 @@
                             @yield('blog-index')
                         </li>
                         <li class="header-menu-left underline">
-                            <a href="{{ route('itemlist') }}">私の持ち物リスト</a>
+                            @yield('itemlist-index')
                         </li>
                         @guest
                         @else

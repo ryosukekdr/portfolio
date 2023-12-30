@@ -12,8 +12,8 @@ class LikeController extends Controller
     /**
      * いいねの付与・削除を実行
      * 
-     * @param Request $request
-     * @return response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function like(Request $request)
     {

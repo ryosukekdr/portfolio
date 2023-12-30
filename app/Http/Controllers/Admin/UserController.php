@@ -4,19 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-/**
-  *アカウント設定のコントローラ
-  */
+/***アカウント設定のコントローラ*/
 class UserController extends Controller
 {
     /**
      * アカウント情報のページに飛ばす
      * 
-     * @return view
+     * @return \Illuminate\View\View
      */
     public function show()
     {
@@ -28,7 +25,7 @@ class UserController extends Controller
     /**
      * メールアドレス変更ページに飛ばす
      * 
-     * @return view
+     * @return \Illuminate\View\View
      */
     public function email_edit()
     {
@@ -40,8 +37,8 @@ class UserController extends Controller
     /**
      * メールアドレスの変更を行う
      * 
-     * @param Request $request
-     * @return view
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function email_change(Request $request)
     {
@@ -57,7 +54,7 @@ class UserController extends Controller
     /**
      * アカウント名変更ページに飛ばす
      * 
-     * @return view
+     * @return \Illuminate\View\View
      */
     public function name_edit()
     {
@@ -69,8 +66,8 @@ class UserController extends Controller
     /**
      * アカウント名変更を行う
      * 
-     * @param Request $request
-     * @return view
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function name_change(Request $request)
     {
@@ -86,7 +83,7 @@ class UserController extends Controller
     /**
      * パスワード変更ページに飛ばす
      * 
-     * @return view
+     * @return \Illuminate\View\View
      */
     public function password_edit()
     {
@@ -98,7 +95,7 @@ class UserController extends Controller
     /**
      * 退会ボタンが押されたら確認ページに飛ばす
      * 
-     * @return view
+     * @return \Illuminate\View\View
      */
     public function delete_check()
     {
@@ -109,7 +106,8 @@ class UserController extends Controller
      * 退会確認ページで「退会」が押されたら退会処理
      * 外部キー制約によりユーザの投稿ブログが全て削除される
      * 
-     * @param Request $request
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function delete(Request $request)
     {
@@ -118,17 +116,21 @@ class UserController extends Controller
         return redirect('/');
     }
     
+    /**
+     * カバー写真の設定画面に飛ばす
+     * 
+     * @return \Illuminate\View\View
+     */
     public function cover_photo_add()
     {
         return view('admin.user.cover_phpto_create');
     }
     
     /**
-     * xxx
-     * xxx
+     * カバー写真を保存する
      * 
-     * @param Request $request
-     * @return redirect
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function cover_photo_create(Request $request)
     {
@@ -143,6 +145,11 @@ class UserController extends Controller
         return redirect('/mypage');
     }
     
+    /**
+     * カバー写真を削除する
+     * 
+     * @return \Illuminate\Http\Response
+     */
     public function cover_photo_delete()
     {
         $user = Auth::user();
@@ -152,17 +159,21 @@ class UserController extends Controller
         return redirect('/mypage');
     }
     
-   public function profile_icon_add()
+    /**
+     * アイコン画像の設定画面に飛ばす
+     * 
+     * @return \Illuminate\View\View
+     */
+    public function profile_icon_add()
     {
         return view('admin.user.profile_icon_create');
     }
     
     /**
-     * xxx
-     * xxx
+     * アイコン画像を保存する
      * 
-     * @param Request $request
-     * @return redirect
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function profile_icon_create(Request $request)
     {
@@ -177,6 +188,11 @@ class UserController extends Controller
         return redirect('/mypage');
     }
     
+    /**
+     * アイコン画像を削除する
+     * 
+     * @return \Illuminate\Http\Response
+     */
     public function profile_icon_delete()
     {
         $user = Auth::user();
@@ -185,18 +201,22 @@ class UserController extends Controller
         
         return redirect('/mypage');
     }
-   
-   public function profile_comment_add()
+    
+    /**
+     * プロフィールの投稿画面に飛ばす
+     * 
+     * @return \Illuminate\View\View
+     */
+    public function profile_comment_add()
     {
         return view('admin.user.profile_comment_create');
     }
     
     /**
-     * xxx
-     * xxx
+     * プロフィールを保存する
      * 
-     * @param Request $request
-     * @return redirect
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function profile_comment_create(Request $request)
     {
@@ -210,6 +230,11 @@ class UserController extends Controller
         return redirect('/mypage');
     }
     
+    /**
+     * プロフィールを削除する
+     * 
+     * @return \Illuminate\Http\Response
+     */
     public function profile_comment_delete()
     {
         $user = Auth::user();
@@ -219,17 +244,21 @@ class UserController extends Controller
         return redirect('/mypage');
     }
    
-   public function free_comment_add()
+    /**
+     * コメントの投稿画面に飛ばす
+     * 
+     * @return \Illuminate\View\View
+     */
+    public function free_comment_add()
     {
         return view('admin.user.free_comment_create');
     }
     
     /**
-     * xxx
-     * xxx
+     * コメントを保存する
      * 
-     * @param Request $request
-     * @return redirect
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function free_comment_create(Request $request)
     {
@@ -243,6 +272,11 @@ class UserController extends Controller
         return redirect('/mypage');
     }
     
+    /**
+     * コメントを削除する
+     * 
+     * @return \Illuminate\Http\Response
+     */
     public function free_comment_delete()
     {
         $user = Auth::user();

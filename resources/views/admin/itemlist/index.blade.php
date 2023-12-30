@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 @section('title', '持ち物リスト')
 
+@section('home-link')<a href="{{ route('mypage') }}">ホーム</a>@endsection
+@section('blog-index')<a href="{{ route('blog', ['user_id' => \Auth::user()->id]) }}">ブログ閲覧</a>@endsection
+@section('itemlist-index')<a href="{{ route('itemlist', ['user_id' => \Auth::user()->id]) }}">私の持ち物リスト</a>@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -18,15 +22,14 @@
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <th width="10%">ID</th>
                                 <th width="20%">アイテム</th>
                                 <th width="20%">備考</th>
+                                <th width="5%">操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($itemlists as $itemlist)
                                 <tr>
-                                    <th>{{ $itemlist->id }}</th>
                                     <td>{{ Str::limit($itemlist->item, 100) }}</td>
                                     <td>{{ Str::limit($itemlist->note, 100) }}</td>
                                     <td>

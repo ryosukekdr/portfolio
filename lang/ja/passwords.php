@@ -17,6 +17,6 @@ return [
     'sent' => 'パスワード再設定用メールを送信しました',
     'throttled' => 'Please wait before retrying.',
     'token' => 'パスワード再設定用メールの有効期限が切れています',
-    'user' => "We can't find a user with that email address.",
+    'user' => "メールアドレスに誤りがあります",
 
 ];

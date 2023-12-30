@@ -1,11 +1,15 @@
 @extends('layouts.admin')
 @section('title', '持ち物リストの編集')
 
+@section('home-link')<a href="{{ route('mypage') }}">ホーム</a>@endsection
+@section('blog-index')<a href="{{ route('blog', ['user_id' => \Auth::user()->id]) }}">ブログ閲覧</a>@endsection
+@section('itemlist-index')<a href="{{ route('itemlist', ['user_id' => \Auth::user()->id]) }}">私の持ち物リスト</a>@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>持ち物リスト編集</h2>
+                <h2 style="margin-bottom: 10%">持ち物リスト編集</h2>
                 <form action="{{ route('admin.itemlist.update') }}" method="post">
                     @if (count($errors) > 0)
                         <ul>

@@ -16,9 +16,9 @@ use Exception;
 class ItemlistController extends Controller
 {
     /**
-     * 持ち物リストの新規作成ボタンをクリックされたら、作成画面に飛ばす。
+     * 持ち物リストの新規作成ボタンをクリックされたら、作成画面に飛ばす
      * 
-     * @return view
+     * @return \Illuminate\View\View
      */
     public function add()
     {
@@ -29,11 +29,12 @@ class ItemlistController extends Controller
      * 持ち物リストを新規作成する
      * 作成画面の入力情報をデータベースに保存する
      * 
-     * @param Request $request
-     * @return redirect
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
     {
+        //モデルで定義した条件でバリデーション
         $this->validate($request, Itemlist::$rules);
         $itemlist = new Itemlist;
         $form = $request->all();
@@ -50,11 +51,12 @@ class ItemlistController extends Controller
     /**
      * 作成済み持ち物リストの編集
      * 
-     * @param Request $request
-     * @return redirect
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
+        //モデルで定義した条件でバリデーション
         $this->validate($request, Itemlist::$rules);
         $itemlist = Itemlist::find($request->id);
         $form = $request->all();
@@ -70,7 +72,7 @@ class ItemlistController extends Controller
     /**
      * adminページの持ち物リスト一覧表示
      * 
-     * @return view
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -82,8 +84,10 @@ class ItemlistController extends Controller
     /**
      * 持ち物リストの編集ボタンが押されたら編集ページに飛ばす
      * 
-     * @param Request $request
-     * @return view
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     * 
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Request $request)
     {
@@ -105,8 +109,10 @@ class ItemlistController extends Controller
     /**
      * 持ち物リストの削除ボタンが押されたら確認ページに飛ばす
      * 
-     * @param Request $request
-     * @return view
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     * 
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
       public function delete_check(Request $request)
     {
@@ -128,8 +134,8 @@ class ItemlistController extends Controller
     /**
      * 持ち物リストの削除確認ページで「削除」が押されたら削除する
      * 
-     * @param Request $request
-     * @return redirect
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
      public function delete(Request $request)
     {

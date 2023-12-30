@@ -3,6 +3,7 @@
 
 @section('home-link')<a href="{{ route('mypage') }}">ホーム</a>@endsection
 @section('blog-index')<a href="{{ route('blog', ['user_id' => \Auth::user()->id]) }}">ブログ閲覧</a>@endsection
+@section('itemlist-index')<a href="{{ route('itemlist', ['user_id' => \Auth::user()->id]) }}">私の持ち物リスト</a>@endsection
 
 @section('content')
     <script src="{{ mix('js/counter.js') }}" defer></script> {{-- ブログタイトルの文字数カウンター --}}

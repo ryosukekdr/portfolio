@@ -54,7 +54,7 @@ class ResetPasswordNotification extends Notification
     {
         $url = urldecode(url('password/reset', $this->token . '?email=' . $notifiable->email));
         return (new MailMessage())
-            ->subject('【' . config('app.name') . '】パスワード再設定')
+            ->subject('パスワード再設定')
             ->markdown('auth.passwords.passwordresetmail', ['reset_url' => $url, 'count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]);
     }
     
