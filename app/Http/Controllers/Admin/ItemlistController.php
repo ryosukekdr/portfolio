@@ -126,7 +126,7 @@ class ItemlistController extends Controller
             abort(404);
         }
         
-        $this->authorize('delete_check', $itemlist);  //ポリシー認可
+        //$this->authorize('delete_check', $itemlist);  //ポリシー認可
 
         return view('admin.itemlist.delete_check', ['itemlist_form' => $itemlist]);
     }
