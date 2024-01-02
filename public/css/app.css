@@ -12396,6 +12396,7 @@ footer p {
 
 .wall {
   overflow: hidden;
+  position: relative;
   width: 100%;
   margin-bottom: 10%;
 }
