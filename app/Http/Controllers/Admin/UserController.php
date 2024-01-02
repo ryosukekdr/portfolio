@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 
 /***アカウント設定のコントローラ*/
@@ -87,9 +88,7 @@ class UserController extends Controller
      */
     public function password_edit()
     {
-        $user = Auth::user();
-        
-        return view('auth.passwords.email');
+        return view('auth.passwords.email2');
     }
     
     /**
@@ -285,4 +284,11 @@ class UserController extends Controller
         
         return redirect('/mypage');
     }
+    
+    /*public function sendResetLinkEmail2()
+    {
+        Mail::send('auth.passwords.reset2');
+        
+        return redirect('/mypage');
+    }*/
 }

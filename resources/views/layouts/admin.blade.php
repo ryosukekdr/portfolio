@@ -27,6 +27,9 @@
             {{-- 画面上部に表示するナビゲーションバー --}}
             <nav class="navbar navbar-expand-md navbar-dark header" style ="box-shadow: 0 10px 10px -10px; margin-bottom: 5%">
                 <div></div> <!--ここにdivがないとハンバーガーメニューが左端に来てしまう-->
+                <li class="username-md">
+                    <div style="border: 2px dotted; width:120%"><div style="text-align:center;">管理ページ</div></div>
+                </li>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -45,9 +48,10 @@
                         <li class="header-menu-left underline">
                             @yield('itemlist-index')
                         </li>
-                        @guest
-                        @else
-                        <li class="dropdown hamburger-inside">
+                        <li class="username-lg">
+                            <div style="border: 2px dotted; width:120%"><div style="text-align:center;">管理ページ</div></div>
+                        </li>
+                        <li class="dropdown hamburger-inside" style="margin-left: 3%">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: white;">
                                 {{ Auth::user()->name }}
                             </a>
@@ -63,7 +67,7 @@
                                     @csrf
                                 </form>
                             </div>
-                        </li>@endguest
+                        </li>
                     </ul>
                 </div>
             </nav>

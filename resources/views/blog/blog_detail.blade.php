@@ -42,10 +42,12 @@
             @foreach ($blog->countries as $country)
                 {{ $country->name }}{{'　'}}
             @endforeach
-            <div class=detail-footer>
-                <i class="fas fa-edit" style="color: gray;"> {{ date('Y年m月d日', strtotime($blog->created_at)) }}</i>
-                <i class="fas fa-redo-alt margin-left-4" style="color: gray;"> {{ date('Y年m月d日', strtotime($blog->edited_at)) }}</i>
-                <i class="far fa-eye margin-left-4" style="color: gray;"> {{ $blog->view_count }}</i>
+            <div class="detail-footer">
+                <i class="fas fa-edit"> {{ date('Y年m月d日', strtotime($blog->created_at)) }}</i>
+                <br>
+                <i class="fas fa-redo-alt side"> {{ date('Y年m月d日', strtotime($blog->edited_at)) }}</i>
+                <br>
+                <i class="far fa-eye side"> {{ $blog->view_count }}</i>
             </div>
             <br>
             <!-- 以下はいいねボタン表示 -->

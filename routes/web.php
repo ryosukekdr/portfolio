@@ -22,8 +22,6 @@ Route::post('', 'original_reset')->name('original_reset');*/
 use App\Http\Controllers\Admin\UserController;
 Route::controller(UserController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('user', 'show')->name('user.show');
-    //Route::post('user', 'update')->name('user.update');
-    
     Route::get('user/email_change', 'email_edit')->name('user.email_edit');
     Route::post('user/email_change', 'email_change')->name('user.email_change');
     Route::get('user/name_change', 'name_edit')->name('user.name_edit');
@@ -43,9 +41,11 @@ Route::controller(UserController::class)->prefix('admin')->name('admin.')->middl
     Route::get('user/profile_icon/create', 'profile_icon_add')->name('user.profile_icon.add');
     Route::post('user/profile_icon/create', 'profile_icon_create')->name('user.profile_icon.create');
     Route::get('user/profile_icon/delete', 'profile_icon_delete')->name('user.profile_icon.delete');
-    
-    //Route::get('user/password_confirm', 'password_confirm')->name('user.password_confirm');
+    //Route::post('password/email', 'sendResetLinkEmail2')->name('user.password.email2');
 });
+
+/*use App\Http\Controllers\Auth\ForgotPasswordController2;
+    Route::post('password/email', 'sendResetLinkEmail')->name('password.email2');*/
 
 use App\Http\Controllers\Admin\BlogController;
 Route::controller(BlogController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
@@ -58,11 +58,8 @@ Route::controller(BlogController::class)->prefix('admin')->name('admin.')->middl
     Route::get('blog/delete', 'delete')->name('blog.delete');
 });
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 use App\Http\Controllers\HomeController as PublicHomeController;
-//Route::get('/', [PublicHomeController::class, 'home']);
 Route::get('/', [PublicHomeController::class, 'userlist']);
 Route::get('/userpage', [PublicHomeController::class, 'userpage'])->name('userpage');
 Route::get('/mypage', [PublicHomeController::class, 'mypage'])->name('mypage');
@@ -95,7 +92,3 @@ Route::controller(ItemlistController::class)->prefix('admin')->name('admin.')->m
 
 use App\Http\Controllers\Admin\LikeController;
     Route::post('/like', [LikeController::class, 'like']);
-
-
-//use App\Http\Controllers\NewsController as PublicNewsController;
-//Route::get('/', [PublicNewsController::class, 'index'])->name('news.index');

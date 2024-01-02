@@ -28,6 +28,8 @@ return new class extends Migration
      */
     public function down()
     {
+        $table->dropForeign('blog_country_blog_id_foreign');
+        $table->dropForeign('blog_country_country_id_foreign');
         Schema::dropIfExists('blog_country');
     }
 };

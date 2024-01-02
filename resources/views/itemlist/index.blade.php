@@ -17,9 +17,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th width="7%">No.</th>
-                        <th width="45%">アイテム</th>
-                        <th width="90%">役立ちポイント</th>
+                        <th width="20%">No.</th>
+                        <th width="50%">アイテム</th>
+                        <th>役立ちポイント</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +33,6 @@
                 </tbody>
             </table>
         </div>
-        <i class="far fa-file-excel margin-left-20"><a href="{{ route('downloadCsv')}}">Excelダウンロード</a></i>
+        <i class="far fa-file-excel" style="margin-left:15%"><a href="{{ route('downloadCsv')}}">Excelダウンロード</a></i>
     </div>
 @endsection

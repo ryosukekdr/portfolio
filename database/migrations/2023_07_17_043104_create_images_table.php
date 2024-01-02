@@ -29,6 +29,7 @@ return new class extends Migration
      */
     public function down()
     {
+        $table->dropForeign('images_blog_id_foreign');
         Schema::dropIfExists('images');
     }
 };

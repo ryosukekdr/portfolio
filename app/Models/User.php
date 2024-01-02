@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     /** @var array $free_comment_rules バリデーションで検証する設定情報の配列 */
     public static $free_comment_rules = array(
-        'free_comment' => 'required|max:255',
+        'free_comment' => 'required',
     );
     
     /** @var array $profile_comment_rules バリデーションで検証する設定情報の配列 */

@@ -29,46 +29,42 @@
                 </form>
             </div>
         </div>
-        <div class="row">
-            <div class="list-news col-md-12 mx-auto">
-                <div class="row">
-                    <table class="table table-dark">
-                        <thead>
-                            <tr>
-                                <th width="20%">旅行期間</th>
-                                <th width="20%">タイトル</th>
-                                <th width="40%">本文</th>
-                                <th width="10%">ステータス</th>
-                                <th width="5%">操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($posts as $blog)
-                                <tr>
-                                    <th>{{ date('Y/m/d', strtotime($blog->departure_date)) }}　～　{{ date('Y/m/d', strtotime($blog->arrival_date)) }}</th>
-                                    <td>{{ Str::limit($blog->title, 100) }}</td>
-                                    <td>{{ Str::limit($blog->body, 250) }}</td>
-                                    <td>
-                                        @if ($blog->status ==1)
-                                            公開
-                                        @else
-                                            下書き
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <a href="{{ route('admin.blog.edit', ['id' => $blog->id]) }}">編集</a>
-                                        </div>
-                                        <div>
-                                            <a href="{{ route('admin.blog.delete_check', ['id' => $blog->id]) }}">削除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div style="overflow-x:scroll; white-space: nowrap">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th width="20%">旅行期間</th>
+                        <th width="20%">タイトル</th>
+                        <th width="40%">本文</th>
+                        <th width="10%">ステータス</th>
+                        <th width="5%">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($posts as $blog)
+                        <tr>
+                            <th>{{ date('Y/m/d', strtotime($blog->departure_date)) }}　～　{{ date('Y/m/d', strtotime($blog->arrival_date)) }}</th>
+                            <td>{{ Str::limit($blog->title, 20) }}</td>
+                            <td>{{ Str::limit($blog->body, 50) }}</td>
+                            <td>
+                                @if ($blog->status ==1)
+                                    公開
+                                @else
+                                    下書き
+                                @endif
+                            </td>
+                            <td>
+                                <div>
+                                    <a href="{{ route('admin.blog.edit', ['id' => $blog->id]) }}">編集</a>
+                                </div>
+                                <div>
+                                    <a href="{{ route('admin.blog.delete_check', ['id' => $blog->id]) }}">削除</a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection

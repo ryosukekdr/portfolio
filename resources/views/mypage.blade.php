@@ -19,8 +19,8 @@
         <img class="spin" src="{{ secure_asset('spin.png') }}">
         <div id="loading-screen"></div>
     </div>
-    <div class="row" style="width: 100%;">
-        <article class="col-md-9">
+    <div class="row" style="margin:0;">
+        <article class="col-md-9" style="padding:0;">
             @if (Request::routeIs('userpage'))
                 @if ($user->cover_photo != NULL)
                     <img src="{{ secure_asset('storage/image/' . $user->cover_photo) }}" class="wall" alt="カバー写真">
@@ -41,22 +41,23 @@
                     <div class="wall-box"><a href="{{ route('admin.user.cover_photo.add') }}"><div style="text-align: center;">カバー写真を設定できます</div></a></div>
                 @endif
             @endif
-        
-            @if (Request::routeIs('userpage'))
-                @if ($user->free_comment != NULL)
-                    <div class="margin-side3" style="white-space: pre-line;">{{$user->free_comment}}</div>
+            <div style="margin-right:3%; margin-left:3%">
+                @if (Request::routeIs('userpage'))
+                    @if ($user->free_comment != NULL)
+                        <div class="" style="white-space: pre-line;">{{$user->free_comment}}</div>
+                    @else
+                        <div class="">コメントが記載されていません</div>
+                    @endif
                 @else
-                    <div class="margin-side3">コメントが記載されていません</div>
+                    @if (\Auth::user()->free_comment != NULL)
+                        <a href="{{ route('admin.user.free_comment.add') }}">
+                            <div class="" style="white-space: pre-line;">{{\Auth::user()->free_comment}}</div>
+                        </a>
+                    @else
+                        <div class="comment-box" style="margin-left: 5%;"><a href="{{ route('admin.user.free_comment.add') }}"><div style="text-align: center;">コメントを記載できます</div></a></div>
+                    @endif
                 @endif
-            @else
-                @if (\Auth::user()->free_comment != NULL)
-                    <a href="{{ route('admin.user.free_comment.add') }}">
-                        <div class="margin-side3" style="white-space: pre-line;">{{\Auth::user()->free_comment}}</div>
-                    </a>
-                @else
-                    <div class="comment-box" style="margin-left: 5%;"><a href="{{ route('admin.user.free_comment.add') }}"><div style="text-align: center;">コメントを記載できます</div></a></div>
-                @endif
-            @endif
+            </div>
         </article>
         <aside class="col-md-3">
             <br>
@@ -93,14 +94,14 @@
             <div class="margin-top3">
             @if (Request::routeIs('userpage'))
                 @if ($user->profile_comment != NULL)
-                    <div class="margin-side3" style="white-space: pre-line;">{{$user->profile_comment}}</div>
+                    <div class="" style="white-space: pre-line;">{{$user->profile_comment}}</div>
                 @else
-                    <div class="margin-side3">プロフィールが記載されていません</div>
+                    <div class="">プロフィールが記載されていません</div>
                 @endif
             @else
                 @if (\Auth::user()->profile_comment != NULL)
                     <a href="{{ route('admin.user.profile_comment.add') }}">
-                        <div class="margin-side3" style="white-space: pre-line;">{{\Auth::user()->profile_comment}}</div>
+                        <div class="" style="white-space: pre-line;">{{\Auth::user()->profile_comment}}</div>
                     </a>
                 @else
                     <div class="comment-box"><a href="{{ route('admin.user.profile_comment.add') }}"><div style="text-align: center;">プロフィールを記載できます</div></a></div>

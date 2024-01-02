@@ -59,48 +59,12 @@ $breakpoints: (
         color: white;
         text-decoration: none;
     }
-    
-    
-    /*@include media(lg) {
-        a {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 0 auto;
-            padding: 10px 25px;
-            color: #543618;
-            font-weight: 600;
-            background: #eeee;
-            border-radius: 50px;
-            border: 0.2rem solid #543618;
-            box-shadow: 0.2rem 0.2rem 0px 0.1rem #cccccc;
-            text-decoration: none;
-        }
-        a:hover {
-            transform: translate3d(0.2rem, 0.2rem, 0);
-            box-shadow: none;
-            opacity: 1;
-            transition: all 0.2s;
-        }
-    }
-    @include media(md) {
-        border-bottom: solid black;
-        padding-bottom: 5%;
-        padding-top: 5%;
-        padding-left: 5%;
-        margin-left: 5%;
-        margin-right: 5%;
-        a {
-            color: #333333;
-            text-decoration: none;
-        }
-    }*/
 }
 
 .header{
     position: sticky;
     top: 0;
-    width: 100%;
+    //width: 100%;
     height: 100%;
     z-index: 999;
     background-color: black;
@@ -133,8 +97,8 @@ aside {
         
     }
     @include media(md) {
-        margin-left: 3%;
-        margin-right: 3%;
+        padding-left: 3%;
+        padding-right: 3%;
     }
 }
 
@@ -161,10 +125,13 @@ aside {
 }
 
 .profile-icon{
-    width: 50%;
     border-radius: 50%;
-    //display: inline-block;
-    //margin: 0 auto;
+    @include media(lg) {
+        width: 50%;
+    }
+    @include media(md) {
+        width: 25%;
+    }
 }
 
 .margin-top3{
@@ -176,18 +143,16 @@ footer{
     text-align: center;
     padding-top: 1%;
     padding-bottom: 1%;
+    p {
+        color: #fff;
+    }
 }
-
-
-footer p {
-  color: #fff;
-}
-
 
 .row-cols-sm-2{
     margin-left: 10%;
     margin-right: 10%;
     padding-top: 3%;
+    
     img{
         width: 35%;
     }
@@ -207,8 +172,23 @@ footer p {
     //width: 70%;
     
     .detail-footer{
-        display: flex;
         margin-top: 3%;
+        color: gray;
+        
+        @include media(lg) {
+            display: flex;
+        }
+        @include media(md) {
+        }
+        
+        .side{
+            @include media(lg) {
+                margin-left: 3%;
+            }
+            @include media(md) {
+            }
+            
+        }
     }
 }
 
@@ -235,8 +215,6 @@ footer p {
 .text-align-center{
     text-align: center;
 }
-
-
 
 .image-edit{
     img{
@@ -294,12 +272,17 @@ footer p {
 }
 
 .blog-card{
-    margin: 2em 0;
     position: relative;
     padding: 0.5em 1.5em;
     border-top: solid 2px #888888;
     border-bottom: solid 2px #888888;
-    //text-align: center;
+    
+    @include media(lg) {
+        margin: 4em 2em;
+    }
+    @include media(md) {
+        margin: 4em 1em;
+    }
     
     .card-img-top{
         display: block;
@@ -338,20 +321,20 @@ footer p {
             margin-bottom: 1%;
         }
     }
+    
+    &::before, &::after{
+        content: '';
+        position: absolute;
+        top: -10px;
+        width: 2px;
+        height: -webkit-calc(100% + 20px);
+        height: calc(100% + 20px);
+        background-color: #888888;
+    }
+    
+    &::before {left: 10px;}
+    &::after {right: 10px;}
 }
-
-.blog-card:before, .blog-card:after{
-    content: '';
-    position: absolute;
-    top: -10px;
-    width: 2px;
-    height: -webkit-calc(100% + 20px);
-    height: calc(100% + 20px);
-    background-color: #888888;
-}
-
-.blog-card:before {left: 10px;}
-.blog-card:after {right: 10px;}
 
 .itemlist-container{
     padding-top: 7%;
@@ -360,40 +343,54 @@ footer p {
 .container__itemlist{
     position: relative;
     background: #fffde7;
-    width: 60%;
     margin: 2em auto;
     padding: 1.5em 1em;
     //transform: rotate(-2deg);
     box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
     color: #795548;
+    
+    @include media(lg) {
+        width: 70%;
+    }
+    @include media(md) {
+        width: 90%;
+    }
+
+
+    &::before{
+        content:'持ち物リスト';
+        position: relative;
+        display: inline-block;
+        border-bottom: 3px solid #795548;
+        border-radius: 0 0 40% 5% / 0 0 15% 20%;
+        padding: 0 1em 0.1em 0.2em;
+        font-size: 110%;
+        font-weight: bold;
+        transform: rotate(-5deg);
+        margin-bottom: 2%;
+    }
+    &::after{
+        content:'';
+        position: absolute;
+        left: 50%;
+        top: -15px;
+        margin-left: -75px;
+        width: 150px;
+        height: 30px;
+        background: rgba(245,245,245,0.7);
+        box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+        transform: rotate(-4deg);
+    }
 }
-.container__itemlist::before{
-    content:'持ち物リスト';
-    position: relative;
-    display: inline-block;
-    border-bottom: 3px solid #795548;
-    border-radius: 0 0 40% 5% / 0 0 15% 20%;
-    padding: 0 1em 0.1em 0.2em;
-    font-size: 110%;
-    font-weight: bold;
-    transform: rotate(-5deg);
-    margin-bottom: 2%;
-}
-.container__itemlist::after{
-    content:'';
-    position: absolute;
-    left: 50%;
-    top: -15px;
-    margin-left: -75px;
-    width: 150px;
-    height: 30px;
-    background: rgba(245,245,245,0.7);
-    box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
-    transform: rotate(-4deg);
-}
+
 .toppage-icon {
-    width: 5%;
     margin: 3%;
+    @include media(lg) {
+        width: 5%;
+    }
+    @include media(md) {
+        width: 10%; 
+    }
 }
 .textlength_alert {
     color: red;
@@ -421,12 +418,6 @@ footer p {
     opacity: 0;
 }
 
-
-//要素範囲の確認用
-.red {
-    background-color: red;
-}
-
 //bootstrapとjQueryで背景色が衝突したため、オーバーライド
 .placeholder{
     background-color: transparent;
@@ -435,30 +426,21 @@ footer p {
 .head-border {
     display: flex;
     align-items: center;
-}
  
-.head-border:before,
-.head-border:after {
-    content: "";
-    height: 1px;
-    flex-grow: 1;
-    background-color: #666;
-}
- 
-.head-border:before {
-    margin-right: 1rem;
-}
- 
-.head-border:after {
-    margin-left: 1rem;
-}
-
-.head-border::before {
-    background: linear-gradient(-90deg, #666, transparent);
-}
-
-.head-border::after {
-    background: linear-gradient(90deg, #666, transparent);
+    &:before, &:after {
+        content: "";
+        height: 1px;
+        flex-grow: 1;
+        background-color: #666;
+    }
+    &::before {
+        margin-right: 1rem;
+        background: linear-gradient(-90deg, #666, transparent);
+    }
+    &::after {
+        margin-left: 1rem;
+        background: linear-gradient(90deg, #666, transparent);
+    }
 }
 
 .liked {
@@ -473,38 +455,22 @@ footer p {
     margin-bottom: 10%;
 }
 
-.user-list {
-  border: double 4px black;
-  padding: 2em 1em 0.5em 0.5em;
-  position: relative;
-}
-.user-list li {
-  line-height: 1.5;
-  padding: 0.5em 0;
-  list-style-type: none!important;/*ポチ消す*/
-}
-.user-list li:before {
-  position: absolute;
-  left : 1em; /*左端からのアイコンまで*/
-  color: black; /*アイコン色*/
-}
-
 .wall {
-	overflow:		hidden;
-	position:		relative;
+	overflow: hidden;
+	//position: relative;
 	width: 100%;
     margin-bottom: 10%;
-}
 
-.wall .caption {
-	font-size:		200%;
+.caption {
+	font-size: 200%;
 	position: absolute; 
 	top: 50%;
 	left: 50%; 
 	transform: translateX(-50%) translateY(-50%);
-	color:			#fff;
-}
-.wall .mask {
+	color: #fff;
+    }
+    
+.mask {
     padding-bottom: 10%;
 	width:			100%;
 	height:			100%;
@@ -515,54 +481,125 @@ footer p {
 	background-color:	rgba(0,0,0,0.4);	/* マスクは半透明 */
 	-webkit-transition:	all 0.2s ease;
 	transition:		all 0.2s ease;
+    }
 }
+
 .wall:hover .mask {
-	opacity:		1;	/* マスクを表示する */
+	opacity: 1;	/* マスクを表示する */
 }
 
 .comment-box {
     position: relative;
     padding:0.25em 1em;
-}
-.comment-box:before,.comment-box:after{ 
-    content:'';
-    width: 20px;
-    height: 30px;
-    position: absolute;
-    display: inline-block;
-}
-.comment-box:before{
-    border-left: solid 2px #5767bf;
-    border-top: solid 2px #5767bf;
-    top:0;
-    left: 0;
-}
-.comment-box:after{
-    border-right: solid 2px #5767bf;
-    border-bottom: solid 2px #5767bf;
-    bottom:0;
-    right: 0;
+
+    &::before, &::after{ 
+        content:'';
+        width: 20px;
+        height: 30px;
+        position: absolute;
+        display: inline-block;
+    }
+    &::before{
+        border-left: solid 2px #5767bf;
+        border-top: solid 2px #5767bf;
+        top:0;
+        left: 0;
+    }
+    &::after{
+        border-right: solid 2px #5767bf;
+        border-bottom: solid 2px #5767bf;
+        bottom:0;
+        right: 0;
+    }
 }
 
-.underline {}
-.underline a{
-  display: inline-block;
-  color: white;
-  //font-size: 120%;
-  //text-decoration: none;
-  position: relative;
-  transition: .3s;
+.underline {
+    a{
+        display: inline-block;
+        color: white;
+        //font-size: 120%;
+        //text-decoration: none;
+        position: relative;
+        transition: .3s;
+        &::after{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            content: '';
+            width: 0;
+            height: 1px;
+            background-color: white;
+            transition: .3s;
+        }
+        &:hover::after{
+            width: 100%;
+        }
+    }
 }
-.underline a::after{
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  content: '';
-  width: 0;
-  height: 1px;
-  background-color: white;
-  transition: .3s;
+
+.username-md{
+    margin: 1% 10% 1% auto;
+    color: white;
+    list-style: none;
+    
+    @include media(lg) {
+        display: none;
+    }
+    @include media(md) {
+            
+    }
 }
-.underline a:hover::after{
-  width: 100%;
+    
+.username-lg{
+    margin: 1% 0 1% auto;
+    color: white;
+    list-style: none;
+        
+    @include media(lg) {
+    }
+    @include media(md) {
+        display: none;    
+    }
+}
+
+.user-list-box {
+    position: relative;
+    padding: 0.5em 1em;
+    border: solid 3px #95ccff;
+    border-radius: 8px;
+    margin: 10% auto;
+    
+    @include media(lg) {
+        width: 50%;
+    }
+    @include media(md) {
+        width: 90%;    
+    }
+}
+.user-list-title {
+    position: absolute;
+    display: inline-block;
+    top: -13px;
+    left: 10px;
+    padding: 0 9px;
+    line-height: 1;
+    font-size: 19px;
+    background: white;
+    color: #95ccff;
+    font-weight: bold;
+}
+
+.user-list {
+    margin-top: 10%;
+    margin-right: 1em;
+    li {
+        line-height: 1.5;
+        padding: 0.5em 0;
+        list-style-type: none!important;/*ポチ消す*/
+        &::before {
+            position: absolute;
+            left : 1em; /*左端からのアイコンまで*/
+            color: black; /*アイコン色*/
+        }
+    }
 }

@@ -27,6 +27,9 @@
     {{-- 画面上部に表示するナビゲーションバー --}}
     <nav class="navbar navbar-expand-md navbar-dark header" style ="box-shadow: 0 10px 10px -10px;">
         <div></div> <!--ここにdivがないとハンバーガーメニューが左端に来てしまう-->
+        <li class="username-md">
+            <div style="border: 2px dotted; width:120%"><div style="text-align:center;">@yield('username')</div></div>
+        </li>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo2" aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,8 +48,8 @@
                 <li class="header-menu-left underline">
                     @yield('itemlist-index')
                 </li>
-                <li style="margin: 1% 0 1% auto; color: white;">
-                    @yield('username')
+                <li class="username-lg">
+                    <div style="border: 2px dotted; width:120%"><div style="text-align:center;">@yield('username')</div></div>
                 </li>
                 <li class="dropdown hamburger-inside" style="margin-left: 3%">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: white;">
@@ -68,11 +71,8 @@
             </ul>
         </div>
     </nav>
-    
     @yield('content')
-    
     <a href="#top"><img alt="ページトップへのリンク" src="{{ secure_asset('toppage.png') }}"  class="toppage-icon"></a>
-    
     <footer>
         <p><small>&copy;2023 Ryosuke</small></p>
     </footer>
