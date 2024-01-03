@@ -613,3 +613,13 @@ footer{
         }
     }
 }
+
+.main-border {
+    border-bottom: 1px solid rgb(121, 82, 72);
+    padding: 10px;
+}
+
+.sub-border {
+    border-bottom: 1px solid rgb(121, 82, 72, .5);
+    padding: 10px;
+}

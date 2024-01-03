@@ -17,17 +17,17 @@
             <table>
                 <thead>
                     <tr>
-                        <th width="20%">No.</th>
-                        <th width="50%">アイテム</th>
-                        <th>役立ちポイント</th>
+                        <th class="main-border" width="10%">No.</th>
+                        <th class="main-border" width="40%">アイテム</th>
+                        <th class="main-border">役立ちポイント</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($itemlists as $itemlist)
                         <tr>
-                            <th>{{ $No ++ }}</th>
-                            <td>{{ Str::limit($itemlist->item, 100) }}</td>
-                            <td>{{ Str::limit($itemlist->note, 100) }}</td>
+                            <th class="sub-border">{{ $No ++ }}</th>
+                            <td class="sub-border">{{ Str::limit($itemlist->item, 100) }}</td>
+                            <td class="sub-border">{{ Str::limit($itemlist->note, 100) }}</td>
                         </tr>
                     @endforeach
                 </tbody>
