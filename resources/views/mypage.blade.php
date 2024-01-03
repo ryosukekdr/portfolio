@@ -25,7 +25,7 @@
                 @if ($user->cover_photo != NULL)
                     <img src="{{ secure_asset('storage/image/' . $user->cover_photo) }}" class="wall" alt="カバー写真">
                 @else
-                    <img src="{{ secure_asset('cover_photo.png') }}" style="width: 70%;" alt="カバー写真">
+                    <div class="wall-box"><div style="text-align: center;"><img src="{{ secure_asset('cover_photo.png') }}" style="width: 20%; text-align: center;" alt="カバー写真"></div></div>
                 @endif
             @else
                 @if (\Auth::user()->cover_photo != NULL)
@@ -67,7 +67,7 @@
                     @if ($user->profile_icon != NULL)
                         <img src="{{ secure_asset('storage/image/' . $user->profile_icon) }}" class="profile-icon" alt="アイコン画像">
                     @else
-                        <img src="{{ secure_asset('profile_icon.jpg') }}" style="width: 50%;" alt="アイコン画像">
+                        <img src="{{ secure_asset('profile_icon.jpg') }}" class="profile-icon-default" alt="アイコン画像">
                     @endif
                 @else
                     @if (\Auth::user()->profile_icon != NULL)
@@ -82,7 +82,7 @@
                     @else
                         <a href="{{ route('admin.user.profile_icon.add') }}">
                             <div class="wall">
-                                <img src="{{ secure_asset('profile_icon.jpg') }}" style="width: 50%;" alt="アイコン画像">
+                                <img src="{{ secure_asset('profile_icon.jpg') }}" class="profile-icon-default" alt="アイコン画像">
                                 <div class="mask">
                                     <div class="caption" style="font-size: 100%;">アイコンの編集</div>
                                 </div>
@@ -91,7 +91,7 @@
                     @endif
                 @endif
             </div>
-            <div class="margin-top3">
+            <div style="margin-top: 3%; margin-bottom: 3%;">
             @if (Request::routeIs('userpage'))
                 @if ($user->profile_comment != NULL)
                     <div class="" style="white-space: pre-line;">{{$user->profile_comment}}</div>

@@ -130,7 +130,17 @@ aside {
         width: 50%;
     }
     @include media(md) {
-        width: 25%;
+        width: 30%;
+    }
+}
+
+.profile-icon-default{
+    border-radius: 50%;
+    @include media(lg) {
+        width: 50%;
+    }
+    @include media(md) {
+        width: 30%;
     }
 }
 
@@ -451,8 +461,8 @@ footer{
     border: 5px dashed #aaa;
     background-color: #eee;
     padding: 20%;
-    width: 100%;
-    margin-bottom: 10%;
+    width: 90%;
+    margin: 1% auto 10%;
 }
 
 .wall {

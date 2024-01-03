@@ -12084,7 +12084,21 @@ article {
 }
 @media screen and (max-width: 768px) {
   .profile-icon {
-    width: 25%;
+    width: 30%;
+  }
+}
+
+.profile-icon-default {
+  border-radius: 50%;
+}
+@media screen and (min-width: 768px) {
+  .profile-icon-default {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .profile-icon-default {
+    width: 30%;
   }
 }
 
@@ -12390,8 +12404,8 @@ footer p {
   border: 5px dashed #aaa;
   background-color: #eee;
   padding: 20%;
-  width: 100%;
-  margin-bottom: 10%;
+  width: 90%;
+  margin: 1% auto 10%;
 }
 
 .wall {

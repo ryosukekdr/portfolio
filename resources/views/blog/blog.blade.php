@@ -20,10 +20,19 @@
             <div id="regions_div" class="mx-auto" style="width: 90%; box-sizing: border-box;"></div>
             <div class="margin-top3 text-align-center">
                 @if (Request::routeIs('blog.search'))
-                    <h class="head-border">{{$selected_country->name}}が
-                        <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>
-                        タグ付けされているブログを表示中
-                    </h>
+                    @if (!($blogs->isEmpty()))
+                        <h class="head-border">
+                            {{$selected_country->name}}が
+                            <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>
+                            タグ付けされているブログを表示中
+                        </h>
+                    @else
+                        <h class="head-border">
+                            {{$selected_country->name}}が
+                            <i class="fas fa-map-marker-alt" style="color: #66CCFF;"></i>
+                            タグ付けされているブログはありません
+                        </h>
+                    @endif
                     <div class="" style="justify-content:space-between; margin-top:1%">
                         <div style="margin-bottom: 3%">
                             <a href="{{ route('blog', ['user_id' => $user_id]) }}">
