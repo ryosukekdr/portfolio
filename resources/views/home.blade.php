@@ -42,6 +42,13 @@
         <div class="user-list-box">
             <span class="user-list-title">ユーザ一覧</span>
             <ul class="user-list">
+                <div class="display-flex-space-between">
+                    <div class="fas fa-plane">
+                        <a href="{{ route('mypage') }}" style="color:gold">{{ \Auth::user()->name }}（自分）</a>
+                    </div>
+                    <h>訪問国数：{{\Auth::user()->CountryCount()}}ヵ国</h>
+                </div>
+                <br><br>
                 @foreach ($users as $user)
                     @if(!(\Auth::user()->id == $user->id))
                         <div class="display-flex-space-between">
